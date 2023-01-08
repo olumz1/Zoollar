@@ -6,7 +6,12 @@
 
         public int NoOfReceptions { get; set; }
 
+        public int NoOfbathrooms { get; set; }
+
         public Address Address { get; set; }
 
+        public bool IsSold { get; set; }
+
+        public DateTime? DateSold { get; set; }
     }
 }

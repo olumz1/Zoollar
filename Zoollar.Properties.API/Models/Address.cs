@@ -14,7 +14,7 @@
 
         public string Region { get; set; }
 
-        public string PostalCode { get; set; }
+        public string ZipCode { get; set; }
 
         public string Country { get; set; }
 
