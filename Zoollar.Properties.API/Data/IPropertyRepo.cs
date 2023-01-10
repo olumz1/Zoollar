@@ -1,4 +1,6 @@
-﻿using Zoollar.Properties.API.Models.Entities;
+﻿using Zoollar.Properties.API.Helpers;
+using Zoollar.Properties.API.Models.Entities;
+using Zoollar.Properties.API.Models.Filter;
 
 namespace Zoollar.Properties.API.Data
 {
@@ -6,7 +8,7 @@ namespace Zoollar.Properties.API.Data
     {
         bool SaveChanges();
 
-        Task<IEnumerable<Property>> GetAllProperties();
+        Task<PagedResponse<Property>> GetAllProperties(PaginationFilter filter);
 
         Task<Property> GetPropertyById(Guid id);
 
@@ -20,7 +22,7 @@ namespace Zoollar.Properties.API.Data
 
         Task<IEnumerable<Property>> FilterPropertiesByCity (string city);
 
-        Task<IEnumerable<Property>> GetPropertiesByAgentId(Guid AgentId);
+        Task<IEnumerable<Property>> FilterPropertiesByAgentId(Guid AgentId);
 
     }
 }

@@ -19,7 +19,7 @@ namespace Zoollar.Blogs.API.Data
             }
 
             _dbContext.ArchivedBlogs.Add(archivedBlog);
-            _dbContext.SaveChanges();
+            SaveChanges();
             return Task.CompletedTask;
         }
 
@@ -31,7 +31,7 @@ namespace Zoollar.Blogs.API.Data
             }
 
             _dbContext.Blogs.Add(blog);
-            _dbContext.SaveChanges();
+            SaveChanges();
             return Task.CompletedTask;
         }
 
@@ -69,7 +69,7 @@ namespace Zoollar.Blogs.API.Data
                 throw new ArgumentNullException(nameof(blog));
             }
             _dbContext.Update(blog);
-            _dbContext.SaveChanges();
+            SaveChanges();
             return Task.CompletedTask;
         }
 

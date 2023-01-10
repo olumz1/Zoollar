@@ -1,37 +1,67 @@
-﻿using Zoollar.Properties.API.Models.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
+using Zoollar.Properties.API.Helpers;
+using Zoollar.Properties.API.Models.Entities;
+using Zoollar.Properties.API.Models.Filter;
 
 namespace Zoollar.Properties.API.Data
 {
     public class PropertyRepo : IPropertyRepo
     {
+        private readonly PropertiesDbContext _dbContext;
+        public PropertyRepo(PropertiesDbContext propertiesDbContext)
+        {
+            _dbContext = propertiesDbContext;
+        }
+
         public Task CreateProperty(Property property)
         {
-            throw new NotImplementedException();
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+            _dbContext.Properties.Add(property);
+            SaveChanges();
+            return Task.CompletedTask;
         }
 
         public Task DeleteProperty(Guid id)
         {
-            throw new NotImplementedException();
+            var propertyToDelete = GetPropertyById(id);
+            if (propertyToDelete != null)
+            {
+                _dbContext.Remove(propertyToDelete);
+            }
+            _dbContext.SaveChanges();
+            return Task.CompletedTask;
         }
 
-        public Task<IEnumerable<Property>> GetAllProperties()
+        public async Task<PagedResponse<Property>> GetAllProperties(PaginationFilter filter)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(_dbContext.Properties, filter.PageNumber, filter.PageSize));
         }
 
-        public Task<Property> GetPropertyById(Guid id)
+        public async Task<Property> GetPropertyById(Guid id)
         {
-            throw new NotImplementedException();
+            var property = await Task.FromResult(_dbContext.Properties.FirstOrDefault(property => property.Id == id));
+            return property;
         }
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return (_dbContext.SaveChanges() >= 0);
         }
 
         public Task UpdateProperty(Property property)
         {
-            throw new NotImplementedException();
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+            _dbContext.Update(property);
+            SaveChanges();
+            return Task.CompletedTask;
         }
 
         public Task<IEnumerable<Property>> FilterPropertiesByLocation(string location) 
