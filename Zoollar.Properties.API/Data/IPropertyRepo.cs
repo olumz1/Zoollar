@@ -23,6 +23,5 @@ namespace Zoollar.Properties.API.Data
         Task<IEnumerable<Property>> FilterPropertiesByCity (string city);
 
         Task<IEnumerable<Property>> FilterPropertiesByAgentId(Guid AgentId);
-
     }
 }

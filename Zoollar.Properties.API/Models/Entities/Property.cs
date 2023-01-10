@@ -4,6 +4,6 @@
     {
         public Guid Id { get; set; }
 
-        public string PropertyData { get; set; }
+        public PropertyData PropertyData { get; set; }
     }
 }

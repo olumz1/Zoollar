@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Zoollar.Properties.API.Data;
@@ -12,9 +13,11 @@ using Zoollar.Properties.API.Models;
 namespace Zoollar.Properties.API.Migrations
 {
     [DbContext(typeof(PropertiesDbContext))]
-    partial class PropertiesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230110224621_UpdateProperty")]
+    partial class UpdateProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
 
-        public IEnumerable<PropertySettings> Properties{get; set;}
+        public IEnumerable<PropertyData> Properties{get; set;}
     }
 }

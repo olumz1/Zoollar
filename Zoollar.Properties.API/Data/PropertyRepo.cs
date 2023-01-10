@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Runtime.CompilerServices;
 using Zoollar.Properties.API.Helpers;
 using Zoollar.Properties.API.Models.Entities;
@@ -64,19 +65,28 @@ namespace Zoollar.Properties.API.Data
             return Task.CompletedTask;
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByLocation(string location) 
+        public async Task<IEnumerable<Property>> FilterPropertiesByLocation(PaginationFilter filter, string location) 
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(_dbContext.Properties
+                .Where(x=>x.PropertyData.PropertyDetails.Address.AddressLine.Contains(location)), 
+                filter.PageNumber, filter.PageSize));
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByCity(string city)
+        public async Task<IEnumerable<Property>> FilterPropertiesByCity(PaginationFilter filter, string city)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(_dbContext.Properties
+                .Where(x => x.PropertyData.PropertyDetails.Address.City == city),
+                filter.PageNumber, filter.PageSize));
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByAgentId(Guid AgentId)
+        public async Task<IEnumerable<Property>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(_dbContext.Properties
+                .Where(x => x.PropertyData.PropertyAgent.AgentId == agentId),
+                filter.PageNumber, filter.PageSize));
         }
     }
 } 

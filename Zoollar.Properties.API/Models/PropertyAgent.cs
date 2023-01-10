@@ -2,7 +2,7 @@
 {
     public class PropertyAgent
     {
-        public int AgentId { get; set; }
+        public Guid AgentId { get; set; }
 
         public Uri ImageUrl { get; set; }
 
