@@ -23,31 +23,39 @@ namespace Zoollar.Properties.API.Services
             throw new NotImplementedException();
         }
 
-        public Task<PagedResponse<GetPropertyDto>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId)
+        public async Task<PagedResponse<GetPropertyDto>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId)
         {
             var properties = await _propertyRepo.FilterPropertiesByAgentId(filter, agentId);
             var getPropertiesDto = _mapper.Map<PagedResponse<GetPropertyDto>>(properties);
             return getPropertiesDto;
         }
 
-        public Task<PagedResponse<GetPropertyDto>> FilterPropertiesByCity(PaginationFilter filter, string city)
+        public async Task<PagedResponse<GetPropertyDto>> FilterPropertiesByCity(PaginationFilter filter, string city)
         {
-            throw new NotImplementedException();
+            var properties = await _propertyRepo.FilterPropertiesByCity(filter, city);
+            var getPropertiesDto = _mapper.Map<PagedResponse<GetPropertyDto>>(properties);
+            return getPropertiesDto;
         }
 
-        public Task<PagedResponse<GetPropertyDto>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType)
+        public async Task<PagedResponse<GetPropertyDto>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType)
         {
-            throw new NotImplementedException();
+            var properties = await _propertyRepo.FilterPropertiesByListingType(filter, propertyListingType);
+            var getPropertiesDto = _mapper.Map<PagedResponse<GetPropertyDto>>(properties);
+            return getPropertiesDto;
         }
 
-        public Task<PagedResponse<GetPropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyListingType)
+        public async Task<PagedResponse<GetPropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyType)
         {
-            throw new NotImplementedException();
+            var properties = await _propertyRepo.FilterPropertiesByPropertyType(filter, propertyType);
+            var getPropertiesDto = _mapper.Map<PagedResponse<GetPropertyDto>>(properties);
+            return getPropertiesDto;
         }
 
-        public Task<PagedResponse<GetPropertyDto>> FilterPropertiesByState(PaginationFilter filter, string city)
+        public async Task<PagedResponse<GetPropertyDto>> FilterPropertiesByState(PaginationFilter filter, string state)
         {
-            throw new NotImplementedException();
+            var properties = await _propertyRepo.FilterPropertiesByState(filter, state);
+            var getPropertiesDto = _mapper.Map<PagedResponse<GetPropertyDto>>(properties);
+            return getPropertiesDto;
         }
 
         public async Task<PagedResponse<GetPropertyDto>> GetAllProperties(PaginationFilter filter)
@@ -57,9 +65,11 @@ namespace Zoollar.Properties.API.Services
             return getPropertiesDto;
         }
 
-        public Task<GetPropertyDto> GetPropertyById(Guid Id)
+        public async Task<GetPropertyDto> GetPropertyById(Guid Id)
         {
-            throw new NotImplementedException();
+            var property = await _propertyRepo.GetPropertyById(Id);
+            var getPropertyDto = _mapper.Map<GetPropertyDto>(property);
+            return getPropertyDto;
         }
 
         public Task<GetPropertyDto> UpdateProperty(Guid id, CreatePropertyDto property)

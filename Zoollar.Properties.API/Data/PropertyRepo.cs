@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System.Runtime.CompilerServices;
-using Zoollar.Properties.API.Helpers;
+﻿using Zoollar.Properties.API.Helpers;
 using Zoollar.Properties.API.Models.Entities;
 using Zoollar.Properties.API.Models.Filter;
 
@@ -86,6 +83,14 @@ namespace Zoollar.Properties.API.Data
             return await Task.FromResult(PagedResponse<Property>
                 .ToPagedResponse(_dbContext.Properties
                 .Where(x => x.PropertyData.PropertyAgent.AgentId == agentId),
+                filter.PageNumber, filter.PageSize));
+        }
+
+        public async Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, string state)
+        {
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(_dbContext.Properties
+                .Where(x => x.PropertyData.PropertyDetails.Address.State.ToString() == state),
                 filter.PageNumber, filter.PageSize));
         }
     }

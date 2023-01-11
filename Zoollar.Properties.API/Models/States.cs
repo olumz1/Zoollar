@@ -1,6 +1,6 @@
 ﻿namespace Zoollar.Properties.API.Models
 {
-    public enum State
+    public enum States
     {
         Abuja,
         Abia,
