@@ -1,4 +1,5 @@
 ﻿using Zoollar.Properties.API.Helpers;
+using Zoollar.Properties.API.Models;
 using Zoollar.Properties.API.Models.Entities;
 using Zoollar.Properties.API.Models.Filter;
 
@@ -86,11 +87,27 @@ namespace Zoollar.Properties.API.Data
                 filter.PageNumber, filter.PageSize));
         }
 
-        public async Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, string state)
+        public async Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, States state)
         {
             return await Task.FromResult(PagedResponse<Property>
                 .ToPagedResponse(_dbContext.Properties
-                .Where(x => x.PropertyData.PropertyDetails.Address.State.ToString() == state),
+                .Where(x => x.PropertyData.PropertyDetails.Address.State == state),
+                filter.PageNumber, filter.PageSize));
+        }
+
+        public async Task<IEnumerable<Property>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType)
+        {
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(_dbContext.Properties
+                .Where(x => x.PropertyData.PropertyListingType == propertyListingType),
+                filter.PageNumber, filter.PageSize));
+        }
+
+        public async Task<IEnumerable<Property>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyType)
+        {
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(_dbContext.Properties
+                .Where(x => x.PropertyData.PropertyType == propertyType),
                 filter.PageNumber, filter.PageSize));
         }
     }

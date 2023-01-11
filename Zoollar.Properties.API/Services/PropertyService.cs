@@ -3,6 +3,7 @@ using Zoollar.Properties.API.Data;
 using Zoollar.Properties.API.Dtos;
 using Zoollar.Properties.API.Helpers;
 using Zoollar.Properties.API.Models;
+using Zoollar.Properties.API.Models.Entities;
 using Zoollar.Properties.API.Models.Filter;
 
 namespace Zoollar.Properties.API.Services
@@ -18,9 +19,38 @@ namespace Zoollar.Properties.API.Services
             _mapper = mapper;
         }
 
-        public Task<GetPropertyDto> CreateProperty(CreatePropertyDto createPropertyDto)
+        public async Task<GetPropertyDto> CreateProperty(CreatePropertyDto createPropertyDto)
         {
-            throw new NotImplementedException();
+            var property = _mapper.Map<Property>(createPropertyDto);
+            property.Id = Guid.NewGuid();
+            property.PropertyData.Title = getPropertyTitle(
+                property.PropertyData.PropertyDetails.NoOfbathrooms, 
+                property.PropertyData.PropertyType.ToString(),
+                property.PropertyData.PropertyListingType);
+
+            //Use Api to get the Agent from the logged in account and update property agent details
+            await _propertyRepo.CreateProperty(property);
+
+            var getPropertyDto = _mapper.Map<GetPropertyDto>(property);
+
+            return await Task.FromResult(getPropertyDto);
+
+            string getPropertyTitle(int noOfBedrooms, string propertyType, PropertyListingType propertyListingType)
+            {
+                string bed = noOfBedrooms == 1 ? $"{noOfBedrooms} bed" : $"{noOfBedrooms} beds";
+                return $"{bed} {propertyType} {getListingType(propertyListingType)}";
+            };
+
+            string getListingType(PropertyListingType propertyListingType) 
+            {
+                return propertyListingType switch
+                {
+                    PropertyListingType.ForSale => "for sale",
+                    PropertyListingType.ToLet => "to let",
+                    PropertyListingType.ShortLet => "short let",
+                    _ => string.Empty,
+                };
+            }
         }
 
         public async Task<PagedResponse<GetPropertyDto>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId)
@@ -51,7 +81,7 @@ namespace Zoollar.Properties.API.Services
             return getPropertiesDto;
         }
 
-        public async Task<PagedResponse<GetPropertyDto>> FilterPropertiesByState(PaginationFilter filter, string state)
+        public async Task<PagedResponse<GetPropertyDto>> FilterPropertiesByState(PaginationFilter filter, States state)
         {
             var properties = await _propertyRepo.FilterPropertiesByState(filter, state);
             var getPropertiesDto = _mapper.Map<PagedResponse<GetPropertyDto>>(properties);
@@ -72,9 +102,21 @@ namespace Zoollar.Properties.API.Services
             return getPropertyDto;
         }
 
-        public Task<GetPropertyDto> UpdateProperty(Guid id, CreatePropertyDto property)
+        public async Task<GetPropertyDto> UpdateProperty(Guid id, CreatePropertyDto property)
         {
-            throw new NotImplementedException();
+            var getPropertyToUpdate = await _propertyRepo.GetPropertyById(id);
+
+            if (getPropertyToUpdate != null)
+            {
+                await _propertyRepo.UpdateProperty(getPropertyToUpdate);
+                var getPropertyDto = _mapper.Map<GetPropertyDto>(getPropertyToUpdate);
+                return await Task.FromResult(getPropertyDto);
+            }
+            else
+            {
+                //todo: implement logger to capture error logs
+                throw new ArgumentNullException(nameof(UpdateProperty));
+            }
         }
     }
 }

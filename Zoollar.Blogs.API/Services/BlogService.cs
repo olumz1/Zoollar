@@ -18,7 +18,7 @@ namespace Zoollar.Blogs.API.Services
             _dateTimeProvider = dateTimeProvider;
         }
 
-        public Task<GetBlogDto> CreateBlog(CreateBlogDto creatBlogDto)
+        public async Task<GetBlogDto> CreateBlog(CreateBlogDto creatBlogDto)
         {
             var blog = _mapper.Map<Blog>(creatBlogDto);
             //todo: Get the user details from authentication and update Author & Profession
@@ -27,10 +27,10 @@ namespace Zoollar.Blogs.API.Services
             blog.Author = "TestUser";
             blog.Profession = "Estate Agent";
             blog.IsVisible = true;
-            _blogRepo.CreateBlog(blog);
+            await _blogRepo.CreateBlog(blog);
 
             var getBlogDto = _mapper.Map<GetBlogDto>(blog);
-            return Task.FromResult(getBlogDto);
+            return await Task.FromResult(getBlogDto);
         }
 
         public async Task DeleteBlog(Guid id)
@@ -65,7 +65,7 @@ namespace Zoollar.Blogs.API.Services
 
         public async Task<GetBlogDto> UpdateBlog(Guid id, CreateBlogDto blog)
         {
-            var getBlogToUpdate = await _blogRepo.GetBlogById(id) ?? null;
+            var getBlogToUpdate = await _blogRepo.GetBlogById(id);
 
             if (getBlogToUpdate != null)
             {

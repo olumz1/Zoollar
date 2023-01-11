@@ -1,6 +1,18 @@
-﻿namespace Zoollar.Properties.API.Profiles
+﻿using AutoMapper;
+using Zoollar.Properties.API.Dtos;
+using Zoollar.Properties.API.Models;
+using Zoollar.Properties.API.Models.Entities;
+
+namespace Zoollar.Properties.API.Profiles
 {
-    public class PropertiesProfile
+    public class PropertiesProfile : Profile
     {
+        protected PropertiesProfile()
+        {
+            //Source -> Target
+            CreateMap<CreatePropertyDto, Property>();
+
+            CreateMap<Property, GetPropertyDto>();
+        } 
     }
 }

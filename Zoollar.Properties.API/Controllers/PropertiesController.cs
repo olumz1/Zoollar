@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Zoollar.Properties.API.Dtos;
 using Zoollar.Properties.API.Models.Filter;
 using Zoollar.Properties.API.Services;
 
@@ -30,6 +31,14 @@ namespace Zoollar.Properties.API.Controllers
                 response.HasPrevious
             };
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProperties([FromBody] CreatePropertyDto createPropertyDto)
+        {
+            var response = await _propertyService.CreateProperty(createPropertyDto);
+
             return Ok(response);
         }
     }

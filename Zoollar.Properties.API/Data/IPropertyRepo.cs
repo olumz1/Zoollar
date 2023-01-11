@@ -25,7 +25,7 @@ namespace Zoollar.Properties.API.Data
 
         Task<IEnumerable<Property>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId);
 
-        Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, string state);
+        Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, States state);
         Task<IEnumerable<Property>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType);
         Task<IEnumerable<Property>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyType);
     }

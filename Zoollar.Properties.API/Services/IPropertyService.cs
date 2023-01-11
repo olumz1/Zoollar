@@ -14,7 +14,7 @@ namespace Zoollar.Properties.API.Services
         Task<PagedResponse<GetPropertyDto>> FilterPropertiesByCity(PaginationFilter filter, string city);
         Task<PagedResponse<GetPropertyDto>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType);
         Task<PagedResponse<GetPropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyListingType);
-        Task<PagedResponse<GetPropertyDto>> FilterPropertiesByState(PaginationFilter filter, string city);
+        Task<PagedResponse<GetPropertyDto>> FilterPropertiesByState(PaginationFilter filter, States city);
         Task<PagedResponse<GetPropertyDto>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId);
     }
 }
