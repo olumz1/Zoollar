@@ -36,7 +36,7 @@ namespace Zoollar.Blogs.API.Controllers
         [HttpPost]
         public ActionResult<GetBlogDto> CreateBlog([FromBody]CreateBlogDto blog) 
         {
-            if (!ModelState.IsValid) { return BadRequest(nameof(CreateBlogDto)); }
+            if (!ModelState.IsValid) { return BadRequest(nameof(CreateBlog)); }
             var getBlogDto = _blogService.CreateBlog(blog);
             return CreatedAtRoute(nameof(GetBlogById), new { getBlogDto.Id}, getBlogDto);
         }
@@ -52,7 +52,7 @@ namespace Zoollar.Blogs.API.Controllers
         [HttpPut]
         public ActionResult UpdateBlog(Guid id, [FromBody] CreateBlogDto blog)
         {
-            if (id == Guid.Empty || blog == null) return BadRequest();
+            if (id == Guid.Empty || blog == null) return BadRequest(nameof(UpdateBlog));
             var getBlogDto = _blogService.UpdateBlog(id, blog);
             return CreatedAtRoute(nameof(GetBlogById), new { getBlogDto.Id }, getBlogDto);
         }
