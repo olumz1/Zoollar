@@ -7,7 +7,7 @@ namespace Zoollar.Properties.API.Profiles
 {
     public class PropertiesProfile : Profile
     {
-        protected PropertiesProfile()
+        public PropertiesProfile()
         {
             //Source -> Target
             CreateMap<CreatePropertyDto, Property>();
