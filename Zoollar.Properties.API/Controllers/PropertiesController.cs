@@ -36,7 +36,7 @@ namespace Zoollar.Properties.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{id:Guid}/GetPropertyId", Name = "GetPropertyById")]
+        [HttpGet("{id:Guid}/GetPropertyById", Name = "GetPropertyById")]
         public async Task<IActionResult> GetPropertyById(Guid id)
         {
             if (id == Guid.Empty) return BadRequest();
@@ -68,7 +68,7 @@ namespace Zoollar.Properties.API.Controllers
             return CreatedAtRoute(nameof(GetPropertyById), new { response.Id }, response);
         }
 
-        [HttpGet("{city}", Name = "FilterPropertiesByCity")]
+        [HttpGet("{city}/FilterPropertiesByCity", Name = "FilterPropertiesByCity")]
         public async Task<IActionResult> FilterPropertiesByCity([FromQuery] PaginationFilter filter, string city) 
         {
             var response = await _propertyService.FilterPropertiesByCity(filter, city);
@@ -85,7 +85,7 @@ namespace Zoollar.Properties.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{propertyListingType}", Name = "FilterPropertiesByListingType")]
+        [HttpGet("{propertyListingType}/FilterPropertiesByListingType", Name = "FilterPropertiesByListingType")]
         public async Task<IActionResult> FilterPropertiesByListingType([FromQuery] PaginationFilter filter, string propertyListingType) 
         {
             PropertyListingType propertyListing = propertyListingType.ToEnum<PropertyListingType>();

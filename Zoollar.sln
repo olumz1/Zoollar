@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Blogs.API", "Zoolla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Properties.API", "Zoollar.Properties.API\Zoollar.Properties.API.csproj", "{3A19745F-FC68-4362-8136-DF7F39968F1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoollar.MortgageCalculator.API", "Zoollar.MortgageCalculator.API\Zoollar.MortgageCalculator.API.csproj", "{CAAAEF66-0E7C-4C98-AF4A-D2FD690DDE66}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoollar.Agents.API", "Zoollar.Agents.API\Zoollar.Agents.API.csproj", "{2C73E80D-CAB3-4712-AECB-736B3412A1C2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,14 +21,6 @@ Global
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAAAEF66-0E7C-4C98-AF4A-D2FD690DDE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAAAEF66-0E7C-4C98-AF4A-D2FD690DDE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAAAEF66-0E7C-4C98-AF4A-D2FD690DDE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAAAEF66-0E7C-4C98-AF4A-D2FD690DDE66}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C73E80D-CAB3-4712-AECB-736B3412A1C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C73E80D-CAB3-4712-AECB-736B3412A1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C73E80D-CAB3-4712-AECB-736B3412A1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C73E80D-CAB3-4712-AECB-736B3412A1C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
