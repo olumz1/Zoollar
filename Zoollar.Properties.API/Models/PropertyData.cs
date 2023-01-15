@@ -4,8 +4,6 @@ namespace Zoollar.Properties.API.Models
 {
     public class PropertyData
     {
-        public Guid Id { get; set; }
-
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -16,7 +14,7 @@ namespace Zoollar.Properties.API.Models
 
         public PropertyListingType PropertyListingType { get; set; }
 
-        public PropertyImage PropertyImage { get; set; }
+        public PropertyImage[] PropertyImage { get; set; }
 
         public PropertyDetails PropertyDetails { get; set; }
 

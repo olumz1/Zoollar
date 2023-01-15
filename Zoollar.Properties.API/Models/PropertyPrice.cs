@@ -2,7 +2,7 @@
 {
     public class PropertyPrice
     {
-        public int Price { get; set;}
+        public long Price { get; set;}
 
         public bool OffersOver { get; set; }
 

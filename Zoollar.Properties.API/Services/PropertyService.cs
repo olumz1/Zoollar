@@ -21,35 +21,46 @@ namespace Zoollar.Properties.API.Services
 
         public async Task<GetPropertyDto> CreateProperty(CreatePropertyDto createPropertyDto)
         {
-            var property = _mapper.Map<Property>(createPropertyDto);
-            property.Id = Guid.NewGuid();
-            property.PropertyData.Title = getPropertyTitle(
-                property.PropertyData.PropertyDetails.NoOfbathrooms, 
-                property.PropertyData.PropertyType.ToString(),
-                property.PropertyData.PropertyListingType);
-
-            //Use Api to get the Agent from the logged in account and update property agent details
-            await _propertyRepo.CreateProperty(property);
-
-            var getPropertyDto = _mapper.Map<GetPropertyDto>(property);
-
-            return await Task.FromResult(getPropertyDto);
-
-            string getPropertyTitle(int noOfBedrooms, string propertyType, PropertyListingType propertyListingType)
+            try
             {
-                string bed = noOfBedrooms == 1 ? $"{noOfBedrooms} bed" : $"{noOfBedrooms} beds";
-                return $"{bed} {propertyType} {getListingType(propertyListingType)}";
-            };
+                var propertyData = _mapper.Map<PropertyData>(createPropertyDto);
+                var property = new Property();
+                property.PropertyData = propertyData;
+                property.Id = Guid.NewGuid();
+                property.PropertyData.Title = getPropertyTitle(
+                    property.PropertyData.PropertyDetails.NoOfBeds,
+                    property.PropertyData.PropertyType.ToString(),
+                    property.PropertyData.PropertyListingType);
 
-            string getListingType(PropertyListingType propertyListingType) 
-            {
-                return propertyListingType switch
+                //Use Api to get the Agent from the logged in account and update property agent details
+
+                await _propertyRepo.CreateProperty(property);
+                var getPropertyDto = _mapper.Map<GetPropertyDto>(property);
+
+                return await Task.FromResult(getPropertyDto);
+
+                string getPropertyTitle(int noOfBedrooms, string propertyType, PropertyListingType propertyListingType)
                 {
-                    PropertyListingType.ForSale => "for sale",
-                    PropertyListingType.ToLet => "to let",
-                    PropertyListingType.ShortLet => "short let",
-                    _ => string.Empty,
+                    string bed = noOfBedrooms == 1 ? $"{noOfBedrooms} bed" : $"{noOfBedrooms} beds";
+                    return $"{bed} {propertyType} {getListingType(propertyListingType)}";
                 };
+
+                string getListingType(PropertyListingType propertyListingType)
+                {
+                    return propertyListingType switch
+                    {
+                        PropertyListingType.ForSale => "for sale",
+                        PropertyListingType.ToLet => "to let",
+                        PropertyListingType.ShortLet => "short let",
+                        _ => string.Empty,
+                    };
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message, ex);
             }
         }
 

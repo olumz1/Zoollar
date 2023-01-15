@@ -11,12 +11,14 @@ namespace Zoollar.Properties.API.Dtos
         [Required]
         public PropertyType PropertyType { get; set; }
 
+        public PropertyPriceDto PropertyPrice { get; set; }
+
         [Required]
         public PropertyListingType PropertyListingType { get; set; }
 
-        public PropertyDetailsDto PropertyDetailsDto { get; set; }
+        public PropertyDetailsDto PropertyDetails { get; set; }
 
-        public PropertyImageDto PropertyImage { get; set; }
+        public PropertyImageDto[] PropertyImage { get; set; }
 
         public PropertyAgentDto PropertyAgent { get; set; }
     }

@@ -6,7 +6,7 @@
 
         public int NoOfReceptions { get; set; }
 
-        public int NoOfbathrooms { get; set; }
+        public int NoOfBathrooms { get; set; }
 
         public Address Address { get; set; }
 
