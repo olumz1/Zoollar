@@ -7,14 +7,14 @@ namespace Zoollar.Properties.API.Services
 {
     public interface IPropertyService
     {
-        Task<PagedResponse<GetPropertyDto>> GetAllProperties(PaginationFilter filter);
-        Task<GetPropertyDto> CreateProperty(CreatePropertyDto createPropertyDto);
-        Task<GetPropertyDto> GetPropertyById(Guid Id);
-        Task<GetPropertyDto> UpdateProperty(Guid id, CreatePropertyDto property);
-        Task<PagedResponse<GetPropertyDto>> FilterPropertiesByCity(PaginationFilter filter, string city);
-        Task<PagedResponse<GetPropertyDto>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType);
-        Task<PagedResponse<GetPropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyListingType);
-        Task<PagedResponse<GetPropertyDto>> FilterPropertiesByState(PaginationFilter filter, States city);
-        Task<PagedResponse<GetPropertyDto>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId);
+        Task<PagedResponse<PropertyDto>> GetAllProperties(PaginationFilter filter);
+        Task<PropertyDto> CreateProperty(CreatePropertyDto createPropertyDto);
+        Task<PropertyDto> GetPropertyById(Guid Id);
+        Task<PropertyDto> UpdateProperty(Guid id, CreatePropertyDto property);
+        Task<PagedResponse<PropertyDto>> FilterPropertiesByCity(PaginationFilter filter, string city);
+        Task<PagedResponse<PropertyDto>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType);
+        Task<PagedResponse<PropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyListingType);
+        Task<PagedResponse<PropertyDto>> FilterPropertiesByState(PaginationFilter filter, States city);
+        Task<PagedResponse<PropertyDto>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId);
     }
 }

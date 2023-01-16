@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Zoollar.Properties.API.Dtos;
+using Zoollar.Properties.API.Helpers;
 using Zoollar.Properties.API.Models;
 using Zoollar.Properties.API.Models.Entities;
 
@@ -23,7 +24,16 @@ namespace Zoollar.Properties.API.Profiles
             CreateMap<PropertyAgent, PropertyAgentDto>();
             CreateMap<Address, AddressDto>();
             CreateMap<PropertyDetails, PropertyDetailsDto>();
-            CreateMap<Property, GetPropertyDto>();
-        } 
+            CreateMap<PropertyData, GetPropertyDto>();
+
+            CreateMap<Property, PropertyDto>()
+                .ForMember(pt => pt.Id, opt => opt.MapFrom(pt => pt.Id))
+                .ForMember(pt => pt.PropertyData, opt => opt.MapFrom(cs => cs.PropertyData));
+
+            CreateMap(typeof(PagedResponse<Property>), typeof(PagedResponse<PropertyDto>))
+                .ConvertUsing(typeof(PagedListConverter<Property, PropertyDto>));
+
+        }
+
     }
 }

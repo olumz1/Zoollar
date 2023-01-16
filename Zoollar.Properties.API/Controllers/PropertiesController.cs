@@ -56,7 +56,7 @@ namespace Zoollar.Properties.API.Controllers
             if (!ModelState.IsValid) { return BadRequest(nameof(CreateProperties)); }
             var response = await _propertyService.CreateProperty(createPropertyDto);
 
-            return CreatedAtRoute(nameof(GetPropertyById), new { response.Id }, response);
+            return CreatedAtRoute(nameof(GetPropertyById), new { response.Id}, response);
         }
 
         [HttpPut]
