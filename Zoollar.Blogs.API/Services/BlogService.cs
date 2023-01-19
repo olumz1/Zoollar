@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.ComponentModel.DataAnnotations;
 using Zoollar.Blogs.API.Common;
 using Zoollar.Blogs.API.Data;
 using Zoollar.Blogs.API.Dtos;
@@ -39,7 +40,7 @@ namespace Zoollar.Blogs.API.Services
             if (blog != null)
             {
                 var archivedBlog = _mapper.Map<ArchivedBlog>(blog);
-                archivedBlog.BlogId = blog.Id;
+                archivedBlog.Id = Guid.NewGuid();
                 await _blogRepo.ArchiveBlog(archivedBlog);
                 await _blogRepo.DeleteBlog(id);
             }
@@ -69,7 +70,12 @@ namespace Zoollar.Blogs.API.Services
 
             if (getBlogToUpdate != null)
             {
+                getBlogToUpdate.Header = blog.Header;
+                getBlogToUpdate.Image = blog.Image;
+                getBlogToUpdate.Description = blog.Description;
+
                 await _blogRepo.UpdateBlog(getBlogToUpdate);
+
                 var getBlogDto = _mapper.Map<GetBlogDto>(getBlogToUpdate);
                 return await Task.FromResult(getBlogDto);
             }

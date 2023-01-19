@@ -19,7 +19,7 @@ namespace Zoollar.Blogs.API.Data
         {
             modelBuilder
                 .Entity<ArchivedBlog>()
-                .HasOne(p => p.Blog);
+                .HasKey(p => p.Id);
 
             modelBuilder.Entity<Blog>()
                 .HasKey(p=>p.Id);

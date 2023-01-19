@@ -12,11 +12,13 @@ namespace Zoollar.Properties.API.Services
     {
         private readonly IPropertyRepo _propertyRepo;
         private readonly IMapper _mapper;
+        private readonly IDateTimeProvider _dateTimeProvider;
 
-        public PropertyService(IPropertyRepo propertyRepo, IMapper mapper)
+        public PropertyService(IPropertyRepo propertyRepo, IMapper mapper, IDateTimeProvider dateTimeProvider)
         {
             _propertyRepo = propertyRepo;
             _mapper = mapper;
+            _dateTimeProvider = dateTimeProvider;
         }
 
         public async Task<PropertyDto> CreateProperty(CreatePropertyDto createPropertyDto)
@@ -31,6 +33,7 @@ namespace Zoollar.Properties.API.Services
                     property.PropertyData.PropertyDetails.NoOfBeds,
                     property.PropertyData.PropertyType.ToString(),
                     property.PropertyData.PropertyListingType);
+                property.PropertyData.CreatedTime = _dateTimeProvider.GetDateTimeNow();
 
                 //Use Api to get the Agent from the logged in account and update property agent details
 

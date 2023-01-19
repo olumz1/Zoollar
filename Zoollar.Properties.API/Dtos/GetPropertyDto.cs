@@ -20,5 +20,7 @@ namespace Zoollar.Properties.API.Dtos
         public PropertyImageDto[] PropertyImage { get; set; }
 
         public PropertyAgentDto PropertyAgent { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

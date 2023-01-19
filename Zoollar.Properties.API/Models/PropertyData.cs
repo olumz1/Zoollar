@@ -20,5 +20,6 @@ namespace Zoollar.Properties.API.Models
 
         public PropertyAgent PropertyAgent { get; set; }
 
+        public DateTime CreatedTime { get; internal set; }
     }
 }
