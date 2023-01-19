@@ -33,7 +33,6 @@ namespace Zoollar.Blogs.API.Tests.Blogs
             this._mapper = config.CreateMapper();
 
             this._dateTimeProvider.Setup(x => x.GetDateTimeNow()).Returns(new DateTime(2022, 10, 5));
-
         }
 
         [Test]
