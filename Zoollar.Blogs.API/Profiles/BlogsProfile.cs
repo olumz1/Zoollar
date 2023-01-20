@@ -13,7 +13,8 @@ namespace Zoollar.Blogs.API.Profiles
             CreateMap<CreateBlogDto, Blog>();
             CreateMap<Blog, ArchivedBlog>()
                 .ForMember(pt => pt.BlogId, act => act.MapFrom(bl => bl.Id))
-                .ForMember(pt => pt.Id, act => act.Ignore());
+                .ForMember(pt => pt.Id, act => act.Ignore())
+                .ForMember(pt => pt.DeletedDate, act => act.Ignore());
         }
     }
 }

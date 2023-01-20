@@ -14,8 +14,6 @@ namespace Zoollar.Blogs.API.Tests.Blogs
             this.blogsFakeDbContext = dbContext;
         }
 
-        public BlogsDbContext DbContext { get; }
-
         public async Task ArchiveBlog(ArchivedBlog blog)
         {
            await Task.FromResult(this.blogsFakeDbContext.Add(blog));

@@ -18,6 +18,9 @@ namespace Zoollar.Blogs.API.Models.Entities
         public DateTime PublishedDate { get; set; }
 
         [Required]
+        public DateTime DeletedDate { get; set; }
+
+        [Required]
         public string Image { get; set; }
 
         [Required]

@@ -28,7 +28,8 @@ namespace Zoollar.Blogs.API.Tests.Blogs
                 cfg.CreateMap<CreateBlogDto, Blog>();
                 cfg.CreateMap<Blog, ArchivedBlog>()
                 .ForMember(pt => pt.BlogId, act => act.MapFrom(bl => bl.Id))
-                .ForMember(pt => pt.Id, act => act.Ignore());
+                .ForMember(pt => pt.Id, act => act.Ignore())
+                .ForMember(pt => pt.DeletedDate, act => act.Ignore());
             });
             this._mapper = config.CreateMapper();
 
@@ -146,6 +147,8 @@ namespace Zoollar.Blogs.API.Tests.Blogs
             var blog = await this.sut.GetBlogById(new Guid("17C73ADB-D5B6-46BD-9EAF-6D54FB14E13F"));
 
             blog.Should().BeNull();
+
+            _dbContext.ArchivedBlogs.Count().Should().Be(1);
 
             _dbContext.Database.EnsureDeleted();
         }

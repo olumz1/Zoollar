@@ -41,6 +41,7 @@ namespace Zoollar.Blogs.API.Services
             {
                 var archivedBlog = _mapper.Map<ArchivedBlog>(blog);
                 archivedBlog.Id = Guid.NewGuid();
+                archivedBlog.DeletedDate = _dateTimeProvider.GetDateTimeNow();
                 await _blogRepo.ArchiveBlog(archivedBlog);
                 await _blogRepo.DeleteBlog(id);
             }
