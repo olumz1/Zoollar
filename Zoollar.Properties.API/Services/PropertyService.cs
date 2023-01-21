@@ -34,6 +34,7 @@ namespace Zoollar.Properties.API.Services
                     property.PropertyData.PropertyType.ToString(),
                     property.PropertyData.PropertyListingType);
                 property.PropertyData.CreatedTime = _dateTimeProvider.GetDateTimeNow();
+                //property.PropertyData.PropertyFeatures = implement the features!!!!
 
                 //Use Api to get the Agent from the logged in account and update property agent details
 

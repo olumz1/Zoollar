@@ -20,6 +20,12 @@ namespace Zoollar.Properties.API.Models
 
         public PropertyAgent PropertyAgent { get; set; }
 
-        public DateTime CreatedTime { get; internal set; }
+        public DateTime CreatedTime { get; set; }
+
+        public PropertyFeatures PropertyFeatures { get; set; }
+
+        public Guid[]? LoanCompanies { get; set; }
+
+        public DateTime? LastUpdatedTime { get; set;}
     }
 }
