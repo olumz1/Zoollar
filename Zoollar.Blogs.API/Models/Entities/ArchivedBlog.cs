@@ -6,10 +6,31 @@ namespace Zoollar.Blogs.API.Models.Entities
     {
         [Key]
         [Required]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
+        [Required]
         public Guid BlogId { get; set; }
 
-        public Blog Blog { get; set; }
+        [Required]
+        public string Header { get; set; }
+
+        [Required]
+        public DateTime PublishedDate { get; set; }
+
+        [Required]
+        public DateTime DeletedDate { get; set; }
+
+        [Required]
+        public string Image { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public string Author { get; set; }
+
+        public string Profession { get; set; }
+
+        public bool IsVisible => false;
     }
 }
