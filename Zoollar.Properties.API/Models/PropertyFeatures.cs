@@ -65,8 +65,8 @@ namespace Zoollar.Properties.API.Models
         [EnumMemberDetails(Value = "Partly Furnished", IconPath = "")]
         PartlyFurnished,
 
-        [EnumMemberDetails(Value = "Fire Alarm Installed", IconPath = "")]
-        FireAlarmInstalled,
+        [EnumMemberDetails(Value = "Fire Alarm System", IconPath = "")]
+        FireAlarmSystem,
 
         [EnumMemberDetails(Value = "Cinema", IconPath = "")]
         Cinema,
@@ -85,6 +85,9 @@ namespace Zoollar.Properties.API.Models
 
         [EnumMemberDetails(Value = "Partly AirConditioned", IconPath = "")]
         PartlyAirConditioned,
-          
+
+        [EnumMemberDetails(Value = "Round The Clock Security", IconPath = "")]
+        RoundTheClockSecurity
+
     }
 }
