@@ -130,6 +130,7 @@ namespace Zoollar.Properties.API.Services
                 createPropertyDto.PropertyDetails.NoOfBeds,
                 createPropertyDto.PropertyType.ToString(),
                 createPropertyDto.PropertyListingType);
+                getPropertyToUpdate.PropertyData.LastUpdatedTime = _dateTimeProvider.GetDateTimeNow();
 
                 return getPropertyToUpdate;
             }

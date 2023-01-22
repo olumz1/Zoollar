@@ -174,6 +174,77 @@ namespace Zoollar.Properties.API.Tests
             property.Result.PropertyData.Title.Should().Be("5 beds flats for sale");
         }
 
+        [Test]
+        public async Task When_GetPropertyById_IsCalled_TheProperty_Should_BeReturned()
+        {
+            var options = this
+            .CreatePostgreSqlUniqueClassOptions<TestDbContext>();
+            using var context = new TestDbContext(options);
+
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
+            SeedData(context);
+
+            this.fakePropertyRepository = new FakePropertyRepo(context);
+
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+
+            var result = this.sut.GetPropertyById(new Guid("4FC1CC3D-A024-4038-ABA9-526DC2CB4173")).Result;
+
+            result.PropertyData.Title.Should().Be("5 beds duplex for sale");
+            result.PropertyData.PropertyType.Should().Be(PropertyType.Duplex);
+                
+        }
+
+        [Test]
+        public async Task When_FilterPropertiesByListintType_IsCalled_PropertiesWithThisType_Should_BeReturned() 
+        {
+            var options = this
+            .CreatePostgreSqlUniqueClassOptions<TestDbContext>();
+            using var context = new TestDbContext(options);
+
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
+            SeedData(context);
+
+            this.fakePropertyRepository = new FakePropertyRepo(context);
+
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+            var pagination = new PaginationFilter() { PageNumber = 1, PageSize = 10 };
+            var result = await this.sut.FilterPropertiesByListingType(pagination, PropertyListingType.ForSale);
+
+            result.Should().NotBeNull();
+            result.Count().Should().Be(2);
+            result[0].Id.Should().Be(new Guid("10EA4BB0-3A06-4374-A8A4-E9AA32D42ED9"));
+            result[0].PropertyData.Title.Should().Be("3 beds bungalow for sale");
+        }
+
+        [Test]
+        public async Task When_FilterPropertiesByCity_IsCalled_PropertiesWithinTheCity_Should_BeReturned() 
+        {
+            var options = this
+            .CreatePostgreSqlUniqueClassOptions<TestDbContext>();
+            using var context = new TestDbContext(options);
+
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
+            SeedData(context);
+
+            this.fakePropertyRepository = new FakePropertyRepo(context);
+
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+            var pagination = new PaginationFilter() { PageNumber = 1, PageSize = 10 };
+            var result = await this.sut.FilterPropertiesByCity(pagination, "Ibadan");
+
+            result.Should().NotBeNull();
+            result.Count().Should().Be(2);
+            result[0].Id.Should().Be(new Guid("10EA4BB0-3A06-4374-A8A4-E9AA32D42ED9"));
+            result[0].PropertyData.Title.Should().Be("3 beds bungalow for sale");
+        }
+
         public void SeedData(TestDbContext propertyContext)
         {
             if (!propertyContext.Properties.Any())
