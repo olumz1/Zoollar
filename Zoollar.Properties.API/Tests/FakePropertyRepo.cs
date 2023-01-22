@@ -1,4 +1,5 @@
-﻿using Zoollar.Properties.API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Zoollar.Properties.API.Data;
 using Zoollar.Properties.API.Helpers;
 using Zoollar.Properties.API.Models;
 using Zoollar.Properties.API.Models.Entities;
@@ -8,9 +9,9 @@ namespace Zoollar.Properties.API.Tests
 {
     public class FakePropertyRepo : IPropertyRepo
     {
-        private PropertiesDbContext fakePropertyDbContext;
+        private TestDbContext fakePropertyDbContext;
 
-        public FakePropertyRepo(PropertiesDbContext fakePropertyDbContext)
+        public FakePropertyRepo(TestDbContext fakePropertyDbContext)
         {
             this.fakePropertyDbContext = fakePropertyDbContext;
         }
@@ -21,59 +22,90 @@ namespace Zoollar.Properties.API.Tests
             SaveChanges();
         }
 
-        public Task DeleteProperty(Guid id)
+        public async Task DeleteProperty(Guid id)
         {
-            throw new NotImplementedException();
+            var propertyToDelete = GetPropertyById(id);
+            if (propertyToDelete != null)
+            {
+                fakePropertyDbContext.Remove(propertyToDelete);
+            }
+            fakePropertyDbContext.SaveChanges();
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId)
+        public async Task<IEnumerable<Property>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(fakePropertyDbContext.Properties
+                .Where(x => x.PropertyData.PropertyAgent.AgentId == agentId),
+                filter.PageNumber, filter.PageSize));
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByCity(PaginationFilter filter, string city)
+        public async Task<IEnumerable<Property>> FilterPropertiesByCity(PaginationFilter filter, string city)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(fakePropertyDbContext.Properties
+                .Where(x => x.PropertyData.PropertyDetails.Address.City == city),
+                filter.PageNumber, filter.PageSize));
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType)
+        public async Task<IEnumerable<Property>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(fakePropertyDbContext.Properties
+                .Where(x => x.PropertyData.PropertyListingType == propertyListingType),
+                filter.PageNumber, filter.PageSize));
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByLocation(PaginationFilter filter, string location)
+        public async Task<IEnumerable<Property>> FilterPropertiesByLocation(PaginationFilter filter, string location)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(fakePropertyDbContext.Properties
+                .Where(x => x.PropertyData.PropertyDetails.Address.AddressLine.Contains(location)),
+                filter.PageNumber, filter.PageSize));
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyType)
+        public async Task<IEnumerable<Property>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyType)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(fakePropertyDbContext.Properties
+                .Where(x => x.PropertyData.PropertyType == propertyType),
+                filter.PageNumber, filter.PageSize));
         }
 
-        public Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, States state)
+        public async Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, States state)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(fakePropertyDbContext.Properties
+                .Where(x => x.PropertyData.PropertyDetails.Address.State == state),
+                filter.PageNumber, filter.PageSize));
         }
 
-        public Task<PagedResponse<Property>> GetAllProperties(PaginationFilter filter)
+        public async Task<PagedResponse<Property>> GetAllProperties(PaginationFilter filter)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(PagedResponse<Property>
+                .ToPagedResponse(fakePropertyDbContext.Properties, filter.PageNumber, filter.PageSize));
         }
 
-        public Task<Property> GetPropertyById(Guid id)
+        public async Task<Property> GetPropertyById(Guid id)
         {
-            throw new NotImplementedException();
+            var property = await Task.FromResult(fakePropertyDbContext.Properties.FirstOrDefault(property => property.Id == id));
+            return property;
         }
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return (fakePropertyDbContext.SaveChanges() >= 0);
         }
 
         public Task UpdateProperty(Property property)
         {
-            throw new NotImplementedException();
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+            fakePropertyDbContext.Update(property);
+            SaveChanges();
+            return Task.CompletedTask;
         }
     }
 }

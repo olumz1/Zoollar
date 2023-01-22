@@ -4,7 +4,7 @@
     {
         public Guid AgentId { get; set; }
 
-        public Uri ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         public string Name { get; set; }
     }

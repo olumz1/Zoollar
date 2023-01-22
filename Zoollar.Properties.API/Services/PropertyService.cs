@@ -25,41 +25,12 @@ namespace Zoollar.Properties.API.Services
         {
             try
             {
-                var propertyData = _mapper.Map<PropertyData>(createPropertyDto);
-                var property = new Property();
-                property.PropertyData = propertyData;
-                property.Id = Guid.NewGuid();
-                property.PropertyData.Title = getPropertyTitle(
-                    property.PropertyData.PropertyDetails.NoOfBeds,
-                    property.PropertyData.PropertyType.ToString(),
-                    property.PropertyData.PropertyListingType);
-                property.PropertyData.CreatedTime = _dateTimeProvider.GetDateTimeNow();
-                //property.PropertyData.PropertyFeatures = implement the features!!!!
-
-                //Use Api to get the Agent from the logged in account and update property agent details
+                var property = UpdateAndCreatePropertyMapper(createPropertyDto, null);
 
                 await _propertyRepo.CreateProperty(property);
                 var getPropertyDto = _mapper.Map<PropertyDto>(property);
 
                 return await Task.FromResult(getPropertyDto);
-
-                string getPropertyTitle(long noOfBedrooms, string propertyType, PropertyListingType propertyListingType)
-                {
-                    string bed = noOfBedrooms == 1 ? $"{noOfBedrooms} bed" : $"{noOfBedrooms} beds";
-                    return $"{bed} {propertyType} {getListingType(propertyListingType)}";
-                };
-
-                string getListingType(PropertyListingType propertyListingType)
-                {
-                    return propertyListingType switch
-                    {
-                        PropertyListingType.ForSale => "for sale",
-                        PropertyListingType.ToLet => "to let",
-                        PropertyListingType.ShortLet => "short let",
-                        _ => string.Empty,
-                    };
-                }
-
             }
             catch (Exception ex)
             {
@@ -123,6 +94,7 @@ namespace Zoollar.Properties.API.Services
 
             if (getPropertyToUpdate != null)
             {
+                UpdateAndCreatePropertyMapper(property, getPropertyToUpdate);
                 await _propertyRepo.UpdateProperty(getPropertyToUpdate);
                 var getPropertyDto = _mapper.Map<PropertyDto>(getPropertyToUpdate);
                 return await Task.FromResult(getPropertyDto);
@@ -134,6 +106,50 @@ namespace Zoollar.Properties.API.Services
             }
         }
 
+        private Property UpdateAndCreatePropertyMapper(CreatePropertyDto createPropertyDto, Property? getPropertyToUpdate = null)
+        {
+            var propertyData = _mapper.Map<PropertyData>(createPropertyDto);
+            if (getPropertyToUpdate == null)
+            {
+                var property = new Property();
+                property.PropertyData = propertyData;
+                property.Id = Guid.NewGuid();
+                property.PropertyData.Title = getPropertyTitle(
+                    property.PropertyData.PropertyDetails.NoOfBeds,
+                    property.PropertyData.PropertyType.ToString(),
+                    property.PropertyData.PropertyListingType);
+                property.PropertyData.CreatedTime = _dateTimeProvider.GetDateTimeNow();
 
+                //Use Api to get the Agent from the logged in account and update property agent details
+                return property;
+            }
+            else 
+            {
+                getPropertyToUpdate.PropertyData = propertyData;
+                getPropertyToUpdate.PropertyData.Title = getPropertyTitle(
+                createPropertyDto.PropertyDetails.NoOfBeds,
+                createPropertyDto.PropertyType.ToString(),
+                createPropertyDto.PropertyListingType);
+
+                return getPropertyToUpdate;
+            }
+
+            string getPropertyTitle(long noOfBedrooms, string propertyType, PropertyListingType propertyListingType)
+            {
+                string bed = noOfBedrooms == 1 ? $"{noOfBedrooms} bed" : $"{noOfBedrooms} beds";
+                return $"{bed} {propertyType} {getListingType(propertyListingType)}".ToLowerInvariant();
+            };
+
+            string getListingType(PropertyListingType propertyListingType)
+            {
+                return propertyListingType switch
+                {
+                    PropertyListingType.ForSale => "for sale",
+                    PropertyListingType.ToLet => "to let",
+                    PropertyListingType.ShortLet => "short let",
+                    _ => string.Empty,
+                };
+            }
+        }
     }
 }

@@ -22,5 +22,7 @@ namespace Zoollar.Properties.API.Dtos
 
         public PropertyAgentDto PropertyAgent { get; set; }
 
+        public PropertyFeatures[] PropertyFeatures { get; set; }
+
     }
 }

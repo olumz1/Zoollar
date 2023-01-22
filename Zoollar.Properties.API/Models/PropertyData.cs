@@ -22,9 +22,9 @@ namespace Zoollar.Properties.API.Models
 
         public DateTime CreatedTime { get; set; }
 
-        public PropertyFeatures PropertyFeatures { get; set; }
+        public PropertyFeatures[] PropertyFeatures { get; set; }
 
-        public Guid[]? LoanCompanies { get; set; }
+        public Guid[] LoanCompanies { get; set; }
 
         public DateTime? LastUpdatedTime { get; set;}
     }

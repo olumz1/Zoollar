@@ -13,6 +13,8 @@ namespace Zoollar.Properties.API.Dtos
 
         public PropertyListingType PropertyListingType { get; set; }
 
+        public PropertyFeatures[] PropertyFeatures { get; set; }
+
         public PropertyPriceDto PropertyPrice { get; set; }
 
         public PropertyDetailsDto PropertyDetails { get; set; }
@@ -21,7 +23,7 @@ namespace Zoollar.Properties.API.Dtos
 
         public PropertyAgentDto PropertyAgent { get; set; }
 
-        public string[] PropertyFeatures { get; set; }
+        public Guid[] LoanCompanies { get; set; }
 
         public DateTime CreatedDate { get; set; }
     }
