@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Blogs.API", "Zoolla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Properties.API", "Zoollar.Properties.API\Zoollar.Properties.API.csproj", "{3A19745F-FC68-4362-8136-DF7F39968F1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoollar.Accounts.API", "Zoollar.Accounts.API\Zoollar.Accounts.API.csproj", "{E8CD46C1-A6D5-4646-8152-A243F1858F5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
