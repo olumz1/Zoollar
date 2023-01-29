@@ -1,8 +1,8 @@
 ﻿using Zoollar.Accounts.API.Models.Enum;
 
-namespace Zoollar.Accounts.API.Models
+namespace Zoollar.Accounts.API.Dtos
 {
-    public class Address
+    public class AddressDto
     {
         public int HouseNo { get; set; }
 

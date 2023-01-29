@@ -54,7 +54,7 @@ namespace Zoollar.Blogs.API.Data
         public async Task<Blog?> GetBlogById(Guid id)
         {
             var blog = await Task.FromResult(_dbContext.Blogs.FirstOrDefault(blog => blog.Id == id));
-            return blog != null ? blog : null;
+            return blog ?? null;
         }
 
         public bool SaveChanges()

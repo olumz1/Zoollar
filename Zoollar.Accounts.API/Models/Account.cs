@@ -1,20 +1,20 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Security.Principal;
-using System.Xml.Linq;
 using Zoollar.Accounts.API.Models.Enum;
 
-namespace Zoollar.Accounts.API.Models.Entities
+namespace Zoollar.Accounts.API.Models
 {
     public class Account
     {
+        [Key]
+        [Required]
+        public Guid Id { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
-
-        public AccontType AccountType { get; set; }
-
-        public string UserName { get; set; }
 
         [Category("Security")]
         [Description("Demonstrates PasswordPropertyTextAttribute.")]
@@ -26,10 +26,9 @@ namespace Zoollar.Accounts.API.Models.Entities
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmailAdress { get; set; }
 
-        public Address Address { get; set; }
-
         public Status MyStatus { get; set; }
 
+        public EmailPreference[] EmailPreferences { get; set; }
 
     }
 }

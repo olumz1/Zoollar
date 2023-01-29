@@ -11,7 +11,7 @@ namespace Zoollar.Properties.API.Data
 
         Task<PagedResponse<Property>> GetAllProperties(PaginationFilter filter);
 
-        Task<Property> GetPropertyById(Guid id);
+        Task<Property?> GetPropertyById(Guid id);
 
         Task CreateProperty(Property property);
 
