@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using Zoollar.Accounts.API.Models.Enum;
 
-namespace Zoollar.Accounts.API.Models
+namespace Zoollar.Accounts.API.Models.Entities
 {
-    public class Account
+    public class AccountInfo
     {
         [Key]
         [Required]
@@ -28,7 +28,9 @@ namespace Zoollar.Accounts.API.Models
 
         public Status MyStatus { get; set; }
 
-        public EmailPreference[] EmailPreferences { get; set; }
+        public EmailPreference EmailPreferences { get; set; }
+
+        public Address Address { get; set; }
 
     }
 }

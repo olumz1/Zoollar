@@ -1,6 +1,6 @@
 ﻿namespace Zoollar.Accounts.API.Models.Entities
 {
-    public class EstateAgent : Account
+    public class EstateAgent : AccountInfo
     {
         public CompanyDetails CompanyDetails { get; set; }
 

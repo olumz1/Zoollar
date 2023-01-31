@@ -1,9 +1,17 @@
-﻿using Zoollar.Accounts.API.Models.Enum;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Zoollar.Accounts.API.Models.Entities;
+using Zoollar.Accounts.API.Models.Enum;
 
 namespace Zoollar.Accounts.API.Models
 {
     public class Address
     {
+        public Address() { }
+
+        [Key]
+        public Guid AddressId { get; set; }
+
         public int HouseNo { get; set; }
 
         public string HouseName { get; set; }
@@ -21,5 +29,8 @@ namespace Zoollar.Accounts.API.Models
         public string ZipCode { get; set; }
 
         public string Country { get; set; }
+
+        public User User { get; set; }
+
     }
 }

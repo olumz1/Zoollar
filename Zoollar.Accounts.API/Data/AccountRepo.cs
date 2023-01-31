@@ -1,9 +1,8 @@
-﻿using Zoollar.Accounts.API.Models;
-using Zoollar.Accounts.API.Models.Entities;
+﻿using Zoollar.Accounts.API.Models.Entities;
 
 namespace Zoollar.Accounts.API.Data
 {
-    public abstract class AccountRepo<T> where T : Account
+    public abstract class AccountRepo<T> where T : AccountInfo
     {
         public abstract bool SaveChanges();
 

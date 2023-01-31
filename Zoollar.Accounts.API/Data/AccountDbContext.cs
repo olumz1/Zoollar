@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Zoollar.Accounts.API.Models;
 using Zoollar.Accounts.API.Models.Entities;
 
 namespace Zoollar.Accounts.API.Data
@@ -10,6 +11,8 @@ namespace Zoollar.Accounts.API.Data
             
         }
 
+        public DbSet<AccountInfo> Accounts { get; set; }
+
         public DbSet<EstateAgent> EstateAgents { get; set; }
 
         public DbSet<Landlord> Landlords { get; set; }
@@ -20,18 +23,25 @@ namespace Zoollar.Accounts.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
-                .Entity<EstateAgent>()
-                .HasKey(p => p.Id);
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<AccountInfo>()
+                .UseTpcMappingStrategy()
+                .ToTable(nameof(AccountInfo));
+
+            modelBuilder.Entity<EstateAgent>()
+                .ToTable("EstateAgents")
+                .HasOne(c => c.CompanyDetails)
+                .WithOne(e => e.EstateAgent)
+                .HasForeignKey<CompanyDetails>(c => c.Id);
 
             modelBuilder.Entity<Landlord>()
-                .HasKey(p => p.Id);
+                .ToTable("Landlords");
 
-            modelBuilder.Entity<Lender>()
-                .HasKey(p => p.Id);
+            modelBuilder.Entity<Lender>().ToTable("Lenders").HasMany(a=>a.Addresses).WithOne();
 
-            modelBuilder.Entity<User>()
-                .HasKey(p => p.Id);
+            modelBuilder.Entity<User>().ToTable("Users").HasOne(a=>a.Address).WithOne(u=>u.User).HasForeignKey<Address>(a=>a.AddressId);
+            modelBuilder.Entity<User>().ToTable("Users").HasMany(a => a.AlertAndSearches).WithOne();
         }
     }
 }

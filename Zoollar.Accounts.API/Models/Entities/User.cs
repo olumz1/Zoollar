@@ -2,11 +2,12 @@
 
 namespace Zoollar.Accounts.API.Models.Entities
 {
-    public class User : Account
+    public class User : AccountInfo
     {
+
         public Address Address { get; set; }
 
-        public AlertAndSearches[] AlertAndSearches { get; set; }
+        public ICollection<AlertAndSearches> AlertAndSearches { get; set; }
 
         public string AccountType { get; set; }
 

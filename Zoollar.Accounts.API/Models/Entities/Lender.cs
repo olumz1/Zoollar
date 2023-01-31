@@ -1,8 +1,8 @@
 ﻿namespace Zoollar.Accounts.API.Models.Entities
 {
-    public class Lender : Account
+    public class Lender : AccountInfo
     {
-        public Address Address { get; set; }
+        public List<Address> Addresses { get; set; } = new List<Address>();
 
         public string AccountType  => AccountTypes.Lender;
     }
