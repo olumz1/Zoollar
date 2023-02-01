@@ -31,14 +31,15 @@ namespace Zoollar.Accounts.API.Data
             modelBuilder.Entity<EstateAgent>()
                 .ToTable("EstateAgents")
                 .HasOne(c => c.CompanyDetails)
-                .WithOne(e => e.EstateAgent)
+                .WithOne()
                 .HasForeignKey<CompanyDetails>(c => c.Id);
 
             modelBuilder.Entity<CompanyDetails>()
-                .ToTable("CompanyDetails").HasOne(a => a.RegisteredOffice).WithOne().HasForeignKey<Address>(c =>c.CompanyDetailsId);
-            modelBuilder.Entity<Landlord>().ToTable("Landlords").HasOne(a => a.Address).WithOne().HasForeignKey<Address>(c => c.LandlordId);
+                .ToTable("CompanyDetails");
 
-            modelBuilder.Entity<Lender>().ToTable("Lenders").HasOne(a=>a.Address).WithOne().HasForeignKey<Address>(c => c.LenderId);
+            modelBuilder.Entity<Landlord>().ToTable("Landlords");
+
+            modelBuilder.Entity<Lender>().ToTable("Lenders");
 
             modelBuilder.Entity<User>().ToTable("Users").HasOne(a=>a.Address).WithOne();
             modelBuilder.Entity<User>().ToTable("Users").HasMany(a => a.AlertAndSearches).WithOne();

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Zoollar.Accounts.API.Models.Entities;
 
 namespace Zoollar.Accounts.API.Models
@@ -8,6 +9,7 @@ namespace Zoollar.Accounts.API.Models
         public CompanyDetails() { }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         public string CompanyName { get; set; }
@@ -18,6 +20,6 @@ namespace Zoollar.Accounts.API.Models
 
         public string RegistrationNumber { get; set;}
 
-        public Address RegisteredOffice { get; set; }
+        public Guid EstateAgentId { get; set; }
     }
 }

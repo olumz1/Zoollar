@@ -18,6 +18,9 @@ namespace Zoollar.Accounts.API.Profiles
             CreateMap<User, GetUserAccountDto>()
                 .ForMember(pt => pt.Id, act => act.MapFrom(d => d.Id));
             CreateMap<GetUserAccountDto, User>();
+            CreateMap<AccountInfo, AccountInfoDto>();
+            CreateMap<Address, AddressDto>();
+            CreateMap<AlertAndSearches, AlertAndSearchesDto>();
 
         }
     }

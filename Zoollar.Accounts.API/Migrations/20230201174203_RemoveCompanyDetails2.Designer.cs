@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zoollar.Accounts.API.Data;
 
@@ -11,9 +12,11 @@ using Zoollar.Accounts.API.Data;
 namespace Zoollar.Accounts.API.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    partial class AccountDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230201174203_RemoveCompanyDetails2")]
+    partial class RemoveCompanyDetails2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,6 +78,12 @@ namespace Zoollar.Accounts.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AddressId");
+
+                    b.HasIndex("LandlordId")
+                        .IsUnique();
+
+                    b.HasIndex("LenderId")
+                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -223,6 +232,18 @@ namespace Zoollar.Accounts.API.Migrations
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Address", b =>
                 {
+                    b.HasOne("Zoollar.Accounts.API.Models.Entities.Landlord", null)
+                        .WithOne("Address")
+                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "LandlordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Zoollar.Accounts.API.Models.Entities.Lender", null)
+                        .WithOne("Address")
+                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "LenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Zoollar.Accounts.API.Models.Entities.User", null)
                         .WithOne("Address")
                         .HasForeignKey("Zoollar.Accounts.API.Models.Address", "UserId")
@@ -249,6 +270,18 @@ namespace Zoollar.Accounts.API.Migrations
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.EstateAgent", b =>
                 {
                     b.Navigation("CompanyDetails")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.Landlord", b =>
+                {
+                    b.Navigation("Address")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.Lender", b =>
+                {
+                    b.Navigation("Address")
                         .IsRequired();
                 });
 

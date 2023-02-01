@@ -8,7 +8,7 @@ namespace Zoollar.Accounts.API.Dtos
 
         public AddressDto Address { get; set; }
 
-        public AlertAndSearchesDto[] AlertAndSearches { get; set; }
+        public ICollection<AlertAndSearchesDto> AlertAndSearches { get; set; }
 
         public string AccountType { get; set; }
     }

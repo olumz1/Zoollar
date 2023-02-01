@@ -10,6 +10,7 @@ namespace Zoollar.Accounts.API.Models
         public Address() { }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid AddressId { get; set; }
 
         public int HouseNo { get; set; }
@@ -30,12 +31,16 @@ namespace Zoollar.Accounts.API.Models
 
         public string Country { get; set; }
 
+        [ForeignKey("Landlords")]
         public Guid LandlordId { get; set; }
 
+        [ForeignKey("Lenders")]
         public Guid LenderId { get; set; }
 
+        [ForeignKey("Users")]
         public Guid UserId { get; set; }
 
+        [ForeignKey("CompanyDetails")]
         public Guid CompanyDetailsId { get; set; }
     }
 }

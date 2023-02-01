@@ -2,8 +2,6 @@
 {
     public class Landlord : AccountInfo
     {
-        public Address Address { get; set; }
-
         public string AccountType => AccountTypes.Landlord;
     }
 }
