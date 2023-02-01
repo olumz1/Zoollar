@@ -25,6 +25,7 @@ namespace Zoollar.Accounts.API.Migrations
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Address", b =>
                 {
                     b.Property<Guid>("AddressId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AddressLine")
@@ -34,6 +35,9 @@ namespace Zoollar.Accounts.API.Migrations
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CompanyDetailsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -46,10 +50,10 @@ namespace Zoollar.Accounts.API.Migrations
                     b.Property<int>("HouseNo")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("LandlordId")
+                    b.Property<Guid>("LandlordId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("LenderId")
+                    b.Property<Guid>("LenderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Region")
@@ -63,15 +67,26 @@ namespace Zoollar.Accounts.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("ZipCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AddressId");
 
-                    b.HasIndex("LandlordId");
+                    b.HasIndex("CompanyDetailsId")
+                        .IsUnique();
 
-                    b.HasIndex("LenderId");
+                    b.HasIndex("LandlordId")
+                        .IsUnique();
+
+                    b.HasIndex("LenderId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -97,6 +112,10 @@ namespace Zoollar.Accounts.API.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("locationTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -121,18 +140,13 @@ namespace Zoollar.Accounts.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RegisteredOfficesAddressId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RegisteredOfficesAddressId");
-
-                    b.ToTable("CompanyDetails");
+                    b.ToTable("CompanyDetails", (string)null);
                 });
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.AccountInfo", b =>
@@ -140,6 +154,9 @@ namespace Zoollar.Accounts.API.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailAdress")
                         .IsRequired()
@@ -163,6 +180,9 @@ namespace Zoollar.Accounts.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("TelephoneNumber")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.ToTable("AccountInfo", (string)null);
@@ -174,14 +194,9 @@ namespace Zoollar.Accounts.API.Migrations
                 {
                     b.HasBaseType("Zoollar.Accounts.API.Models.Entities.AccountInfo");
 
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("EstateAgents", (string)null);
                 });
@@ -196,11 +211,6 @@ namespace Zoollar.Accounts.API.Migrations
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.Lender", b =>
                 {
                     b.HasBaseType("Zoollar.Accounts.API.Models.Entities.AccountInfo");
-
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("Lenders", (string)null);
                 });
@@ -218,21 +228,29 @@ namespace Zoollar.Accounts.API.Migrations
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Address", b =>
                 {
-                    b.HasOne("Zoollar.Accounts.API.Models.Entities.User", "User")
-                        .WithOne("Address")
-                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "AddressId")
+                    b.HasOne("Zoollar.Accounts.API.Models.CompanyDetails", null)
+                        .WithOne("RegisteredOffice")
+                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "CompanyDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Zoollar.Accounts.API.Models.Entities.Landlord", null)
-                        .WithMany("Address")
-                        .HasForeignKey("LandlordId");
+                        .WithOne("Address")
+                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "LandlordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Zoollar.Accounts.API.Models.Entities.Lender", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("LenderId");
+                        .WithOne("Address")
+                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "LenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.HasOne("Zoollar.Accounts.API.Models.Entities.User", null)
+                        .WithOne("Address")
+                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.AlertAndSearches", b =>
@@ -250,33 +268,13 @@ namespace Zoollar.Accounts.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Zoollar.Accounts.API.Models.Address", "RegisteredOffices")
-                        .WithMany()
-                        .HasForeignKey("RegisteredOfficesAddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("EstateAgent");
-
-                    b.Navigation("RegisteredOffices");
                 });
 
-            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.EstateAgent", b =>
+            modelBuilder.Entity("Zoollar.Accounts.API.Models.CompanyDetails", b =>
                 {
-                    b.HasOne("Zoollar.Accounts.API.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.Lender", b =>
-                {
-                    b.HasOne("Zoollar.Accounts.API.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
+                    b.Navigation("RegisteredOffice")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.EstateAgent", b =>
@@ -287,12 +285,14 @@ namespace Zoollar.Accounts.API.Migrations
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.Landlord", b =>
                 {
-                    b.Navigation("Address");
+                    b.Navigation("Address")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.Lender", b =>
                 {
-                    b.Navigation("Addresses");
+                    b.Navigation("Address")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.User", b =>

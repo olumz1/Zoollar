@@ -6,6 +6,8 @@ namespace Zoollar.Accounts.API.Services
 {
     public interface IAccountServices
     {
-        Task<User> CreateUserAccount(CreateUserAccountDto user);
+        Task<GetUserAccountDto> CreateUserAccount(CreateUserAccountDto user);
+        Task<GetUserAccountDto> GetUserAccountById(Guid id);
+        Task DeleteAccountById(Guid id);
     }
 }

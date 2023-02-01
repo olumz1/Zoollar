@@ -1,19 +1,66 @@
 ﻿using Zoollar.Accounts.API.Models.Entities;
+using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Zoollar.Accounts.API.Data
 {
-    public abstract class AccountRepo<T> where T : AccountInfo
+    public class AccountRepo<Entity> where Entity : AccountInfo
     {
-        public abstract bool SaveChanges();
+        private readonly AccountDbContext _dbContext;
+        private Microsoft.EntityFrameworkCore.DbSet<Entity> _dbSet;
 
-        public abstract Task<T?> GetAccountById(Guid id);
+        public AccountRepo(AccountDbContext dbContext)
+        {
+            _dbContext = dbContext;
+            _dbSet = _dbContext.Set<Entity>();
+        }
 
-        public abstract Task CreateAccount(T Account);
+        public async Task CreateAccount(Entity account)
+        {
+            if (account == null)
+            {
+                throw new ArgumentNullException(nameof(Entity));
+            }
 
-        public abstract Task UpdateAccount(T user);
+            await _dbSet.AddAsync(account);
+            await SaveChanges();
+        }
 
-        public abstract Task<IEnumerable<T>> GetAllAccounts();
 
-        public abstract Task DeleteAccount(Guid agentId);
+        public async Task DeleteAccount(Guid id)
+        {
+            var accountToDelete = await GetAccountById(id);
+            if (accountToDelete != null)
+            {
+                _dbSet.Remove(accountToDelete);
+            }
+            await SaveChanges();
+        }
+
+        public async Task<Entity> GetAccountById(Guid id)
+        {
+            return await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+          
+        }
+
+        public async Task<IEnumerable<Entity>> GetAllAccounts()
+        {
+            return await _dbSet.ToListAsync();
+        }
+
+        public async Task SaveChanges()
+        {
+           await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task UpdateAccount(Entity updateAccount)
+        {
+            if (updateAccount == null)
+            {
+                throw new ArgumentNullException(nameof(Entity));
+            }
+            _dbSet.Update(updateAccount);
+            await SaveChanges();
+        }
     }
 }

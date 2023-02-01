@@ -2,7 +2,7 @@
 
 namespace Zoollar.Accounts.API.Data
 {
-    public class LenderRepo : AccountRepo<Lender>
+    public class LenderRepo : IAccountRepo<Lender>
     {
         private readonly AccountDbContext _dbContext;
 
@@ -11,7 +11,7 @@ namespace Zoollar.Accounts.API.Data
             _dbContext = dbContext;
         }
 
-        public override Task CreateAccount(Lender lender)
+        public Task CreateAccount(Lender lender)
         {
             if (lender == null)
             {
@@ -24,7 +24,7 @@ namespace Zoollar.Accounts.API.Data
         }
 
 
-        public override Task DeleteAccount(Guid agentId)
+        public Task DeleteAccount(Guid agentId)
         {
             var estateAgentToDelete = GetAccountById(agentId);
             if (estateAgentToDelete != null)
@@ -35,23 +35,23 @@ namespace Zoollar.Accounts.API.Data
             return Task.CompletedTask;
         }
 
-        public override async Task<Lender?> GetAccountById(Guid id)
+        public async Task<Lender?> GetAccountById(Guid id)
         {
             var lender = await Task.FromResult(_dbContext.Lenders.FirstOrDefault(lender => lender.Id == id));
             return lender ?? null;
         }
 
-        public override async Task<IEnumerable<Lender>> GetAllAccounts()
+        public async Task<IEnumerable<Lender>> GetAllAccounts()
         {
             return await Task.FromResult(_dbContext.Lenders.ToList());
         }
 
-        public override bool SaveChanges()
+        public bool SaveChanges()
         {
             return (_dbContext.SaveChanges() >= 0);
         }
 
-        public override Task UpdateAccount(Lender lender)
+        public Task UpdateAccount(Lender lender)
         {
             if (lender == null)
             {

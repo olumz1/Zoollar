@@ -2,7 +2,7 @@
 
 namespace Zoollar.Accounts.API.Data
 {
-    public class EstateAgentRepo : AccountRepo<EstateAgent>
+    public class EstateAgentRepo : IAccountRepo<EstateAgent>
     {
         private readonly AccountDbContext _dbContext;
 
@@ -11,7 +11,7 @@ namespace Zoollar.Accounts.API.Data
             _dbContext = dbContext;
         }
 
-        public override Task CreateAccount(EstateAgent agent)
+        public Task CreateAccount(EstateAgent agent)
         {
             if (agent == null)
             {
@@ -23,7 +23,7 @@ namespace Zoollar.Accounts.API.Data
             return Task.CompletedTask;
         }
 
-        public override Task DeleteAccount(Guid agentId)
+        public Task DeleteAccount(Guid agentId)
         {
             var estateAgentToDelete = GetAccountById(agentId);
             if (estateAgentToDelete != null)
@@ -34,23 +34,23 @@ namespace Zoollar.Accounts.API.Data
             return Task.CompletedTask;
         }
 
-        public override async Task<EstateAgent?> GetAccountById(Guid id)
+        public async Task<EstateAgent?> GetAccountById(Guid id)
         {
             var agent = await Task.FromResult(_dbContext.EstateAgents.FirstOrDefault(agent => agent.Id == id));
             return agent ?? null;
         }
 
-        public override async Task<IEnumerable<EstateAgent>> GetAllAccounts()
+        public async Task<IEnumerable<EstateAgent>> GetAllAccounts()
         {
             return await Task.FromResult(_dbContext.EstateAgents.ToList());
         }
 
-        public override bool SaveChanges()
+        public bool SaveChanges()
         {
             return (_dbContext.SaveChanges() >= 0);
         }
 
-        public override Task UpdateAccount(EstateAgent agent)
+        public Task UpdateAccount(EstateAgent agent)
         {
             if (agent == null)
             {

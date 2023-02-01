@@ -6,9 +6,8 @@ namespace Zoollar.Accounts.API.Data
 {
     public class AccountDbContext : DbContext
     {
-        public AccountDbContext(DbContextOptions options):base(options) 
+        public AccountDbContext(DbContextOptions options) : base(options)
         {
-            
         }
 
         public DbSet<AccountInfo> Accounts { get; set; }
@@ -35,12 +34,13 @@ namespace Zoollar.Accounts.API.Data
                 .WithOne(e => e.EstateAgent)
                 .HasForeignKey<CompanyDetails>(c => c.Id);
 
-            modelBuilder.Entity<Landlord>()
-                .ToTable("Landlords");
+            modelBuilder.Entity<CompanyDetails>()
+                .ToTable("CompanyDetails").HasOne(a => a.RegisteredOffice).WithOne().HasForeignKey<Address>(c =>c.CompanyDetailsId);
+            modelBuilder.Entity<Landlord>().ToTable("Landlords").HasOne(a => a.Address).WithOne().HasForeignKey<Address>(c => c.LandlordId);
 
-            modelBuilder.Entity<Lender>().ToTable("Lenders").HasMany(a=>a.Addresses).WithOne();
+            modelBuilder.Entity<Lender>().ToTable("Lenders").HasOne(a=>a.Address).WithOne().HasForeignKey<Address>(c => c.LenderId);
 
-            modelBuilder.Entity<User>().ToTable("Users").HasOne(a=>a.Address).WithOne(u=>u.User).HasForeignKey<Address>(a=>a.AddressId);
+            modelBuilder.Entity<User>().ToTable("Users").HasOne(a=>a.Address).WithOne();
             modelBuilder.Entity<User>().ToTable("Users").HasMany(a => a.AlertAndSearches).WithOne();
         }
     }

@@ -30,7 +30,12 @@ namespace Zoollar.Accounts.API.Models
 
         public string Country { get; set; }
 
-        public User User { get; set; }
+        public Guid LandlordId { get; set; }
 
+        public Guid LenderId { get; set; }
+
+        public Guid UserId { get; set; }
+
+        public Guid CompanyDetailsId { get; set; }
     }
 }

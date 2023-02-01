@@ -18,8 +18,6 @@ namespace Zoollar.Accounts.API.Models
 
         public string RegistrationNumber { get; set;}
 
-        public Address RegisteredOffices { get; set; }
-
-        public EstateAgent EstateAgent { get; set; }
+        public Address RegisteredOffice { get; set; }
     }
 }

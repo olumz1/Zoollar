@@ -8,6 +8,6 @@
 
         public string City { get; set; }
 
-        public string locationTitle { get; set; }
+        public string locationTitle => $"{State}, {City}";
     }
 }

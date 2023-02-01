@@ -11,6 +11,6 @@ namespace Zoollar.Accounts.API.Models
 
         public string City { get; set; }
 
-        public string locationTitle => $"{State}, {City}";
+        public string locationTitle { get; set; }
     }
 }

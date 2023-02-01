@@ -2,7 +2,7 @@
 
 namespace Zoollar.Accounts.API.Data
 {
-    public class LandlordRepo : AccountRepo<Landlord>
+    public class LandlordRepo : IAccountRepo<Landlord>
     {
         private readonly AccountDbContext _dbContext;
 
@@ -11,7 +11,7 @@ namespace Zoollar.Accounts.API.Data
             _dbContext = dbContext;
         }
 
-        public override Task CreateAccount(Landlord landlord)
+        public Task CreateAccount(Landlord landlord)
         {
             if (landlord == null)
             {
@@ -24,7 +24,7 @@ namespace Zoollar.Accounts.API.Data
         }
 
 
-        public override Task DeleteAccount(Guid agentId)
+        public Task DeleteAccount(Guid agentId)
         {
             var landlordToDelete = GetAccountById(agentId);
             if (landlordToDelete != null)
@@ -35,23 +35,23 @@ namespace Zoollar.Accounts.API.Data
             return Task.CompletedTask;
         }
 
-        public override async Task<Landlord?> GetAccountById(Guid id)
+        public async Task<Landlord?> GetAccountById(Guid id)
         {
             var landlord = await Task.FromResult(_dbContext.Landlords.FirstOrDefault(landlord => landlord.Id == id));
             return landlord ?? null;
         }
 
-        public override async Task<IEnumerable<Landlord>> GetAllAccounts()
+        public async Task<IEnumerable<Landlord>> GetAllAccounts()
         {
             return await Task.FromResult(_dbContext.Landlords.ToList());
         }
 
-        public override bool SaveChanges()
+        public bool SaveChanges()
         {
             return (_dbContext.SaveChanges() >= 0);
         }
 
-        public override Task UpdateAccount(Landlord landlord)
+        public Task UpdateAccount(Landlord landlord)
         {
             if (landlord == null)
             {

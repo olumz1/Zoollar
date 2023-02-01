@@ -2,8 +2,10 @@
 
 namespace Zoollar.Accounts.API.Dtos
 {
-    public class GetUserAccountDto : AccountDto
+    public class GetUserAccountDto : AccountInfoDto
     {
+        public Guid Id { get; set; }
+
         public AddressDto Address { get; set; }
 
         public AlertAndSearchesDto[] AlertAndSearches { get; set; }

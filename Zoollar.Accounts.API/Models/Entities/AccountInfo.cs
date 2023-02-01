@@ -26,11 +26,13 @@ namespace Zoollar.Accounts.API.Models.Entities
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmailAdress { get; set; }
 
+        public long TelephoneNumber { get; set; }
+
         public Status MyStatus { get; set; }
 
         public EmailPreference EmailPreferences { get; set; }
 
-        public Address Address { get; set; }
+        public DateTime DateCreated { get; set; }
 
     }
 }
