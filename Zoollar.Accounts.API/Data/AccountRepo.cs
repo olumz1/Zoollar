@@ -1,5 +1,4 @@
 ﻿using Zoollar.Accounts.API.Models.Entities;
-using System.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Zoollar.Accounts.API.Data
@@ -37,10 +36,10 @@ namespace Zoollar.Accounts.API.Data
             await SaveChanges();
         }
 
-        public async Task<Entity> GetAccountById(Guid id)
+        public async Task<Entity?> GetAccountById(Guid id)
         {
-            return await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
-          
+            var account =  await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+            return account ?? null;
         }
 
         public async Task<IEnumerable<Entity>> GetAllAccounts()
