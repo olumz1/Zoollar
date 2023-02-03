@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Zoollar.Accounts.API.Common;
 using Zoollar.Accounts.API.Data;
 using Zoollar.Accounts.API.Models.Entities;
-using Zoollar.Accounts.API.Services;
+using Zoollar.Accounts.API.Services.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +18,8 @@ builder.Services.AddDbContext<AccountDbContext>(
     options.UseSqlServer
     (builder.Configuration.GetConnectionString("AccountsDbConnectionString")));
 builder.Services.AddScoped<IDateTimeProvider, DateTimeProvider>();
-builder.Services.AddScoped<IAccountServices, AccountServices>();
-builder.Services.AddTransient(typeof(AccountRepo<>));
+builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddTransient(typeof(UserRepo));
 
 var app = builder.Build();
 

@@ -116,7 +116,8 @@ namespace Zoollar.Accounts.API.Migrations
                     CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CompanyDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EstateAgentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,27 +128,6 @@ namespace Zoollar.Accounts.API.Migrations
                         principalTable: "EstateAgents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AlertAndSearches",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LocationMapImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    locationTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AlertAndSearches", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AlertAndSearches_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -173,24 +153,6 @@ namespace Zoollar.Accounts.API.Migrations
                 {
                     table.PrimaryKey("PK_Address", x => x.AddressId);
                     table.ForeignKey(
-                        name: "FK_Address_CompanyDetails_CompanyDetailsId",
-                        column: x => x.CompanyDetailsId,
-                        principalTable: "CompanyDetails",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Address_Landlords_LandlordId",
-                        column: x => x.LandlordId,
-                        principalTable: "Landlords",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Address_Lenders_LenderId",
-                        column: x => x.LenderId,
-                        principalTable: "Lenders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Address_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
@@ -198,23 +160,26 @@ namespace Zoollar.Accounts.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Address_CompanyDetailsId",
-                table: "Address",
-                column: "CompanyDetailsId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Address_LandlordId",
-                table: "Address",
-                column: "LandlordId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Address_LenderId",
-                table: "Address",
-                column: "LenderId",
-                unique: true);
+            migrationBuilder.CreateTable(
+                name: "AlertAndSearches",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LocationMapImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    locationTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AlertAndSearches", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AlertAndSearches_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_UserId",

@@ -9,6 +9,5 @@ namespace Zoollar.Accounts.API.Models.Entities
         public ICollection<AlertAndSearches> AlertAndSearches { get; set; }
 
         public string AccountType { get; set; }
-
     }
 }

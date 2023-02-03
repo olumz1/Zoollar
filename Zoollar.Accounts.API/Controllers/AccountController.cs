@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Zoollar.Accounts.API.Dtos;
-using Zoollar.Accounts.API.Services;
+using Zoollar.Accounts.API.Services.User;
 
 namespace Zoollar.Accounts.API.Controllers
 {
@@ -8,9 +8,9 @@ namespace Zoollar.Accounts.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        public readonly IAccountServices _accountService;
+        public readonly IUserServices _accountService;
 
-        public AccountController(IAccountServices accountService)
+        public AccountController(IUserServices accountService)
         {
             _accountService = accountService;
         }

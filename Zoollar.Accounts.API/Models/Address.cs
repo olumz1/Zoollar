@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Zoollar.Accounts.API.Dtos;
 using Zoollar.Accounts.API.Models.Entities;
 using Zoollar.Accounts.API.Models.Enum;
 
@@ -42,5 +43,10 @@ namespace Zoollar.Accounts.API.Models
 
         [ForeignKey("CompanyDetails")]
         public Guid CompanyDetailsId { get; set; }
+
+        public static explicit operator Address(AddressDto v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

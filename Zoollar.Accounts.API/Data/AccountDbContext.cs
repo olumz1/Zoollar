@@ -32,7 +32,8 @@ namespace Zoollar.Accounts.API.Data
                 .ToTable("EstateAgents")
                 .HasOne(c => c.CompanyDetails)
                 .WithOne()
-                .HasForeignKey<CompanyDetails>(c => c.Id);
+                .HasForeignKey<CompanyDetails>(c => c.Id)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<CompanyDetails>()
                 .ToTable("CompanyDetails");
@@ -41,8 +42,13 @@ namespace Zoollar.Accounts.API.Data
 
             modelBuilder.Entity<Lender>().ToTable("Lenders");
 
-            modelBuilder.Entity<User>().ToTable("Users").HasOne(a=>a.Address).WithOne();
-            modelBuilder.Entity<User>().ToTable("Users").HasMany(a => a.AlertAndSearches).WithOne();
+            modelBuilder.Entity<User>().ToTable("Users").HasOne(a=>a.Address).WithOne()
+                .HasPrincipalKey<User>(x=>x.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>().ToTable("Users")
+                .HasMany(a => a.AlertAndSearches).WithOne()
+                .OnDelete(DeleteBehavior.Cascade); ;
         }
     }
 }
