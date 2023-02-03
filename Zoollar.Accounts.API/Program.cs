@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Zoollar.Accounts.API.Common;
 using Zoollar.Accounts.API.Data;
 using Zoollar.Accounts.API.Models.Entities;
-using Zoollar.Accounts.API.Services.User;
+using Zoollar.Accounts.API.Services.UserAccount;
 
 var builder = WebApplication.CreateBuilder(args);
 

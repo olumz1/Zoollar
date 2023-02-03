@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Zoollar.Accounts.API.Dtos;
-using Zoollar.Accounts.API.Services.User;
+using Zoollar.Accounts.API.Services.UserAccount;
 
 namespace Zoollar.Accounts.API.Controllers
 {
