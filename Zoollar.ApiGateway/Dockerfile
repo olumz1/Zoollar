@@ -23,4 +23,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
 
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "Zoollar.Accounts.API.dll"]
+ENTRYPOINT ["dotnet", "Zoollar.ApiGateway.dll"]

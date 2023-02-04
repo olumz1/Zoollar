@@ -9,7 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Properties.API", "Z
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Accounts.API", "Zoollar.Accounts.API\Zoollar.Accounts.API.csproj", "{E8CD46C1-A6D5-4646-8152-A243F1858F5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoollar.ApiGateway", "Zoollar.ApiGateway\Zoollar.ApiGateway.csproj", "{F2F284B6-81C0-4CDE-A648-3E70D5C1F027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.ApiGateway", "Zoollar.ApiGateway\Zoollar.ApiGateway.csproj", "{F2F284B6-81C0-4CDE-A648-3E70D5C1F027}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{7668022E-24FE-4FE0-B3A8-583A2910E5B6}"
+	ProjectSection(SolutionItems) = preProject
+		accounts-depl.yaml = accounts-depl.yaml
+		apigateway-depl.yaml = apigateway-depl.yaml
+		blogs-depl.yaml = blogs-depl.yaml
+		properties-depl.yaml = properties-depl.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

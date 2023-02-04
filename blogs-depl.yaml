@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: blogs-depl
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: blogservice
+ template:
+  metadata:
+   labels:
+    app: blogservice
+  spec:
+   containers:
+    - name: blogservice
+      image: olumz1/zoollarblogsapi:latest

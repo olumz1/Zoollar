@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: apigateway-depl
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: apigatewayservice
+ template:
+  metadata:
+   labels:
+    app: apigatewayservice
+  spec:
+   containers:
+    - name: apigatewayservice
+      image: olumz1/zoollarapigateway:latest
