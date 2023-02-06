@@ -15,3 +15,17 @@ spec:
    containers:
     - name: blogservice
       image: olumz1/zoollarblogsapi:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blogs-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: blogservice
+  ports:
+    - protocol: TCP
+      name: blogservice
+      port: 80
+      targetPort: 80

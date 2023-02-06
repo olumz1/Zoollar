@@ -14,9 +14,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{7668022E-24FE-4FE0-B3A8-583A2910E5B6}"
 	ProjectSection(SolutionItems) = preProject
 		accounts-depl.yaml = accounts-depl.yaml
+		accounts-np-srv.yaml = accounts-np-srv.yaml
 		apigateway-depl.yaml = apigateway-depl.yaml
+		apigateway-np-srv.yaml = apigateway-np-srv.yaml
 		blogs-depl.yaml = blogs-depl.yaml
+		blogs-np-srv.yaml = blogs-np-srv.yaml
+		ingress-srv.yaml = ingress-srv.yaml
 		properties-depl.yaml = properties-depl.yaml
+		properties-np-srv.yaml = properties-np-srv.yaml
 	EndProjectSection
 EndProject
 Global
