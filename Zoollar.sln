@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{766802
 		blogs-depl.yaml = blogs-depl.yaml
 		blogs-np-srv.yaml = blogs-np-srv.yaml
 		ingress-srv.yaml = ingress-srv.yaml
+		local-pvc.yaml = local-pvc.yaml
+		mssql-plat-depl.yaml = mssql-plat-depl.yaml
 		properties-depl.yaml = properties-depl.yaml
 		properties-np-srv.yaml = properties-np-srv.yaml
 	EndProjectSection
