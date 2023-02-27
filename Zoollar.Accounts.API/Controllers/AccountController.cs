@@ -11,23 +11,13 @@ namespace Zoollar.Accounts.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserServices _accountService;
-        private readonly JwtTokenHandler _jwtTokenHandler;
 
-        public AccountController(IUserServices accountService, JwtTokenHandler jwtTokenHandler)
+        public AccountController(IUserServices accountService)
         {
             _accountService = accountService;
-            _jwtTokenHandler = jwtTokenHandler;
         }
 
-        [Route("login"), HttpPost]
-        public ActionResult<AuthenticationResponse?> Login([FromBody] AuthenticationRequest authenticationRequest) 
-        {
-            var authenticationResponse = _jwtTokenHandler.GenerateJwtToken(authenticationRequest);
-            if (authenticationResponse == null) return Unauthorized();
-            return Ok(authenticationResponse);
-        }
-
-        [HttpPost("CreateUserAccount")]
+        [HttpPost]
         public async Task<ActionResult<GetUserAccountDto>> CreateUserAccount([FromBody] CreateUserAccountDto createUserAccountDto)
         {
             if (!ModelState.IsValid) { return BadRequest(nameof(CreateUserAccount)); }

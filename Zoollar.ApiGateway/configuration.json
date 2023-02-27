@@ -1,5 +1,19 @@
 ﻿{
   "Routes": [
+    //Authenticate API Section
+    {
+      "DownstreamPathTemplate": "/api/Authenticate",
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5198
+        }
+      ],
+      "UpstreamPathTemplate": "/api/login",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
     //Account API Section
     {
       "DownstreamPathTemplate": "/api/Account",
@@ -8,20 +22,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 48898
-        }
-      ],
-      "UpstreamPathTemplate": "/api/login/{authenticationRequest}",
-      "UpstreamHttpMethod": [ "Get","Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/Account",
-
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 48898
+          "Port": 5198
         }
       ],
       "UpstreamPathTemplate": "/api/CreateUserAccount",
@@ -33,7 +34,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 48898
+          "Port": 5198
         }
       ],
       "UpstreamPathTemplate": "/api/GetUserAccountById/{id}",
@@ -61,7 +62,7 @@
       //}
     },
     {
-      "DownstreamPathTemplate": "/api/Blogs",
+      "DownstreamPathTemplate": "/api/Blogs/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -109,7 +110,7 @@
       //}
     },
     {
-      "DownstreamPathTemplate": "/api/Blogs",
+      "DownstreamPathTemplate": "/api/Blogs/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -117,7 +118,7 @@
           "Port": 5030
         }
       ],
-      "UpstreamPathTemplate": "/api/UpdateBlog",
+      "UpstreamPathTemplate": "/api/UpdateBlog/{id}",
       "UpstreamHttpMethod": [ "Put" ]
       //"AuthenticationOptions": {
       //  "AuthenticationProviderKey": "IdentityApiKey",
@@ -142,7 +143,7 @@
       //}
     },
     {
-      "DownstreamPathTemplate": "/api/Properties",
+      "DownstreamPathTemplate": "/api/Properties/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -167,14 +168,14 @@
         }
       ],
       "UpstreamPathTemplate": "/api/CreateProperties",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+      "UpstreamHttpMethod": [ "Post" ]
       //"AuthenticationOptions": {
       //  "AuthenticationProviderKey": "IdentityApiKey",
       //  "AllowedScopes": []
       //}
     },
     {
-      "DownstreamPathTemplate": "/api/Properties",
+      "DownstreamPathTemplate": "/api/Properties/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -182,7 +183,7 @@
           "Port": 5231
         }
       ],
-      "UpstreamPathTemplate": "/api/UpdateProperties",
+      "UpstreamPathTemplate": "/api/UpdateProperties/{id}",
       "UpstreamHttpMethod": [ "Put" ]
       //"AuthenticationOptions": {
       //  "AuthenticationProviderKey": "IdentityApiKey",

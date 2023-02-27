@@ -36,7 +36,7 @@ namespace Zoollar.Properties.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{id:Guid}/GetPropertyById", Name = "GetPropertyById")]
+        [HttpGet("{id}", Name = "GetPropertyById")]
         public async Task<IActionResult> GetPropertyById(Guid id)
         {
             if (id == Guid.Empty) return BadRequest();
@@ -68,93 +68,93 @@ namespace Zoollar.Properties.API.Controllers
             return CreatedAtRoute(nameof(GetPropertyById), new { response.Id }, response);
         }
 
-        [HttpGet("{city}/FilterPropertiesByCity", Name = "FilterPropertiesByCity")]
-        public async Task<IActionResult> FilterPropertiesByCity([FromQuery] PaginationFilter filter, string city) 
-        {
-            var response = await _propertyService.FilterPropertiesByCity(filter, city);
+        //[HttpGet("{city}/FilterPropertiesByCity", Name = "FilterPropertiesByCity")]
+        //public async Task<IActionResult> FilterPropertiesByCity([FromQuery] PaginationFilter filter, string city) 
+        //{
+        //    var response = await _propertyService.FilterPropertiesByCity(filter, city);
 
-            var metadata = new
-            {
-                response.TotalRecords,
-                response.PageSize,
-                response.CurrentPage,
-                response.HasNext,
-                response.HasPrevious
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            return Ok(response);
-        }
+        //    var metadata = new
+        //    {
+        //        response.TotalRecords,
+        //        response.PageSize,
+        //        response.CurrentPage,
+        //        response.HasNext,
+        //        response.HasPrevious
+        //    };
+        //    Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+        //    return Ok(response);
+        //}
 
-        [HttpGet("{propertyListingType}/FilterPropertiesByListingType", Name = "FilterPropertiesByListingType")]
-        public async Task<IActionResult> FilterPropertiesByListingType([FromQuery] PaginationFilter filter, string propertyListingType) 
-        {
-            PropertyListingType propertyListing = propertyListingType.ToEnum<PropertyListingType>();
-            var response = await _propertyService.FilterPropertiesByListingType(filter, propertyListing);
+        //[HttpGet("{propertyListingType}/FilterPropertiesByListingType", Name = "FilterPropertiesByListingType")]
+        //public async Task<IActionResult> FilterPropertiesByListingType([FromQuery] PaginationFilter filter, string propertyListingType) 
+        //{
+        //    PropertyListingType propertyListing = propertyListingType.ToEnum<PropertyListingType>();
+        //    var response = await _propertyService.FilterPropertiesByListingType(filter, propertyListing);
 
-            var metadata = new
-            {
-                response.TotalRecords,
-                response.PageSize,
-                response.CurrentPage,
-                response.HasNext,
-                response.HasPrevious
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            return Ok(response);
-        }
+        //    var metadata = new
+        //    {
+        //        response.TotalRecords,
+        //        response.PageSize,
+        //        response.CurrentPage,
+        //        response.HasNext,
+        //        response.HasPrevious
+        //    };
+        //    Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+        //    return Ok(response);
+        //}
 
-        [HttpGet("{propertyType}", Name = "FilterPropertiesByPropertyType")]
-        public async Task<IActionResult> FilterPropertiesByPropertyType([FromQuery] PaginationFilter filter, string propertyType) 
-        {
-            PropertyType propertyTypeEnum = propertyType.ToEnum<PropertyType>();
-            var response = await _propertyService.FilterPropertiesByPropertyType(filter, propertyTypeEnum);
+        //[HttpGet("{propertyType}", Name = "FilterPropertiesByPropertyType")]
+        //public async Task<IActionResult> FilterPropertiesByPropertyType([FromQuery] PaginationFilter filter, string propertyType) 
+        //{
+        //    PropertyType propertyTypeEnum = propertyType.ToEnum<PropertyType>();
+        //    var response = await _propertyService.FilterPropertiesByPropertyType(filter, propertyTypeEnum);
 
-            var metadata = new
-            {
-                response.TotalRecords,
-                response.PageSize,
-                response.CurrentPage,
-                response.HasNext,
-                response.HasPrevious
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            return Ok(response);
-        }
+        //    var metadata = new
+        //    {
+        //        response.TotalRecords,
+        //        response.PageSize,
+        //        response.CurrentPage,
+        //        response.HasNext,
+        //        response.HasPrevious
+        //    };
+        //    Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+        //    return Ok(response);
+        //}
 
-        [HttpGet("{state}", Name = "FilterPropertiesByState")]
-        public async Task<IActionResult> FilterPropertiesByState([FromQuery] PaginationFilter filter, string state) 
-        {
-            States stateEnum = state.ToEnum<States>();
-            var response = await _propertyService.FilterPropertiesByState(filter, stateEnum);
+        //[HttpGet("{state}", Name = "FilterPropertiesByState")]
+        //public async Task<IActionResult> FilterPropertiesByState([FromQuery] PaginationFilter filter, string state) 
+        //{
+        //    States stateEnum = state.ToEnum<States>();
+        //    var response = await _propertyService.FilterPropertiesByState(filter, stateEnum);
 
-            var metadata = new
-            {
-                response.TotalRecords,
-                response.PageSize,
-                response.CurrentPage,
-                response.HasNext,
-                response.HasPrevious
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            return Ok(response);
-        }
+        //    var metadata = new
+        //    {
+        //        response.TotalRecords,
+        //        response.PageSize,
+        //        response.CurrentPage,
+        //        response.HasNext,
+        //        response.HasPrevious
+        //    };
+        //    Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+        //    return Ok(response);
+        //}
 
-        [HttpGet("{agentId}", Name = "FilterPropertiesByAgentId")]
-        public async Task<IActionResult> FilterPropertiesByAgentId([FromQuery] PaginationFilter filter, Guid agentId) 
-        {
-            if (agentId == Guid.Empty) return BadRequest();
-            var response = await _propertyService.FilterPropertiesByAgentId(filter, agentId);
+        //[HttpGet("{agentId}", Name = "FilterPropertiesByAgentId")]
+        //public async Task<IActionResult> FilterPropertiesByAgentId([FromQuery] PaginationFilter filter, Guid agentId) 
+        //{
+        //    if (agentId == Guid.Empty) return BadRequest();
+        //    var response = await _propertyService.FilterPropertiesByAgentId(filter, agentId);
 
-            var metadata = new
-            {
-                response.TotalRecords,
-                response.PageSize,
-                response.CurrentPage,
-                response.HasNext,
-                response.HasPrevious
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            return Ok(response);
-        }
+        //    var metadata = new
+        //    {
+        //        response.TotalRecords,
+        //        response.PageSize,
+        //        response.CurrentPage,
+        //        response.HasNext,
+        //        response.HasPrevious
+        //    };
+        //    Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+        //    return Ok(response);
+        //}
     }
 }
