@@ -26,7 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{766802
 		properties-np-srv.yaml = properties-np-srv.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationManager", "JwtAuthenticationManager\JwtAuthenticationManager.csproj", "{424EA8E1-9D2D-4381-B473-D9B4009B72AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationManager", "JwtAuthenticationManager\JwtAuthenticationManager.csproj", "{424EA8E1-9D2D-4381-B473-D9B4009B72AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82968D25-5950-48B7-8D00-096A04DE325E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{47F96DCC-D9B0-4A3A-913E-DCA3055F9467} = {82968D25-5950-48B7-8D00-096A04DE325E}
+		{3A19745F-FC68-4362-8136-DF7F39968F1B} = {82968D25-5950-48B7-8D00-096A04DE325E}
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D} = {82968D25-5950-48B7-8D00-096A04DE325E}
+		{F2F284B6-81C0-4CDE-A648-3E70D5C1F027} = {82968D25-5950-48B7-8D00-096A04DE325E}
+		{424EA8E1-9D2D-4381-B473-D9B4009B72AF} = {82968D25-5950-48B7-8D00-096A04DE325E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08C3A089-B0A7-4336-8FAD-6BAAD8BE4A02}

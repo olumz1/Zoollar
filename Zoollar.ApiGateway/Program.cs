@@ -1,3 +1,4 @@
+using JwtAuthenticationManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Kubernetes;
@@ -9,8 +10,15 @@ builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddEnvironmentVariables();
 
 builder.Services.AddOcelot(builder.Configuration).AddKubernetes();
+builder.Services.AddCustomJwtAuthentication();
 
 var app = builder.Build();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseRouting();
 await app.UseOcelot();
+
+
 
 app.Run();

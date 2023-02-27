@@ -48,7 +48,7 @@ namespace Zoollar.Accounts.API.Data
 
             modelBuilder.Entity<User>().ToTable("Users")
                 .HasMany(a => a.AlertAndSearches).WithOne()
-                .OnDelete(DeleteBehavior.Cascade); ;
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

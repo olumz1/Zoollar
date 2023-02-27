@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JwtAuthenticationManager;
+using JwtAuthenticationManager.Models;
+using Microsoft.AspNetCore.Mvc;
 using Zoollar.Accounts.API.Dtos;
 using Zoollar.Accounts.API.Services.UserAccount;
 
@@ -8,14 +10,24 @@ namespace Zoollar.Accounts.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        public readonly IUserServices _accountService;
+        private readonly IUserServices _accountService;
+        private readonly JwtTokenHandler _jwtTokenHandler;
 
-        public AccountController(IUserServices accountService)
+        public AccountController(IUserServices accountService, JwtTokenHandler jwtTokenHandler)
         {
             _accountService = accountService;
+            _jwtTokenHandler = jwtTokenHandler;
         }
 
-        [HttpPost]
+        [Route("login"), HttpPost]
+        public ActionResult<AuthenticationResponse?> Login([FromBody] AuthenticationRequest authenticationRequest) 
+        {
+            var authenticationResponse = _jwtTokenHandler.GenerateJwtToken(authenticationRequest);
+            if (authenticationResponse == null) return Unauthorized();
+            return Ok(authenticationResponse);
+        }
+
+        [HttpPost("CreateUserAccount")]
         public async Task<ActionResult<GetUserAccountDto>> CreateUserAccount([FromBody] CreateUserAccountDto createUserAccountDto)
         {
             if (!ModelState.IsValid) { return BadRequest(nameof(CreateUserAccount)); }

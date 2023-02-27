@@ -2,35 +2,44 @@
   "Routes": [
     //Account API Section
     {
-      "DownstreamPathTemplate": "/api/Account/",
+      "DownstreamPathTemplate": "/api/Account",
 
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5198
+          "Port": 48898
         }
       ],
-      "UpstreamPathTemplate": "/api/CreateUserAccount",
-      "UpstreamHttpMethod": [ "Post" ]
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "IdentityApiKey",
-      //  "AllowedScopes": []
-      //}
+      "UpstreamPathTemplate": "/api/login/{authenticationRequest}",
+      "UpstreamHttpMethod": [ "Get","Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/Account",
+
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5198
+          "Port": 48898
         }
       ],
-      "UpstreamPathTemplate": "/api/Account/GetUserAccountById/{id}",
+      "UpstreamPathTemplate": "/api/CreateUserAccount",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Account/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 48898
+        }
+      ],
+      "UpstreamPathTemplate": "/api/GetUserAccountById/{id}",
       "UpstreamHttpMethod": [ "Get", "Put", "Delete" ]
       //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AuthenticationProviderKey": "Bearer",
       //  "AllowedScopes": []
       //}
     },

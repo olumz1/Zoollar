@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Zoollar.Blogs.API.Dtos;
 using Zoollar.Blogs.API.Services;
@@ -34,6 +35,7 @@ namespace Zoollar.Blogs.API.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Administrator")]
         public ActionResult<GetBlogDto> CreateBlog([FromBody]CreateBlogDto blog) 
         {
             if (!ModelState.IsValid) { return BadRequest(nameof(CreateBlog)); }
@@ -50,6 +52,7 @@ namespace Zoollar.Blogs.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Administrator")]
         public ActionResult UpdateBlog(Guid id, [FromBody] CreateBlogDto blog)
         {
             if (id == Guid.Empty || blog == null) return BadRequest(nameof(UpdateBlog));
