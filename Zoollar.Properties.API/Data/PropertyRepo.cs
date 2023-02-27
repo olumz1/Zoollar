@@ -41,10 +41,10 @@ namespace Zoollar.Properties.API.Data
                 .ToPagedResponse(_dbContext.Properties, filter.PageNumber, filter.PageSize));
         }
 
-        public async Task<Property> GetPropertyById(Guid id)
+        public async Task<Property?> GetPropertyById(Guid id)
         {
             var property = await Task.FromResult(_dbContext.Properties.FirstOrDefault(property => property.Id == id));
-            return property;
+            return property ?? null;
         }
 
         public bool SaveChanges()

@@ -35,6 +35,9 @@ namespace Zoollar.Blogs.API.Migrations
                     b.Property<Guid>("BlogId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DeletedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

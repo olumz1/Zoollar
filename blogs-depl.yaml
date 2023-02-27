@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: blogs-depl
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: blogservice
+ template:
+  metadata:
+   labels:
+    app: blogservice
+  spec:
+   containers:
+    - name: blogservice
+      image: olumz1/zoollarblogsapi:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blogs-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: blogservice
+  ports:
+    - protocol: TCP
+      name: blogservice
+      port: 80
+      targetPort: 80

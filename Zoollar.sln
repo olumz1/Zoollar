@@ -7,6 +7,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Blogs.API", "Zoolla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Properties.API", "Zoollar.Properties.API\Zoollar.Properties.API.csproj", "{3A19745F-FC68-4362-8136-DF7F39968F1B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.Accounts.API", "Zoollar.Accounts.API\Zoollar.Accounts.API.csproj", "{E8CD46C1-A6D5-4646-8152-A243F1858F5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoollar.ApiGateway", "Zoollar.ApiGateway\Zoollar.ApiGateway.csproj", "{F2F284B6-81C0-4CDE-A648-3E70D5C1F027}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{7668022E-24FE-4FE0-B3A8-583A2910E5B6}"
+	ProjectSection(SolutionItems) = preProject
+		accounts-depl.yaml = accounts-depl.yaml
+		accounts-np-srv.yaml = accounts-np-srv.yaml
+		apigateway-depl.yaml = apigateway-depl.yaml
+		apigateway-np-srv.yaml = apigateway-np-srv.yaml
+		blogs-depl.yaml = blogs-depl.yaml
+		blogs-np-srv.yaml = blogs-np-srv.yaml
+		ingress-srv.yaml = ingress-srv.yaml
+		local-pvc.yaml = local-pvc.yaml
+		mssql-plat-depl.yaml = mssql-plat-depl.yaml
+		properties-depl.yaml = properties-depl.yaml
+		properties-np-srv.yaml = properties-np-srv.yaml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationManager", "JwtAuthenticationManager\JwtAuthenticationManager.csproj", "{424EA8E1-9D2D-4381-B473-D9B4009B72AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82968D25-5950-48B7-8D00-096A04DE325E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +44,28 @@ Global
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A19745F-FC68-4362-8136-DF7F39968F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2F284B6-81C0-4CDE-A648-3E70D5C1F027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F284B6-81C0-4CDE-A648-3E70D5C1F027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F284B6-81C0-4CDE-A648-3E70D5C1F027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F284B6-81C0-4CDE-A648-3E70D5C1F027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{424EA8E1-9D2D-4381-B473-D9B4009B72AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424EA8E1-9D2D-4381-B473-D9B4009B72AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424EA8E1-9D2D-4381-B473-D9B4009B72AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424EA8E1-9D2D-4381-B473-D9B4009B72AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{47F96DCC-D9B0-4A3A-913E-DCA3055F9467} = {82968D25-5950-48B7-8D00-096A04DE325E}
+		{3A19745F-FC68-4362-8136-DF7F39968F1B} = {82968D25-5950-48B7-8D00-096A04DE325E}
+		{E8CD46C1-A6D5-4646-8152-A243F1858F5D} = {82968D25-5950-48B7-8D00-096A04DE325E}
+		{F2F284B6-81C0-4CDE-A648-3E70D5C1F027} = {82968D25-5950-48B7-8D00-096A04DE325E}
+		{424EA8E1-9D2D-4381-B473-D9B4009B72AF} = {82968D25-5950-48B7-8D00-096A04DE325E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08C3A089-B0A7-4336-8FAD-6BAAD8BE4A02}
