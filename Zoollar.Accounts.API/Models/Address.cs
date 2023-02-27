@@ -8,8 +8,6 @@ namespace Zoollar.Accounts.API.Models
 {
     public class Address
     {
-        public Address() { }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid AddressId { get; set; }
@@ -44,9 +42,5 @@ namespace Zoollar.Accounts.API.Models
         [ForeignKey("CompanyDetails")]
         public Guid CompanyDetailsId { get; set; }
 
-        public static explicit operator Address(AddressDto v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
