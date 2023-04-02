@@ -2,6 +2,7 @@
 using Zoollar.Properties.API.Data;
 using Zoollar.Properties.API.Dtos;
 using Zoollar.Properties.API.Helpers;
+using Zoollar.Properties.API.Http;
 using Zoollar.Properties.API.Models;
 using Zoollar.Properties.API.Models.Entities;
 using Zoollar.Properties.API.Models.Filter;
@@ -13,19 +14,21 @@ namespace Zoollar.Properties.API.Services
         private readonly IPropertyRepo _propertyRepo;
         private readonly IMapper _mapper;
         private readonly IDateTimeProvider _dateTimeProvider;
+        private readonly IAccountDataClient _accountDataClient;
 
-        public PropertyService(IPropertyRepo propertyRepo, IMapper mapper, IDateTimeProvider dateTimeProvider)
+        public PropertyService(IPropertyRepo propertyRepo, IMapper mapper, IDateTimeProvider dateTimeProvider, IAccountDataClient accountDataClient)
         {
             _propertyRepo = propertyRepo;
             _mapper = mapper;
             _dateTimeProvider = dateTimeProvider;
+            _accountDataClient = accountDataClient;
         }
 
-        public async Task<PropertyDto> CreateProperty(CreatePropertyDto createPropertyDto)
+        public async Task<PropertyDto> CreateProperty(CreatePropertyDto createPropertyDto, string userId)
         {
             try
             {
-                var property = UpdateAndCreatePropertyMapper(createPropertyDto, null);
+                var property = await UpdateAndCreatePropertyMapperAsync(createPropertyDto, userId, null);
 
                 await _propertyRepo.CreateProperty(property);
                 var getPropertyDto = _mapper.Map<PropertyDto>(property);
@@ -60,14 +63,14 @@ namespace Zoollar.Properties.API.Services
             return getPropertiesDto;
         }
 
-        public async Task<PagedResponse<PropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyType)
+        public async Task<PagedResponse<PropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, string propertyType)
         {
             var properties = await _propertyRepo.FilterPropertiesByPropertyType(filter, propertyType);
             var getPropertiesDto = _mapper.Map<PagedResponse<PropertyDto>>(properties);
             return getPropertiesDto;
         }
 
-        public async Task<PagedResponse<PropertyDto>> FilterPropertiesByState(PaginationFilter filter, States state)
+        public async Task<PagedResponse<PropertyDto>> FilterPropertiesByState(PaginationFilter filter, string state)
         {
             var properties = await _propertyRepo.FilterPropertiesByState(filter, state);
             var getPropertiesDto = _mapper.Map<PagedResponse<PropertyDto>>(properties);
@@ -88,13 +91,13 @@ namespace Zoollar.Properties.API.Services
             return getPropertyDto;
         }
 
-        public async Task<PropertyDto> UpdateProperty(Guid id, CreatePropertyDto property)
+        public async Task<PropertyDto> UpdateProperty(Guid id, CreatePropertyDto property, string updatedBy)
         {
             var getPropertyToUpdate = await _propertyRepo.GetPropertyById(id);
 
             if (getPropertyToUpdate != null)
             {
-                UpdateAndCreatePropertyMapper(property, getPropertyToUpdate);
+                await UpdateAndCreatePropertyMapperAsync(property, updatedBy, getPropertyToUpdate);
                 await _propertyRepo.UpdateProperty(getPropertyToUpdate);
                 var getPropertyDto = _mapper.Map<PropertyDto>(getPropertyToUpdate);
                 return await Task.FromResult(getPropertyDto);
@@ -106,8 +109,11 @@ namespace Zoollar.Properties.API.Services
             }
         }
 
-        private Property UpdateAndCreatePropertyMapper(CreatePropertyDto createPropertyDto, Property? getPropertyToUpdate = null)
+        private async Task<Property> UpdateAndCreatePropertyMapperAsync(CreatePropertyDto createPropertyDto, string userId, Property? getPropertyToUpdate = null)
         {
+            var agentDetails = await _accountDataClient.GetPropertyAgentDetails(userId);
+            if(agentDetails == null) { throw new ArgumentNullException("Property Agent details not found"); }
+
             var propertyData = _mapper.Map<PropertyData>(createPropertyDto);
             if (getPropertyToUpdate == null)
             {
@@ -119,8 +125,13 @@ namespace Zoollar.Properties.API.Services
                     property.PropertyData.PropertyType.ToString(),
                     property.PropertyData.PropertyListingType);
                 property.PropertyData.CreatedTime = _dateTimeProvider.GetDateTimeNow();
-
-                //Use Api to get the Agent from the logged in account and update property agent details
+                property.PropertyData.PropertyAgent = new PropertyAgent() 
+                { 
+                    AgentId = Guid.Parse(agentDetails.Id), 
+                    ImageUrl = agentDetails.ImageUrl, 
+                    EstateName = agentDetails.EstateAgentCompany,
+                    UploadedBy = $"{agentDetails.FirstName} {agentDetails.LastName}"
+                };
                 return property;
             }
             else 
@@ -131,7 +142,7 @@ namespace Zoollar.Properties.API.Services
                 createPropertyDto.PropertyType.ToString(),
                 createPropertyDto.PropertyListingType);
                 getPropertyToUpdate.PropertyData.LastUpdatedTime = _dateTimeProvider.GetDateTimeNow();
-
+                getPropertyToUpdate.PropertyData.LastUpdatedBy = $"{agentDetails.FirstName} {agentDetails.LastName}";
                 return getPropertyToUpdate;
             }
 

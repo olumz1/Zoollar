@@ -10,7 +10,7 @@ namespace Zoollar.Properties.API.Models
 
         public PropertyPrice PropertyPrice { get; set; }
 
-        public PropertyType PropertyType { get; set; }
+        public string PropertyType { get; set; }
 
         public PropertyListingType PropertyListingType { get; set; }
 
@@ -27,5 +27,7 @@ namespace Zoollar.Properties.API.Models
         public Guid[] LoanCompanies { get; set; }
 
         public DateTime? LastUpdatedTime { get; set;}
+
+        public string LastUpdatedBy { get; set; }
     }
 }

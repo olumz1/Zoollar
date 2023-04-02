@@ -1,9 +1,9 @@
 ﻿namespace Zoollar.Properties.API.Models
 {
-    public enum Currency
+    public static class Currency
     {
-        USD,
-        GBP,
-        NAIRA
+        public const string Dollars = "USD";
+        public const string Pounds = "GBP";
+        public const string Naira = "NAIRA";
     }
 }

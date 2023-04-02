@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Zoollar.Properties.API.Dtos;
 using Zoollar.Properties.API.Helpers;
@@ -14,9 +15,12 @@ namespace Zoollar.Properties.API.Controllers
     {
         private readonly IPropertyService _propertyService;
 
-        public PropertiesController(IPropertyService propertyService)
+        private IConfiguration _configuration;
+
+        public PropertiesController(IPropertyService propertyService, IConfiguration configuration)
         {
             _propertyService = propertyService;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -51,19 +55,29 @@ namespace Zoollar.Properties.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateProperties([FromBody] CreatePropertyDto createPropertyDto)
         {
             if (!ModelState.IsValid) { return BadRequest(nameof(CreateProperties)); }
-            var response = await _propertyService.CreateProperty(createPropertyDto);
+
+            var user = User?.Identity?.Name;
+            var userId = User?.Claims.FirstOrDefault(c => c.Type == _configuration["NameIdentifier"])?.Value;
+
+            var response = await _propertyService.CreateProperty(createPropertyDto, userId);
 
             return CreatedAtRoute(nameof(GetPropertyById), new { response.Id}, response);
         }
 
         [HttpPut]
+        [Authorize(Roles = "Agent, Builder")]
         public async Task<IActionResult> UpdateProperties(Guid id, [FromBody] CreatePropertyDto createPropertyDto)
         {
             if (!ModelState.IsValid) { return BadRequest(nameof(UpdateProperties)); }
-            var response = await _propertyService.UpdateProperty(id, createPropertyDto);
+
+            var user = User?.Identity?.Name;
+            var updatedBy = User?.Claims.FirstOrDefault(c => c.Type == _configuration["NameIdentifier"])?.Value;
+
+            var response = await _propertyService.UpdateProperty(id, createPropertyDto, updatedBy);
 
             return CreatedAtRoute(nameof(GetPropertyById), new { response.Id }, response);
         }

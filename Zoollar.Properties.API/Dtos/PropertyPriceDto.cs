@@ -12,6 +12,6 @@ namespace Zoollar.Properties.API.Dtos
 
         public bool OffersInRange { get; set; }
 
-        public Currency Currency { get; set; }
+        public string Currency { get; set; }
     }
 }

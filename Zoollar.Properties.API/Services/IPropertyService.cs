@@ -8,13 +8,13 @@ namespace Zoollar.Properties.API.Services
     public interface IPropertyService
     {
         Task<PagedResponse<PropertyDto>> GetAllProperties(PaginationFilter filter);
-        Task<PropertyDto> CreateProperty(CreatePropertyDto createPropertyDto);
+        Task<PropertyDto> CreateProperty(CreatePropertyDto createPropertyDto, string userId);
         Task<PropertyDto> GetPropertyById(Guid Id);
-        Task<PropertyDto> UpdateProperty(Guid id, CreatePropertyDto property);
+        Task<PropertyDto> UpdateProperty(Guid id, CreatePropertyDto property, string updatedBy);
         Task<PagedResponse<PropertyDto>> FilterPropertiesByCity(PaginationFilter filter, string city);
         Task<PagedResponse<PropertyDto>> FilterPropertiesByListingType(PaginationFilter filter, PropertyListingType propertyListingType);
-        Task<PagedResponse<PropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyListingType);
-        Task<PagedResponse<PropertyDto>> FilterPropertiesByState(PaginationFilter filter, States city);
+        Task<PagedResponse<PropertyDto>> FilterPropertiesByPropertyType(PaginationFilter filter, string propertyListingType);
+        Task<PagedResponse<PropertyDto>> FilterPropertiesByState(PaginationFilter filter, string city);
         Task<PagedResponse<PropertyDto>> FilterPropertiesByAgentId(PaginationFilter filter, Guid agentId);
     }
 }

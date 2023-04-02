@@ -87,7 +87,7 @@ namespace Zoollar.Properties.API.Data
                 filter.PageNumber, filter.PageSize));
         }
 
-        public async Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, States state)
+        public async Task<IEnumerable<Property>> FilterPropertiesByState(PaginationFilter filter, string state)
         {
             return await Task.FromResult(PagedResponse<Property>
                 .ToPagedResponse(_dbContext.Properties
@@ -103,7 +103,7 @@ namespace Zoollar.Properties.API.Data
                 filter.PageNumber, filter.PageSize));
         }
 
-        public async Task<IEnumerable<Property>> FilterPropertiesByPropertyType(PaginationFilter filter, PropertyType propertyType)
+        public async Task<IEnumerable<Property>> FilterPropertiesByPropertyType(PaginationFilter filter, string propertyType)
         {
             return await Task.FromResult(PagedResponse<Property>
                 .ToPagedResponse(_dbContext.Properties

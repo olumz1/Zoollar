@@ -51,7 +51,7 @@ namespace Zoollar.Accounts.API.Services.UserAccount
 
             if (getUserAccountById != null)
             {
-                getUserAccountById.Address = (Address)user.Address;
+                //getUserAccountById.Address = user.Address;
                 getUserAccountById.EmailAdress = user.EmailAdress;
                 getUserAccountById.FirstName = user.FirstName;
                 getUserAccountById.LastName = user.LastName;
