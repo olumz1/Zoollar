@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JwtAuthenticationManager;
+using JwtAuthenticationManager.Models;
+using Microsoft.AspNetCore.Mvc;
 using Zoollar.Accounts.API.Dtos;
 using Zoollar.Accounts.API.Services.UserAccount;
 
@@ -8,7 +10,7 @@ namespace Zoollar.Accounts.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        public readonly IUserServices _accountService;
+        private readonly IUserServices _accountService;
 
         public AccountController(IUserServices accountService)
         {

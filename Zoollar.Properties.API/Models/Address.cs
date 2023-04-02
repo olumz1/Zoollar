@@ -12,7 +12,7 @@
 
         public string City { get; set; }
 
-        public States State { get; set; }
+        public string State { get; set; }
 
         public string Region { get; set; }
 

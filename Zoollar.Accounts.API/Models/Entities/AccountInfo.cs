@@ -34,7 +34,7 @@ namespace Zoollar.Accounts.API.Models.Entities
 
         public DateTime DateCreated { get; set; }
 
-        public DateTime DateUpdated { get; internal set; }
+        public DateTime? DateUpdated { get; internal set; }
 
     }
 }

@@ -1,23 +1,197 @@
 ﻿{
   "Routes": [
+    //Authenticate API Section
     {
-      "DownstreamPathTemplate": "/api/accounts",
+      "DownstreamPathTemplate": "/api/Authenticate",
+
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7221
+          "Port": 5198
         }
       ],
-      "UpstreamPathTemplate": "/api/Account",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "IdentityApiKey",
-        "AllowedScopes": []
-      }
+      "UpstreamPathTemplate": "/api/login",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+    //Account API Section
+    {
+      "DownstreamPathTemplate": "/api/Account",
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5198
+        }
+      ],
+      "UpstreamPathTemplate": "/api/CreateUserAccount",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Account/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5198
+        }
+      ],
+      "UpstreamPathTemplate": "/api/GetUserAccountById/{id}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+    },
+    //Blogs API Section
+    {
+      "DownstreamPathTemplate": "/api/Blogs",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5030
+        }
+      ],
+      "UpstreamPathTemplate": "/api/GetBlogs",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Blogs/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5030
+        }
+      ],
+      "UpstreamPathTemplate": "/api/GetBlogById/{id}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Blogs",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5030
+        }
+      ],
+      "UpstreamPathTemplate": "/api/CreateBlog",
+      "UpstreamHttpMethod": [ "Post" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Blogs",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5030
+        }
+      ],
+      "UpstreamPathTemplate": "/api/DeleteBlog",
+      "UpstreamHttpMethod": [ "Delete" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Blogs/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5030
+        }
+      ],
+      "UpstreamPathTemplate": "/api/UpdateBlog/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+    },
+    //Properties API Section
+    {
+      "DownstreamPathTemplate": "/api/Properties",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5231
+        }
+      ],
+      "UpstreamPathTemplate": "/api/GetProperties",
+      "UpstreamHttpMethod": [ "Get" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Properties/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5231
+        }
+      ],
+      "UpstreamPathTemplate": "/api/GetPropertyById/{id}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Properties",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5231
+        }
+      ],
+      "UpstreamPathTemplate": "/api/CreateProperties",
+      "UpstreamHttpMethod": [ "Post" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Properties/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5231
+        }
+      ],
+      "UpstreamPathTemplate": "/api/UpdateProperties/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "IdentityApiKey",
+      //  "AllowedScopes": []
+      //}
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:7011"
+    "BaseUrl": "http://localhost:7011"
   }
 }

@@ -153,6 +153,9 @@ namespace Zoollar.Accounts.API.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("EmailAdress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -234,7 +237,8 @@ namespace Zoollar.Accounts.API.Migrations
                 {
                     b.HasOne("Zoollar.Accounts.API.Models.Entities.User", null)
                         .WithMany("AlertAndSearches")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.CompanyDetails", b =>

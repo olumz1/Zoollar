@@ -6,6 +6,8 @@
 
         public string ImageUrl { get; set; }
 
-        public string Name { get; set; }
+        public string EstateAgentCompany { get; set; }
+
+        public string AgentName { get; set; }
     }
 }

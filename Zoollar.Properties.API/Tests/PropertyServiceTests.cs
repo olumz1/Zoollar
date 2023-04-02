@@ -6,6 +6,7 @@ using Test.Helpers;
 using Zoollar.Properties.API.Data;
 using Zoollar.Properties.API.Dtos;
 using Zoollar.Properties.API.Helpers;
+using Zoollar.Properties.API.Http;
 using Zoollar.Properties.API.Models;
 using Zoollar.Properties.API.Models.Entities;
 using Zoollar.Properties.API.Models.Filter;
@@ -21,6 +22,7 @@ namespace Zoollar.Properties.API.Tests
         private IMapper _mapper;
         private IPropertyRepo fakePropertyRepository;
         private IPropertyService sut;
+        private Mock<IAccountDataClient> _accountDataClient;
 
         [OneTimeSetUp]
         public void SetUp() 
@@ -50,7 +52,7 @@ namespace Zoollar.Properties.API.Tests
                     .ConvertUsing(typeof(PagedListConverter<Property, PropertyDto>));
             });
             this._mapper = config.CreateMapper();
-
+            this._accountDataClient = new Mock<IAccountDataClient>();
             this._dateTimeProvider.Setup(x => x.GetDateTimeNow()).Returns(new DateTime(2022, 10, 5));
         }
 
@@ -68,7 +70,7 @@ namespace Zoollar.Properties.API.Tests
 
             this.fakePropertyRepository = new FakePropertyRepo(context);
 
-            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object, this._accountDataClient.Object);
 
             var createDto = new CreatePropertyDto
             {
@@ -90,11 +92,11 @@ namespace Zoollar.Properties.API.Tests
                 PropertyFeatures = new PropertyFeatures [] { PropertyFeatures.Gym, PropertyFeatures.WaterHeater, PropertyFeatures.GatedEstate },
                 PropertyImage = new PropertyImageDto[] { new PropertyImageDto { ImageUrl = "Image1", IsMainImage = true} },
                 PropertyListingType = PropertyListingType.ForSale,
-                PropertyPrice = new PropertyPriceDto { Currency = Currency.NAIRA, OffersInRange = true, Price = 200000000},
+                PropertyPrice = new PropertyPriceDto { Currency = Currency.Naira, OffersInRange = true, Price = 200000000},
                 PropertyType = PropertyType.Flats
             };
 
-            var property = this.sut.CreateProperty(createDto);
+            var property = this.sut.CreateProperty(createDto, "TestUser");
 
             property.Should().NotBeNull();
             context.Properties.Count().Should().Be(4);
@@ -114,7 +116,7 @@ namespace Zoollar.Properties.API.Tests
 
             this.fakePropertyRepository = new FakePropertyRepo(context);
 
-            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object, this._accountDataClient.Object);
 
             var pagination = new PaginationFilter() {PageNumber = 1, PageSize = 10 };
 
@@ -141,7 +143,7 @@ namespace Zoollar.Properties.API.Tests
 
             this.fakePropertyRepository = new FakePropertyRepo(context);
 
-            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object, this._accountDataClient.Object);
 
             var createDto = new CreatePropertyDto
             {
@@ -164,11 +166,11 @@ namespace Zoollar.Properties.API.Tests
                 PropertyFeatures = new PropertyFeatures[] { PropertyFeatures.Gym, PropertyFeatures.WaterHeater, PropertyFeatures.GatedEstate },
                 PropertyImage = new PropertyImageDto[] { new PropertyImageDto { ImageUrl = "Image1", IsMainImage = true } },
                 PropertyListingType = PropertyListingType.ForSale,
-                PropertyPrice = new PropertyPriceDto { Currency = Currency.NAIRA, OffersInRange = true, Price = 200000000 },
+                PropertyPrice = new PropertyPriceDto { Currency = Currency.Naira, OffersInRange = true, Price = 200000000 },
                 PropertyType = PropertyType.Flats
             };
 
-           var property = this.sut.UpdateProperty(new Guid("10EA4BB0-3A06-4374-A8A4-E9AA32D42ED9"), createDto);
+           var property = this.sut.UpdateProperty(new Guid("10EA4BB0-3A06-4374-A8A4-E9AA32D42ED9"), createDto, "TestUser");
 
             property.Result.Id.Should().Be(new Guid("10EA4BB0-3A06-4374-A8A4-E9AA32D42ED9"));
             property.Result.PropertyData.Title.Should().Be("5 beds flats for sale");
@@ -188,7 +190,7 @@ namespace Zoollar.Properties.API.Tests
 
             this.fakePropertyRepository = new FakePropertyRepo(context);
 
-            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object, this._accountDataClient.Object);
 
             var result = this.sut.GetPropertyById(new Guid("4FC1CC3D-A024-4038-ABA9-526DC2CB4173")).Result;
 
@@ -211,7 +213,7 @@ namespace Zoollar.Properties.API.Tests
 
             this.fakePropertyRepository = new FakePropertyRepo(context);
 
-            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object, this._accountDataClient.Object);
             var pagination = new PaginationFilter() { PageNumber = 1, PageSize = 10 };
             var result = await this.sut.FilterPropertiesByListingType(pagination, PropertyListingType.ForSale);
 
@@ -235,7 +237,7 @@ namespace Zoollar.Properties.API.Tests
 
             this.fakePropertyRepository = new FakePropertyRepo(context);
 
-            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object);
+            this.sut = new PropertyService(this.fakePropertyRepository, _mapper, this._dateTimeProvider.Object, this._accountDataClient.Object);
             var pagination = new PaginationFilter() { PageNumber = 1, PageSize = 10 };
             var result = await this.sut.FilterPropertiesByCity(pagination, "Ibadan");
 
@@ -261,7 +263,9 @@ namespace Zoollar.Properties.API.Tests
                         {
                             AgentId = new Guid("1D53EAB3-EC81-4F71-A605-9B7B1C5D6B66"),
                             ImageUrl = "image.jpg",
-                            Name = "Agent 1"
+                            EstateName = "EstateAgent 1",
+                            UploadedBy = "Agent 1"
+                            
                         },
                         PropertyDetails = new PropertyDetails
                         {
@@ -284,7 +288,7 @@ namespace Zoollar.Properties.API.Tests
                             new PropertyImage{ApprovedImage = true, ImageUrl = "secondImage.jpg", IsMainImage = false }
                         },
                         PropertyListingType = PropertyListingType.ForSale,
-                        PropertyPrice = new PropertyPrice { Currency = Currency.NAIRA, OffersInRange = true, Price = 250000000 },
+                        PropertyPrice = new PropertyPrice { Currency = Currency.Naira, OffersInRange = true, Price = 250000000 },
                         PropertyType = PropertyType.Duplex,
                         Title = "5 beds duplex for sale",
                         PropertyFeatures = new PropertyFeatures[] { PropertyFeatures.AmpleParkingSpace, PropertyFeatures.WellWaterSupply, PropertyFeatures.Gym },
@@ -307,7 +311,8 @@ namespace Zoollar.Properties.API.Tests
                         {
                             AgentId = new Guid("1D53EAB3-EC81-4F71-A605-9B7B1C5D6B66"),
                             ImageUrl = "image.jpg",
-                            Name = "Agent 1"
+                            EstateName = "EstateAgent 1",
+                            UploadedBy = "Agent 1"
                         },
                         PropertyDetails = new PropertyDetails
                         {
@@ -330,7 +335,7 @@ namespace Zoollar.Properties.API.Tests
                             new PropertyImage{ApprovedImage = true, ImageUrl = "secondImage.jpg", IsMainImage = false }
                         },
                         PropertyListingType = PropertyListingType.ForSale,
-                        PropertyPrice = new PropertyPrice { Currency = Currency.NAIRA, OffersInRange = true, Price = 50000000 },
+                        PropertyPrice = new PropertyPrice { Currency = Currency.Naira, OffersInRange = true, Price = 50000000 },
                         PropertyType = PropertyType.Bungalow,
                         Title = "3 beds bungalow for sale",
                         PropertyFeatures = new PropertyFeatures[] { PropertyFeatures.AmpleParkingSpace, PropertyFeatures.WellWaterSupply, PropertyFeatures.Gym },
@@ -354,7 +359,8 @@ namespace Zoollar.Properties.API.Tests
                         {
                             AgentId = new Guid("A202E636-4A9F-474C-8971-58AB6E5F42FC"),
                             ImageUrl = "image.jpg",
-                            Name = "Agent 2"
+                            EstateName = "EstateAgent 2",
+                            UploadedBy = "Agent 2"
                         },
                         PropertyDetails = new PropertyDetails
                         {
@@ -377,7 +383,7 @@ namespace Zoollar.Properties.API.Tests
                             new PropertyImage{ApprovedImage = true, ImageUrl = "secondImage.jpg", IsMainImage = false }
                         },
                         PropertyListingType = PropertyListingType.ToLet,
-                        PropertyPrice = new PropertyPrice { Currency = Currency.NAIRA, OffersInRange = true, Price = 2000000 },
+                        PropertyPrice = new PropertyPrice { Currency = Currency.Naira, OffersInRange = true, Price = 2000000 },
                         PropertyType = PropertyType.Bungalow,
                         Title = "3 beds bungalow to let",
                         PropertyFeatures = new PropertyFeatures[] { PropertyFeatures.AmpleParkingSpace, PropertyFeatures.WellWaterSupply, PropertyFeatures.Gym },
