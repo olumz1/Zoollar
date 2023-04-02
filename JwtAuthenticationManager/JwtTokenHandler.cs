@@ -17,8 +17,8 @@ namespace JwtAuthenticationManager
         {
             _userAccountList = new List<UserAccount>
             {
-                new UserAccount{ UserName = "admin", Password = "admin123", Role = "Administartor" },
-                new UserAccount{ UserName = "user01", Password = "user01", Role = "User" }
+                new UserAccount{ UserName = "admin", Password = "admin123", Role = "Administartor", UserId = Guid.Parse("{45EE4595-F57F-4296-BC6D-656F91E1DD4E}") },
+                new UserAccount{ UserName = "user01", Password = "user01", Role = "User", UserId = Guid.Parse("{2BB75AEA-6D93-44D8-AF21-2043243F0E1F}") }
             };
         }
 
@@ -36,7 +36,9 @@ namespace JwtAuthenticationManager
             var claimsIdentity = new ClaimsIdentity(new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Name, authenticationRequest.UserName),
-                new Claim(ClaimTypes.Role, userAccount.Role)
+                new Claim(JwtRegisteredClaimNames.NameId, userAccount.UserId.ToString()),
+                new Claim(ClaimTypes.Role, userAccount.Role),
+                new Claim(ClaimTypes.Name, userAccount.UserName),
             });
 
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),
@@ -58,7 +60,8 @@ namespace JwtAuthenticationManager
             { 
                 UserName = userAccount.UserName, 
                 ExpiresIn = (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds,
-                JwtToken = token
+                JwtToken = token,
+                UserId = userAccount.UserId.ToString()
             };
         }
     }

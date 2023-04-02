@@ -9,7 +9,7 @@ namespace Zoollar.Properties.API.Dtos
 
         public string Description { get; set; }
 
-        public PropertyType PropertyType { get; set; }
+        public string PropertyType { get; set; }
 
         public PropertyListingType PropertyListingType { get; set; }
 

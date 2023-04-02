@@ -3,48 +3,34 @@ using Zoollar.Properties.API.Helpers;
 
 namespace Zoollar.Properties.API.Models
 {
-    public enum PropertyType
+    public static class PropertyType
     {
-        [EnumMemberDetails(Value = "Mansion", IconPath = "")]
-        Mansion,
+        public const string Mansion = "Mansion";
 
-        [EnumMemberDetails(Value = "Flats", IconPath = "")]
-        Flats,
+        public const string Flats = "Flats";
 
-        [EnumMemberDetails(Value = "Detached", IconPath = "")]
-        Detached,
+        public const string Detached = "Detached";
 
-        [EnumMemberDetails(Value = "Semi Detached", IconPath = "")]
-        SemiDetached,
+        public const string SemiDetached = "SemiDetached";
 
-        [EnumMemberDetails(Value = "Bungalow", IconPath = "")]
-        Bungalow,
+        public const string Bungalow = "Bungalow";
 
-        [EnumMemberDetails(Value = "Terraced", IconPath = "")]
-        Terraced,
+        public const string Terraced = "Terraced";
 
-        [EnumMemberDetails(Value = "Penthouse", IconPath = "")]
-        Penthouse,
+        public const string Penthouse = "Penthouse";
 
-        [EnumMemberDetails(Value = "Duplex", IconPath = "")]
-        Duplex,
+        public const string Duplex = "Duplex";
 
-        [EnumMemberDetails(Value = "Twin Duplex", IconPath = "")]
-        TwinDuplex,
+        public const string TwinDuplex = "TwinDuplex";
 
-        [EnumMemberDetails(Value = "Traditional", IconPath = "")]
-        Traditional,
+        public const string Traditional = "Traditional";
 
-        [EnumMemberDetails(Value = "Land", IconPath = "")]
-        Land,
+        public const string Land = "Land";
 
-        [EnumMemberDetails(Value = "FarmLand", IconPath = "")]
-        FarmLand,
+        public const string FarmLand = "FarmLand";
 
-        [EnumMemberDetails(Value = "Warehouse", IconPath = "")]
-        Warehouse,
+        public const string Warehouse = "Warehouse";
 
-        [EnumMemberDetails(Value = "Complex", IconPath = "")]
-        Complex
-    }
+        public const string Complex = "Complex";
+    }                       
 }

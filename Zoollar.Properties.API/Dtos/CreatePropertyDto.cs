@@ -9,7 +9,7 @@ namespace Zoollar.Properties.API.Dtos
         public string Description { get; set; }
 
         [Required]
-        public PropertyType PropertyType { get; set; }
+        public string PropertyType { get; set; }
 
         public PropertyPriceDto PropertyPrice { get; set; }
 
@@ -19,8 +19,6 @@ namespace Zoollar.Properties.API.Dtos
         public PropertyDetailsDto PropertyDetails { get; set; }
 
         public PropertyImageDto[] PropertyImage { get; set; }
-
-        public PropertyAgentDto PropertyAgent { get; set; }
 
         public PropertyFeatures[] PropertyFeatures { get; set; }
 
