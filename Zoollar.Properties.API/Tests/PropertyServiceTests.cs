@@ -263,8 +263,8 @@ namespace Zoollar.Properties.API.Tests
                         {
                             AgentId = new Guid("1D53EAB3-EC81-4F71-A605-9B7B1C5D6B66"),
                             ImageUrl = "image.jpg",
-                            EstateName = "EstateAgent 1",
-                            UploadedBy = "Agent 1"
+                            EstateAgentCompany = "EstateAgent 1",
+                            AgentName = "Agent 1"
                             
                         },
                         PropertyDetails = new PropertyDetails
@@ -311,8 +311,8 @@ namespace Zoollar.Properties.API.Tests
                         {
                             AgentId = new Guid("1D53EAB3-EC81-4F71-A605-9B7B1C5D6B66"),
                             ImageUrl = "image.jpg",
-                            EstateName = "EstateAgent 1",
-                            UploadedBy = "Agent 1"
+                            EstateAgentCompany = "EstateAgent 1",
+                            AgentName = "Agent 1"
                         },
                         PropertyDetails = new PropertyDetails
                         {
@@ -359,8 +359,8 @@ namespace Zoollar.Properties.API.Tests
                         {
                             AgentId = new Guid("A202E636-4A9F-474C-8971-58AB6E5F42FC"),
                             ImageUrl = "image.jpg",
-                            EstateName = "EstateAgent 2",
-                            UploadedBy = "Agent 2"
+                            EstateAgentCompany = "EstateAgent 2",
+                            AgentName = "Agent 2"
                         },
                         PropertyDetails = new PropertyDetails
                         {
