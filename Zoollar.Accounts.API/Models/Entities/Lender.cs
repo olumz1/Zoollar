@@ -2,6 +2,6 @@
 {
     public class Lender : AccountInfo
     {
-        public string AccountType  => AccountTypes.Lender;
+
     }
 }

@@ -24,7 +24,7 @@ namespace Zoollar.Accounts.API.Services.UserAccount
 
         public async Task<GetUserAccountDto> CreateUserAccount(CreateUserAccountDto createUserDto)
         {
-            var user = _mapper.Map<User>(createUserDto);
+            var user = _mapper.Map<Account>(createUserDto);
             user.Id = Guid.NewGuid();
             user.DateCreated = _dateTimeProvider.GetDateTimeNow();
             await _userRepo.CreateAccount(user);
