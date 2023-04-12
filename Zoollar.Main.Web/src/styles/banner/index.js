@@ -23,7 +23,7 @@ export const BannerContent = styled(Box)(() => ({
 export const BannerTitle = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   position: "absolute",
-  top: "50%",
+  top: "40%",
   left: "50%",
   padding: "20px, 10px",
   color: Colors.white,
@@ -39,7 +39,7 @@ export const BannerDescription = styled(Typography)(({ theme }) => ({
   marginBottom: "3em",
   textAlign: "center",
   position: "absolute",
-  top: "50%",
+  top: "40%",
   left: "50%",
   fontSize: "22px",
   transform: "translate(-50%, 130%)",
@@ -51,22 +51,29 @@ export const BannerDescription = styled(Typography)(({ theme }) => ({
   },
 }));
 
+export const BannerSearchContent = styled(Box)(() => ({
+  maxWidth: "420px",
+  maxHeight: "100px",
+  display: "flex",
+  justifyContent: "space-between",
+}));
+
 export const BannerSearchBox = styled(TextField)(({ place, theme }) => ({
   display: "flex",
-  top: "20%",
+  top: "30%",
   left: "50%",
-  border: "none",
   padding: "1px",
   position: "relative",
-  transform: "translate(-5%, 150%)",
+  transform: "translate(5%, 110%)",
   textDecoration: "none",
-
   Input: {
     outline: "none",
     backgroundColor: Colors.white,
+    top: "30%",
     width: "500px",
-    height: "30px",
+    height: "20px",
     textIndent: "10px",
+    border: "none",
     borderRadius: "0px",
   },
 }));

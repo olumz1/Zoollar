@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import theme from "./styles/theme";
 import Navbar from "./components/navbar";
 import Banner from "./components/Banner";
+import Promotion from "./components/promotions";
 
 function App() {
   useEffect(() => {
@@ -18,6 +19,7 @@ function App() {
       >
         <Navbar />
         <Banner />
+        <Promotion />
         {/**
         Buy Sell Rent Component
         House Chart in Nigerian zones

@@ -5,6 +5,7 @@ import {
   BannerContent,
   BannerDescription,
   BannerSearchBox,
+  BannerSearchContent,
   BannerTitle,
 } from "../../styles/banner";
 import { Colors } from "../../styles/theme";
@@ -22,43 +23,46 @@ export default function Banner() {
         <BannerDescription>
           Search properties for sale and to rent in Nigeria
         </BannerDescription>
-        <BannerSearchBox
-          sx={{
-            inputRoot: {
-              borderRadius: "0px",
-            },
-          }}
-        ></BannerSearchBox>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            float: "left",
-            position: "absolute",
-            top: "39%",
-            left: "53%",
-            height: "50px",
-            margin: "140px 0px 0px 130px",
-            color: Colors.white,
-          }}
-        >
-          For Sale
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            float: "left",
-            position: "absolute",
-            top: "39%",
-            left: "60%",
-            height: "50px",
-            margin: "140px 0px 0px 130px",
-            color: Colors.white,
-          }}
-        >
-          To Rent
-        </Button>
+        <BannerSearchContent>
+          <BannerSearchBox
+            placeholder="Enter a street, city or state"
+            sx={{
+              inputRoot: {
+                borderRadius: "0px",
+              },
+            }}
+          ></BannerSearchBox>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              float: "right",
+              position: "absolute",
+              top: "33%",
+              left: "53%",
+              height: "50px",
+              margin: "140px 0px 0px 130px",
+              color: Colors.white,
+            }}
+          >
+            For Sale
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              float: "right",
+              position: "absolute",
+              top: "33%",
+              left: "60%",
+              height: "50px",
+              margin: "140px 0px 0px 130px",
+              color: Colors.white,
+            }}
+          >
+            To Rent
+          </Button>
+        </BannerSearchContent>
       </BannerContent>
     </BannerContainer>
   );
