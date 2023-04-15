@@ -1,9 +1,10 @@
-import { Button, Container, ThemeProvider } from "@mui/material";
+import { Container, ThemeProvider } from "@mui/material";
 import { useEffect } from "react";
 import theme from "./styles/theme";
 import Navbar from "./components/navbar";
 import Banner from "./components/Banner";
 import Promotion from "./components/promotions";
+import Blog from "./components/Blog";
 
 function App() {
   useEffect(() => {
@@ -20,10 +21,10 @@ function App() {
         <Navbar />
         <Banner />
         <Promotion />
+        <Blog />
         {/**
-        Buy Sell Rent Component
-        House Chart in Nigerian zones
         Blogs top Listing
+        House Chart in Nigerian zones
         Discover Towns and Cities
         Popular Locations
         Footer
