@@ -1,4 +1,4 @@
-import { Box, Grid, useMediaQuery } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import {
