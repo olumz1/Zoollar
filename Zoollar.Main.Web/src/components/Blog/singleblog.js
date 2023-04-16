@@ -15,6 +15,7 @@ export default function SingleBlog({ blog, matches }) {
           margin: "20px -160px",
           fontSize: "21px",
           width: "100%",
+          position: "relative",
         }}
       >
         {blog.header}

@@ -14,7 +14,7 @@ export const BlogsContentArea = styled(Box)(() => ({
   display: "flex",
   width: "80%",
   borderRadius: "10px",
-  marginTop: "95px",
+  marginTop: "150px",
 }));
 
 export const BlogsHeader = styled(Typography)(() => ({
@@ -24,7 +24,7 @@ export const BlogsHeader = styled(Typography)(() => ({
   position: "absolute",
   fontSize: "28px",
   color: Colors.black,
-  marginTop: "30px",
+  marginTop: "80px",
   display: "flex",
   left: "155px",
   fontWeight: "420",
@@ -37,7 +37,7 @@ export const BlogsSubHeaer = styled(Typography)(() => ({
   position: "absolute",
   fontSize: "16px",
   color: Colors.black,
-  marginTop: "80px",
+  marginTop: "130px",
   display: "flex",
   left: "155px",
 }));
@@ -77,10 +77,10 @@ export const BlogDate = styled(Typography)(() => ({
   lineHeight: 1.25,
   letterSpacing: 1.25,
   textAlign: "left",
-  position: "absolute",
+  position: "relative",
   fontSize: "16px",
   color: "grey",
-  marginTop: "85px",
+  marginTop: "8px",
   display: "flex",
   marginLeft: "-5px",
 }));
@@ -89,10 +89,10 @@ export const BlogDescription = styled(Typography)(() => ({
   lineHeight: 1.25,
   letterSpacing: 1.25,
   textAlign: "left",
-  position: "absolute",
+  position: "relative",
   fontSize: "16px",
   color: Colors.black,
-  marginTop: "120px",
+  marginTop: "10px",
   marginLeft: "-5px",
   overflow: "hidden",
   textOverflow: "ellipsis",
