@@ -5,6 +5,8 @@ import Navbar from "./components/navbar";
 import Banner from "./components/Banner";
 import Promotion from "./components/promotions";
 import Blog from "./components/Blog";
+import Charts from "./components/chart";
+import Footer from "./components/footer/Footer";
 
 function App() {
   useEffect(() => {
@@ -22,13 +24,16 @@ function App() {
         <Banner />
         <Promotion />
         <Blog />
+        <Charts />
+
         {/**
-        Blogs top Listing
+         * 
         House Chart in Nigerian zones
         Discover Towns and Cities
         Popular Locations
         Footer
-  */}
+         */}
+        <Footer />
       </Container>
     </ThemeProvider>
   );
