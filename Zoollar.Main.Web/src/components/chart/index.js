@@ -9,7 +9,7 @@ export default function Charts() {
   return (
     <ChartContainer>
       <ChartContentArea>
-        <h1>Charts</h1>
+        <h1>Zoollar properties across zones</h1>
       </ChartContentArea>
     </ChartContainer>
   );

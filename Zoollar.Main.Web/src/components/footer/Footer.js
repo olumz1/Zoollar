@@ -5,7 +5,6 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  autocompleteClasses,
 } from "@mui/material";
 import { FooterTitle } from "../../styles/footer";
 import { Colors } from "../../styles/theme";
@@ -30,101 +29,196 @@ export default function Footer() {
       }}
     >
       <Grid container spacing={3} justifyContent={"center"}>
-        <Grid item md={4} lg={2}>
-          <FooterTitle variant="body1">For sale</FooterTitle>
-          <List
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: "24px",
-            }}
-          >
+        <List
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            padding: 0,
+            boxSizing: "border-box",
+          }}
+        >
+          <ListItem>
+            <FooterTitle variant="body1">For sale</FooterTitle>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">New homes</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">
                 Commercial properties for sale
               </Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Find estate agents</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Land for sale</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Latest properties</Typography>
             </ListItemText>
-          </List>
-        </Grid>
-        <Grid item md={4} lg={2}>
-          <FooterTitle variant="body1">To rent</FooterTitle>
-          <List
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: "24px",
-            }}
-          >
+          </ListItem>
+        </List>
+        <List
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            padding: 0,
+            boxSizing: "border-box",
+          }}
+        >
+          <ListItem>
+            <FooterTitle variant="body1">To rent</FooterTitle>
+          </ListItem>
+          <ListItem>
+            <ListItemText>
+              <Typography variant="caption2">Latest properties</Typography>
+            </ListItemText>
+          </ListItem>
+          <ListItem>
+            <ListItemText>
+              <Typography variant="caption2">New homes</Typography>
+            </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">
                 Commercial properties to rent
               </Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Find letting agents</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Short Lets</Typography>
             </ListItemText>
-          </List>
-        </Grid>
-        <Grid item md={4} lg={2}>
-          <FooterTitle variant="body1">Latest on Zoollar</FooterTitle>
-          <List
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: "24px",
-              columnGap: "4px",
-            }}
-          >
+          </ListItem>
+        </List>
+        <List
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            padding: 0,
+            boxSizing: "border-box",
+          }}
+        >
+          <ListItem>
+            <FooterTitle variant="body1">Latest on Zoollar</FooterTitle>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Shared Ownership</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Buying guides</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Selling guides</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Renting guides</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
+            <ListItemText>
+              <Typography variant="caption2">Short Lets</Typography>
+            </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Improving guides</Typography>
             </ListItemText>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">Construction guides</Typography>
             </ListItemText>
-          </List>
-        </Grid>
-        <Grid item md={4} lg={2}>
-          <FooterTitle variant="body1">Lets do business</FooterTitle>
-          <List
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: "24px",
-            }}
-          >
+          </ListItem>
+        </List>
+        <List
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            padding: 0,
+            boxSizing: "border-box",
+          }}
+        >
+          <ListItem>
+            <FooterTitle variant="body1">Lets do business</FooterTitle>
+          </ListItem>
+          <ListItem>
             <ListItemText>
               <Typography variant="caption2">List with Zoolar</Typography>
             </ListItemText>
-          </List>
-        </Grid>
+          </ListItem>
+        </List>
       </Grid>
+      {/**
+      <Grid item md={4} lg={2}>
+        <FooterTitle variant="body1">Latest on Zoollar</FooterTitle>
+        <List
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            rowGap: "24px",
+            columnGap: "4px",
+          }}
+        >
+          <ListItemText>
+            <Typography variant="caption2">Shared Ownership</Typography>
+          </ListItemText>
+          <ListItemText>
+            <Typography variant="caption2">Buying guides</Typography>
+          </ListItemText>
+          <ListItemText>
+            <Typography variant="caption2">Selling guides</Typography>
+          </ListItemText>
+          <ListItemText>
+            <Typography variant="caption2">Renting guides</Typography>
+          </ListItemText>
+          <ListItemText>
+            <Typography variant="caption2">Improving guides</Typography>
+          </ListItemText>
+          <ListItemText>
+            <Typography variant="caption2">Construction guides</Typography>
+          </ListItemText>
+        </List>
+      </Grid>
+      <Grid item md={4} lg={2}>
+        <FooterTitle variant="body1">Lets do business</FooterTitle>
+        <List
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            rowGap: "24px",
+          }}
+        >
+          <ListItemText>
+            <Typography variant="caption2">List with Zoolar</Typography>
+          </ListItemText>
+        </List>
+      </Grid>
+       */}
+
       <Divider
         sx={{
           padding: "8px 8px 10px",
