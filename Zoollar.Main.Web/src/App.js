@@ -7,6 +7,7 @@ import Promotion from "./components/promotions";
 import Blog from "./components/Blog";
 import Charts from "./components/chart";
 import Footer from "./components/footer/Footer";
+import TownAndCities from "./components/townsandcities";
 
 function App() {
   useEffect(() => {
@@ -24,11 +25,13 @@ function App() {
         <Banner />
         <Promotion />
         <Blog />
-        <Charts />
-
+        <Charts
+          aspect={2.4}
+          title={"See the properties we have in your zone"}
+        />
+        <TownAndCities />
         {/**
          * 
-        House Chart in Nigerian zones
         Discover Towns and Cities
         Popular Locations
         Footer

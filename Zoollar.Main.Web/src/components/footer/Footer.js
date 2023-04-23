@@ -21,7 +21,7 @@ export default function Footer() {
       sx={{
         background: "#f7f6f5",
         color: Colors.black,
-        marginTop: "100px",
+        marginTop: "320px",
         p: { sx: 4, ml: 10 },
         pt: 8,
         pb: 12,
@@ -35,6 +35,8 @@ export default function Footer() {
             flexDirection: "column",
             padding: 0,
             boxSizing: "border-box",
+            marginLeft: "80px",
+            marginRight: "80px",
           }}
         >
           <ListItem>
@@ -74,6 +76,8 @@ export default function Footer() {
             flexDirection: "column",
             padding: 0,
             boxSizing: "border-box",
+            marginLeft: "80px",
+            marginRight: "80px",
           }}
         >
           <ListItem>
@@ -113,6 +117,8 @@ export default function Footer() {
             flexDirection: "column",
             padding: 0,
             boxSizing: "border-box",
+            marginLeft: "80px",
+            marginRight: "80px",
           }}
         >
           <ListItem>
@@ -145,7 +151,7 @@ export default function Footer() {
           </ListItem>
           <ListItem>
             <ListItemText>
-              <Typography variant="caption2">Improving guides</Typography>
+              <Typography variant="caption2">Renovation guides</Typography>
             </ListItemText>
           </ListItem>
           <ListItem>
@@ -160,6 +166,8 @@ export default function Footer() {
             flexDirection: "column",
             padding: 0,
             boxSizing: "border-box",
+            marginLeft: "80px",
+            marginRight: "80px",
           }}
         >
           <ListItem>
@@ -167,58 +175,16 @@ export default function Footer() {
           </ListItem>
           <ListItem>
             <ListItemText>
-              <Typography variant="caption2">List with Zoolar</Typography>
+              <Typography variant="caption2">List with Zoollar</Typography>
+            </ListItemText>
+          </ListItem>
+          <ListItem>
+            <ListItemText>
+              <Typography variant="caption2">Partner with Zoollar</Typography>
             </ListItemText>
           </ListItem>
         </List>
       </Grid>
-      {/**
-      <Grid item md={4} lg={2}>
-        <FooterTitle variant="body1">Latest on Zoollar</FooterTitle>
-        <List
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            rowGap: "24px",
-            columnGap: "4px",
-          }}
-        >
-          <ListItemText>
-            <Typography variant="caption2">Shared Ownership</Typography>
-          </ListItemText>
-          <ListItemText>
-            <Typography variant="caption2">Buying guides</Typography>
-          </ListItemText>
-          <ListItemText>
-            <Typography variant="caption2">Selling guides</Typography>
-          </ListItemText>
-          <ListItemText>
-            <Typography variant="caption2">Renting guides</Typography>
-          </ListItemText>
-          <ListItemText>
-            <Typography variant="caption2">Improving guides</Typography>
-          </ListItemText>
-          <ListItemText>
-            <Typography variant="caption2">Construction guides</Typography>
-          </ListItemText>
-        </List>
-      </Grid>
-      <Grid item md={4} lg={2}>
-        <FooterTitle variant="body1">Lets do business</FooterTitle>
-        <List
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            rowGap: "24px",
-          }}
-        >
-          <ListItemText>
-            <Typography variant="caption2">List with Zoolar</Typography>
-          </ListItemText>
-        </List>
-      </Grid>
-       */}
-
       <Divider
         sx={{
           padding: "8px 8px 10px",
