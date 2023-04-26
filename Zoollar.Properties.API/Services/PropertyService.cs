@@ -128,9 +128,9 @@ namespace Zoollar.Properties.API.Services
                 property.PropertyData.PropertyAgent = new PropertyAgent() 
                 { 
                     AgentId = Guid.Parse(agentDetails.Id), 
-                    ImageUrl = agentDetails.ImageUrl, 
-                    EstateName = agentDetails.EstateAgentCompany,
-                    UploadedBy = $"{agentDetails.FirstName} {agentDetails.LastName}"
+                    ImageUrl = agentDetails.ImageUrl,
+                    EstateAgentCompany = agentDetails.EstateAgentCompany,
+                    AgentName = $"{agentDetails.FirstName} {agentDetails.LastName}"
                 };
                 return property;
             }
