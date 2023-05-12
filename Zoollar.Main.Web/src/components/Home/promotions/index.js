@@ -7,8 +7,8 @@ import {
   PromotionsContainer,
   PromotionDescription,
   PromotionImage,
-} from "../../styles/promotions";
-import { Colors } from "../../styles/theme";
+} from "../../../styles/promotions";
+import { Colors } from "../../../styles/theme";
 
 export default function Promotion() {
   const theme = useTheme();

@@ -4,7 +4,7 @@ import {
   BlogDescription,
   BlogImage,
   BlogsHeader,
-} from "../../styles/blogs";
+} from "../../../styles/blogs";
 
 export default function SingleBlog({ blog, matches }) {
   return (

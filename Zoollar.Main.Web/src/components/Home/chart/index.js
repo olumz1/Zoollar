@@ -4,7 +4,7 @@ import {
   ChartContainer,
   ChartContentArea,
   ChartHeader,
-} from "../../styles/charts";
+} from "../../../styles/charts";
 import * as React from "react";
 import Radio from "@mui/material/Radio";
 import {
@@ -14,7 +14,7 @@ import {
   SouthSouthStates,
   SouthEastStates,
   SouthWestStates,
-} from "../../data";
+} from "../../../data";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import {
@@ -26,7 +26,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { styled } from "@mui/material/styles";
-import { Colors } from "../../styles/theme";
+import { Colors } from "../../../styles/theme";
 
 export default function Charts(aspect) {
   const theme = useTheme();
@@ -269,7 +269,6 @@ export default function Charts(aspect) {
                 </defs>
                 <XAxis dataKey="name" stroke="gray" />
                 <YAxis />
-                {/**<CartesianGrid strokeDasharray="3 3" />*/}
                 <Tooltip />
                 <Area
                   type="monotone"

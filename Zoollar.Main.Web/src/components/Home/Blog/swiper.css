@@ -1,0 +1,7 @@
+.swiper{
+  padding-left: 5px;
+}
+
+.swiper-pagination-bullets {
+  display: none;
+}

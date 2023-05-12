@@ -14,14 +14,11 @@ export const NavbarContainer = styled(Box)(() => ({
 
 // header
 export const NavbarHeader = styled(Typography)(() => ({
-  flexGrow: 1,
   fontSize: "1.2500em",
   textDecoration: "none",
   fontWeight: "bold",
   color: "#6439ff",
   padding: "4px",
-  marginLeft: "100px",
-  marginRight: "-100px",
 }));
 
 export const NavList = styled(List)(({ type }) => ({
@@ -30,6 +27,7 @@ export const NavList = styled(List)(({ type }) => ({
   justifyContent: "center",
   alignItems: "center",
   paddingLeft: "150px",
+  whiteSpace: "nowrap",
 }));
 
 export const AccountNavbarMobile = styled(Box)(() => ({

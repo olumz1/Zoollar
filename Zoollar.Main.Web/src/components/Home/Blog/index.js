@@ -6,10 +6,10 @@ import {
   BlogsContentArea,
   BlogsHeader,
   BlogsSubHeaer,
-} from "../../styles/blogs";
+} from "../../../styles/blogs";
 import { Navigation, Pagination, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { blogs } from "../../data";
+import { blogs } from "../../../data";
 import SingleBlog from "./singleblog";
 import "swiper/css";
 import "swiper/css/navigation";
