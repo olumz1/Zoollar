@@ -141,3 +141,9 @@ export const PropertyFeaturedTemplate = styled(Box)(() => ({
   overflow: "hidden",
   scrollSnapAlign: "center",
 }));
+
+export const PropertyRegularListing = styled(Box)(() => ({
+  padding: "0",
+  marginBottom: "24px",
+  boxSizing: "border-box",
+}));

@@ -1,112 +1,94 @@
-import { Box, Grid } from "@mui/material";
-import {
-  PropertyCard,
-  PropertyCardFeatured,
-  PropertyCardWrapper,
-  FeaturedListing,
-  PropertyCardFooter,
-  PropertyCardPrice,
-  PropertyCardContent,
-  PropertyCardAddress,
-  PropertySearchSection,
-  PropertyCardImage,
-} from "../../styles/propertylisting";
-import { Navigation, Pagination, A11y } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "./swiper.css";
+import { Box, Grid, CardMedia } from "@mui/material";
+import { PropertyRegularListing } from "../../styles/propertylisting";
+import PropertySwiper from "./PropertySwiper";
 
 function SingleProperty({ property, matches }) {
   return (
-    <PropertyCard>
-      <PropertyCardFeatured>
-        <PropertyCardWrapper>
-          <Box>
-            <Box sx={{ width: "398px" }}>
-              <Box
-                sx={{
-                  overflow: "hidden",
-                  position: "relative",
-                  width: "100%",
-                  height: "auto",
-                }}
-              >
-                <Swiper
-                  modules={[Navigation, Pagination, A11y]}
-                  spaceBetween={5}
-                  slidesPerView={1}
-                  navigation
-                  pagination={{ clickable: true }}
-                  onSwiper={(swiper) => console.log(swiper)}
-                  onSlideChange={() => console.log("slide change")}
-                  className="swiper"
-                >
-                  {property.propertyData.propertyImage.map((propertyImage) => (
-                    <SwiperSlide
-                      sx={{
-                        width: "401.5px",
-                        height: "300px",
-                        left: "-401.5px",
-                        float: "left",
-                        position: "relative",
-                        overflow: "hidden",
-                      }}
-                    >
-                      <PropertyCardImage src={propertyImage.imageUrl} />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </Box>
-            </Box>
-            <FeaturedListing>{property.id}</FeaturedListing>
-          </Box>
-          <PropertyCardFooter>
-            <PropertyCardPrice>
-              <Box
-                sx={{
-                  minHeight: "33px",
-                  fontSize: "25px",
-                  fontWeight: "400",
-                  lineHeight: 1,
-                }}
-              >
-                {property.propertyData.propertyPrice.price}
-              </Box>
-              <Box
-                sx={{ minHeight: "20px", fontSize: "15px", fontWeight: "400" }}
-              >
-                Guide Price
-              </Box>
-            </PropertyCardPrice>
-          </PropertyCardFooter>
-          <PropertyCardContent>
+    <PropertyRegularListing>
+      <Box
+        sx={{
+          maxWidth: "100%",
+          padding: "0",
+          boxSizing: "border-box",
+        }}
+      >
+        <Box>
+          <Box
+            sx={{
+              display: "contents",
+              padding: "0",
+              boxSizing: "border-box",
+            }}
+          >
             <Box
               sx={{
-                minHeight: "0",
+                color: "#322744",
+                marginBottom: "12px",
+                borderRadius: "8px",
                 overflow: "hidden",
-                flexShrink: "0",
-                boxSizing: "border-box",
-                display: "block",
+                fontSize: "28px",
+                lineHeight: "40px",
+                padding: "0",
               }}
             >
-              <PropertyCardAddress>
-                {GetPropertyAddress(
-                  property.propertyData.propertyDetails.address
-                )}
-              </PropertyCardAddress>
-              <Box>
-                <span>{property.propertyData.propertyType}</span>
-                <span class="no-svg-bed-icon bed-icon seperator">
-                  <svg viewBox="0 -2 16 14">
-                    <title>6 bedrooms</title>
-                    <use href="#core-icon--bed-icon"></use>
-                  </svg>
-                </span>
+              <Box
+                sx={{
+                  gridTemplateColumns: "1.7fr 1fr",
+                  gridTemplateRows: "1fr 56px",
+                  gridTemplateAreas: `"left-top right-top" "left-bottom right-bottom"`,
+                  border: "solid 1px #d1d0cf",
+                  borderRadius: "8px",
+                  backgroundColor: "#fff",
+                  isolation: "isolate",
+                  width: "100%",
+                  display: "grid",
+                  minHeight: "0",
+                  minWidth: "0",
+                  overflow: "hidden",
+                  padding: "0",
+                  boxSizing: "border-box",
+                }}
+              >
+                <Box
+                  sx={{
+                    gridArea: "left-top",
+                    overflow: "hidden",
+                    minWidth: "0",
+                    padding: "0",
+                    boxSizing: "0",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      padding: "0",
+                      boxSizing: "border-box",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        textDecoration: "none",
+                        background: "#e8e7e6",
+                        position: "relative",
+                        //paddingTop: "66.6%",
+                        height: " 100%",
+                      }}
+                      //href="/"
+                    >
+                      <PropertySwiper
+                        propertyImages={property?.propertyData?.propertyImage}
+                      ></PropertySwiper>
+                    </div>
+                  </Box>
+                </Box>
               </Box>
             </Box>
-          </PropertyCardContent>
-        </PropertyCardWrapper>
-      </PropertyCardFeatured>
-    </PropertyCard>
+          </Box>
+        </Box>
+      </Box>
+    </PropertyRegularListing>
   );
 }
 
@@ -115,4 +97,9 @@ export default SingleProperty;
 function GetPropertyAddress(address) {
   let newAdderss = `${address.addressLine}, ${address.town}, ${address.city}, ${address.state}`;
   return newAdderss;
+}
+
+function GetSrcSet(property) {
+  let newSrcSet = `${property.propertyData.propertyImage[0].imageUrl}, ${property.propertyData.propertyImage[0].imageUrl}`;
+  return newSrcSet;
 }

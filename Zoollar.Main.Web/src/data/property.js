@@ -55,7 +55,7 @@ export const properties = [
           isMainImage: true,
         },
         {
-          imageUrl: "/images/banner/IMG_4331.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {
@@ -130,7 +130,7 @@ export const properties = [
           isMainImage: true,
         },
         {
-          imageUrl: "/images/banner/Banner_lh.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {
@@ -197,7 +197,7 @@ export const properties = [
           isMainImage: true,
         },
         {
-          imageUrl: "/images/banner/IMG_4331.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {
@@ -264,7 +264,7 @@ export const properties = [
       },
       propertyImage: [
         {
-          imageUrl: "/images/banner/Banner_lh.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {
@@ -335,7 +335,7 @@ export const properties = [
       },
       propertyImage: [
         {
-          imageUrl: "/images/banner/Banner_lh.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {
@@ -418,7 +418,7 @@ export const properties = [
           isMainImage: true,
         },
         {
-          imageUrl: "/images/banner/IMG_4331.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {
@@ -481,7 +481,7 @@ export const properties = [
           isMainImage: true,
         },
         {
-          imageUrl: "/images/banner/IMG_4331.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {
@@ -619,7 +619,7 @@ export const properties = [
       },
       propertyImage: [
         {
-          imageUrl: "/images/banner/Banner_lh.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {
@@ -690,7 +690,7 @@ export const properties = [
       },
       propertyImage: [
         {
-          imageUrl: "/images/banner/Banner_lh.JPG",
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
           isMainImage: true,
         },
         {

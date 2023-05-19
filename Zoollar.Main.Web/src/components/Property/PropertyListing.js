@@ -915,10 +915,12 @@ function PropertyListing() {
                       </PropertyFeaturedTemplate>
                     </Box>
                   </Box>
-                  {/**{properties.map((property) => (
-                    <SingleProperty property={property} matches={matches} />
-                  ))}*/}
                 </PropertyFeaturedListing>
+                <Box></Box>
+                {properties.map((property) => (
+                  <SingleProperty property={property} matches={matches} />
+                ))}
+                <SingleProperty />
 
                 <Box>
                   <UsePagination />

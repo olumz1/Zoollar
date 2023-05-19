@@ -2,6 +2,7 @@ import * as React from "react";
 import usePagination from "@mui/material/usePagination";
 import { styled } from "@mui/material/styles";
 import { Colors } from "../../styles/theme";
+import { properties } from "../../data/property";
 
 const List = styled("ol")({
   listStyle: "none",
@@ -17,7 +18,7 @@ const List = styled("ol")({
 
 export default function UsePagination() {
   const { items } = usePagination({
-    count: 10,
+    count: properties.length,
   });
 
   return (
