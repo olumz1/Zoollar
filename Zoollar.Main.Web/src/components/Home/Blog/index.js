@@ -15,7 +15,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "./swiper.css";
+import "./blogswiper.css";
 
 export default function Blog() {
   const theme = useTheme();
@@ -34,7 +34,7 @@ export default function Blog() {
             pagination={{ clickable: true }}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
-            className="swiper"
+            className="mySwiper3"
           >
             {blogs.map((blog) => (
               <SwiperSlide className="swiper-slide" key={blog.id}>

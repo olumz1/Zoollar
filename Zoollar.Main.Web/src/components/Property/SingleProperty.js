@@ -1,6 +1,11 @@
-import { Box, Grid, CardMedia } from "@mui/material";
+import { Box, SvgIcon, Button, Link, List, ListItem } from "@mui/material";
 import { PropertyRegularListing } from "../../styles/propertylisting";
 import PropertySwiper from "./PropertySwiper";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { Colors } from "../../styles/theme";
+import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
+import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
 
 function SingleProperty({ property, matches }) {
   return (
@@ -55,7 +60,7 @@ function SingleProperty({ property, matches }) {
                     overflow: "hidden",
                     minWidth: "0",
                     padding: "0",
-                    boxSizing: "0",
+                    boxSizing: "border-box",
                   }}
                 >
                   <Box
@@ -72,7 +77,6 @@ function SingleProperty({ property, matches }) {
                         textDecoration: "none",
                         background: "#e8e7e6",
                         position: "relative",
-                        //paddingTop: "66.6%",
                         height: " 100%",
                       }}
                       //href="/"
@@ -81,6 +85,314 @@ function SingleProperty({ property, matches }) {
                         propertyImages={property?.propertyData?.propertyImage}
                       ></PropertySwiper>
                     </div>
+                  </Box>
+                </Box>
+                <Box
+                  sx={{
+                    gridArea: "right-top",
+                    position: "relative",
+                    padding: "0",
+                    boxSizing: "border-box",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      height: "100%",
+                      borderBottom: "1px solid #d1d0cf",
+                      lineHeight: "0",
+                      padding: "0",
+                      boxSizing: "border-box",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "block",
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                        padding: 0,
+                        boxSizing: "border-box",
+                      }}
+                    >
+                      <Button
+                        variant="outlined"
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          color: "#322744",
+                          padding: "16px",
+                          cursor: "pointer",
+                          background: "#0000",
+                          fw: "600",
+                          textDecoration: "underline",
+                          textUnderlineOffset: "6px",
+                          textDecorationColor: Colors.primary,
+                          textDecorationThickness: "1px",
+                          fontSize: "16px",
+                          lineHeight: "24px",
+                          boxSizing: "border-box",
+                          border: "none",
+                          textTransform: "capitalize",
+                          "&:hover": {
+                            color: "#322744",
+                            border: "0",
+                            textDecoration: "underline",
+                            textDecorationThickness: "2px",
+                            textUnderlineOffset: "6px",
+                            cursor: "pointer",
+                            textDecorationColor: Colors.primary,
+                          },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            padding: "0",
+                            boxSizing: "border-box",
+                          }}
+                        >
+                          <SvgIcon
+                            sx={{
+                              fill: "#322744",
+                              height: "24px",
+                              width: "24px",
+                              fillRule: "evenodd",
+                            }}
+                          >
+                            <FavoriteBorderOutlinedIcon />
+                          </SvgIcon>
+                          <Box
+                            sx={{
+                              marginLeft: "4px",
+                              padding: 0,
+                              fontSize: "16px",
+                              lineHeight: "24px",
+                            }}
+                          >
+                            Save
+                          </Box>
+                        </Box>
+                      </Button>
+                    </Box>
+                    <Link
+                      sx={{
+                        display: "block",
+                        textDecoration: "none",
+                        height: "100%",
+                        width: "100%",
+                        padding: "0",
+                        boxSizing: "border-box",
+                      }}
+                      href=""
+                    >
+                      <Box
+                        sx={{
+                          paddingRight: "16px",
+                          paddingLeft: "16px",
+                          paddingTop: "16px",
+                          height: "100%",
+                          boxSizing: "border-box",
+                        }}
+                      >
+                        <List
+                          sx={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            gap: "8px",
+                            listStyleType: "none",
+                            marginBottom: "12px",
+                            marginTop: "0",
+                            padding: "0",
+                            boxSizing: "border-box",
+                          }}
+                        >
+                          <ListItem sx={{ padding: 0 }}>
+                            <Box
+                              sx={{
+                                color: "rgb(255,255,255)",
+                                backgroundColor: "rgb(10,10,20,0.6)",
+                                borderRadius: "999px",
+                                display: "inline-block",
+                                paddingLeft: "12px",
+                                paddingRight: "12px",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                                WebkitFontSmoothing: "antialiased",
+                                textTransform: "none",
+                                fontWeight: 700,
+                                fontSize: "12px",
+                                lineHeight: "16px",
+                                borderWidth: "1px",
+                                textAlign: "center",
+                                borderStyle: "solid",
+                                height: "24px",
+                              }}
+                            >
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  textAlign: "center",
+                                  height: "100%",
+                                  padding: "0",
+                                  boxSizing: "border-box",
+                                }}
+                              >
+                                Fresh on Zoollar
+                              </Box>
+                            </Box>
+                          </ListItem>
+                        </List>
+                        <Box sx={{ paddingBottom: "8px" }}>
+                          <Box sx={{ marginBottom: "8px", padding: "0" }}>
+                            <p
+                              style={{
+                                fw: 600,
+                                color: "#322744",
+                                fontSize: "16px",
+                                lineHeight: "24px",
+                                marginBottom: "calc(4px * -1)",
+                                padding: 0,
+                              }}
+                            >
+                              Asking price
+                            </p>
+                            <p
+                              style={{
+                                fw: 600,
+                                color: "#322744",
+                                fontSize: "22px",
+                                lineHeight: "32px",
+                              }}
+                            >
+                              ₦{property.propertyData.propertyPrice.price}
+                            </p>
+                          </Box>
+                        </Box>
+                        <Box sx={{ paddingBottom: "16px" }}>
+                          <List
+                            sx={{
+                              listStyle: "none",
+                              margin: 0,
+                              paddingInlineStart: 0,
+                              display: "flex",
+                              columnGap: "16px",
+                              fontSize: "14px",
+                              lineHeight: "20px",
+                            }}
+                          >
+                            <ListItem
+                              sx={{
+                                padding: 0,
+                                display: "flex",
+                                alignItems: "center",
+                                columnGap: "4px",
+                                color: "#322744",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  position: "absolute",
+                                  width: "1px",
+                                  height: "1px",
+                                  overflow: "hidden",
+                                }}
+                              >
+                                Bedrooms
+                              </span>
+                              <SvgIcon
+                                sx={{
+                                  fill: "#322744",
+                                  height: "24px",
+                                  width: "24px",
+                                  fillRule: "evenodd",
+                                }}
+                              >
+                                <BedOutlinedIcon />
+                              </SvgIcon>
+                              <span>
+                                {property.propertyData.propertyDetails.noOfBeds}
+                              </span>
+                            </ListItem>
+                            <ListItem
+                              sx={{
+                                padding: 0,
+                                display: "flex",
+                                alignItems: "center",
+                                columnGap: "4px",
+                                color: "#322744",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  position: "absolute",
+                                  width: "1px",
+                                  height: "1px",
+                                  overflow: "hidden",
+                                }}
+                              >
+                                Bathrooms
+                              </span>
+                              <SvgIcon
+                                sx={{
+                                  fill: "#322744",
+                                  height: "24px",
+                                  width: "24px",
+                                  fillRule: "evenodd",
+                                }}
+                              >
+                                <BathtubOutlinedIcon />
+                              </SvgIcon>
+                              <span>
+                                {
+                                  property.propertyData.propertyDetails
+                                    .noOfBathrooms
+                                }
+                              </span>
+                            </ListItem>
+                            <ListItem
+                              sx={{
+                                padding: 0,
+                                display: "flex",
+                                alignItems: "center",
+                                columnGap: "4px",
+                                color: "#322744",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  position: "absolute",
+                                  width: "1px",
+                                  height: "1px",
+                                  overflow: "hidden",
+                                }}
+                              >
+                                Living rooms
+                              </span>
+                              <SvgIcon
+                                sx={{
+                                  fill: "#322744",
+                                  height: "24px",
+                                  width: "24px",
+                                  fillRule: "evenodd",
+                                }}
+                              >
+                                <ChairOutlinedIcon />
+                              </SvgIcon>
+                              <span>
+                                {
+                                  property.propertyData.propertyDetails
+                                    .noOfReceptions
+                                }
+                              </span>
+                            </ListItem>
+                          </List>
+                        </Box>
+                      </Box>
+                    </Link>
                   </Box>
                 </Box>
               </Box>

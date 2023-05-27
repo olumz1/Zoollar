@@ -920,8 +920,6 @@ function PropertyListing() {
                 {properties.map((property) => (
                   <SingleProperty property={property} matches={matches} />
                 ))}
-                <SingleProperty />
-
                 <Box>
                   <UsePagination />
                 </Box>
