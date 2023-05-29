@@ -6,6 +6,7 @@ import { Colors } from "../../styles/theme";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
+import formatter from "../common/CurrencyFormatter";
 
 function SingleProperty({ property, matches }) {
   return (
@@ -184,7 +185,7 @@ function SingleProperty({ property, matches }) {
                         padding: "0",
                         boxSizing: "border-box",
                       }}
-                      href=""
+                      href={"../property/property/" + property.id}
                     >
                       <Box
                         sx={{
@@ -246,14 +247,14 @@ function SingleProperty({ property, matches }) {
                             </Box>
                           </ListItem>
                         </List>
-                        <Box sx={{ paddingBottom: "8px" }}>
-                          <Box sx={{ marginBottom: "8px", padding: "0" }}>
+                        <Box sx={{ paddingBottom: "6px" }}>
+                          <Box sx={{ marginBottom: "6px", padding: "0" }}>
                             <p
                               style={{
                                 fw: 600,
                                 color: "#322744",
                                 fontSize: "16px",
-                                lineHeight: "24px",
+                                lineHeight: "22px",
                                 marginBottom: "calc(4px * -1)",
                                 padding: 0,
                               }}
@@ -265,14 +266,16 @@ function SingleProperty({ property, matches }) {
                                 fw: 600,
                                 color: "#322744",
                                 fontSize: "22px",
-                                lineHeight: "32px",
+                                lineHeight: "30px",
                               }}
                             >
-                              ₦{property.propertyData.propertyPrice.price}
+                              {formatter(
+                                property.propertyData.propertyPrice.price
+                              )}
                             </p>
                           </Box>
                         </Box>
-                        <Box sx={{ paddingBottom: "16px" }}>
+                        <Box sx={{ paddingBottom: "14px" }}>
                           <List
                             sx={{
                               listStyle: "none",
@@ -291,6 +294,7 @@ function SingleProperty({ property, matches }) {
                                 alignItems: "center",
                                 columnGap: "4px",
                                 color: "#322744",
+                                width: "12%",
                               }}
                             >
                               <span
@@ -324,6 +328,7 @@ function SingleProperty({ property, matches }) {
                                 alignItems: "center",
                                 columnGap: "4px",
                                 color: "#322744",
+                                width: "12%",
                               }}
                             >
                               <span
@@ -391,6 +396,60 @@ function SingleProperty({ property, matches }) {
                             </ListItem>
                           </List>
                         </Box>
+                        <Box sx={{ marginBottom: "12px", padding: "0" }}>
+                          <h2
+                            style={{
+                              color: "#322744",
+                              fontSize: "16px",
+                              lineHeight: "22px",
+                            }}
+                          >
+                            {property.propertyData.title}
+                          </h2>
+                          <h3
+                            style={{
+                              color: "#76767c",
+                              fontSize: "14px",
+                              lineHeight: "18px",
+                            }}
+                          >
+                            {GetPropertyAddress(
+                              property.propertyData.propertyDetails.address
+                            )}
+                          </h3>
+                          <p
+                            style={{
+                              display: "block",
+                              marginTop: "8px",
+                              color: "#322744",
+                              fontSize: "14px",
+                              lineHeight: "20px",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {truncate(property.propertyData.description, 100)}
+                          </p>
+                        </Box>
+                        <List
+                          sx={{
+                            listStyle: "none",
+                            margin: "0",
+                            paddingInlineStart: "0",
+                            paddingBottom: "12px",
+                            color: "#595963",
+                            fontSize: "12px",
+                          }}
+                        >
+                          <ListItem
+                            sx={{
+                              padding: "0",
+                              display: "listItem",
+                              textAlign: "-webkit-match-parent",
+                            }}
+                          >
+                            Listed on {property.propertyData.createdDate}
+                          </ListItem>
+                        </List>
                       </Box>
                     </Link>
                   </Box>
@@ -414,4 +473,8 @@ function GetPropertyAddress(address) {
 function GetSrcSet(property) {
   let newSrcSet = `${property.propertyData.propertyImage[0].imageUrl}, ${property.propertyData.propertyImage[0].imageUrl}`;
   return newSrcSet;
+}
+
+function truncate(str, n) {
+  return str.length > n ? str.slice(0, n - 1) + "..." : str;
 }

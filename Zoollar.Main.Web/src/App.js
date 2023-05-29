@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 import ForSale from "./pages/property/forsale";
 import ToLet from "./pages/property/tolet";
+import Property from "./pages/property/property";
 
 function App() {
   useEffect(() => {
@@ -16,6 +17,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/property/forsale" element={<ForSale />} />
         <Route path="/property/tolet" element={<ToLet />} />
+        <Route path="property/property/:id" element={<Property />} />
       </Routes>
     </BrowserRouter>
   );
