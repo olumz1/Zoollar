@@ -6,10 +6,11 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import "./pointofinterest.css";
+const googleMapKey = process.env.REACT_APP_GOOGLE_MAP_KEY;
 
 const PointOfInterst = (props) => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCHgpwjSK7DG6iyQgTC9IZx7UCm81oBffQ",
+    googleMapsApiKey: googleMapKey,
   });
 
   const center = useMemo(() => ({ lat: 7.4192661, lng: 3.8761708 }), []);
