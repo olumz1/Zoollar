@@ -1,0 +1,77 @@
+import { Box, Button, Typography, colors, styled } from "@mui/material";
+import { Colors } from "../theme";
+import zIndex from "@mui/material/styles/zIndex";
+
+export const PropertyDetailsFeature = styled(Box)(() => ({
+  transitionProperty: "1px #8046f1",
+  transitionDuration: "0.16s",
+  transitionTimingFunction: "cubic-bezier(0.3,0,0.8,1)",
+  height: "48px",
+  backgroundColor: "initial",
+  color: "#322744",
+  paddingLeft: "0",
+  paddingRight: "0",
+  textDecorationColor: "#8046f1",
+  textDecorationThickness: "1px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: "600",
+  border: "none",
+  borderRadius: "4px",
+  textAlign: "center",
+  fontSize: "16px",
+  lineHeight: "24px",
+}));
+
+export const PropertyDetailsFeatureButton = styled(Button)(() => ({
+  transitionProperty: "1px #8046f1",
+  transitionDuration: "0.16s",
+  transitionTimingFunction: "cubic-bezier(0.3,0,0.8,1)",
+  height: "48px",
+  backgroundColor: "initial",
+  color: "#322744",
+  paddingLeft: "0",
+  paddingRight: "0",
+  textDecorationColor: "#8046f1",
+  textDecorationThickness: "1px",
+  textDecoration: "underline",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: "600",
+  border: "none",
+  borderRadius: "4px",
+  textAlign: "center",
+  fontSize: "16px",
+  lineHeight: "24px",
+}));
+
+export const PropertyDetailsFeatureDivider = styled(Box)(() => ({
+  height: "100%",
+  display: "flex",
+  margin: "0",
+  whiteSpace: "nowrap",
+  textAlign: "center",
+  flexDirection: "column",
+  ":before": {
+    width: "100%",
+    height: "100%",
+    borderLeftStyle: "solid",
+    borderLeftWidth: "1px",
+    content: '""',
+    position: "relative",
+    borderColor: "#3227443d",
+    boxSizing: "border-box",
+  },
+  ":after": {
+    width: "100%",
+    height: "100%",
+    borderLeftStyle: "solid",
+    borderLeftWidth: "1px",
+    content: '""',
+    position: "relative",
+    borderColor: "#3227443d",
+    boxSizing: "border-box",
+  },
+}));

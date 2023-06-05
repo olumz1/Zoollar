@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -11,12 +11,12 @@ import SwiperCore, {
   A11y,
   Pagination,
 } from "swiper";
-import "./styles.css";
+import "./detailsStyles.css";
 SwiperCore.use([Navigation]);
 
-function PropertySwiper({ propertyImages }) {
+function PropertyDetailsSwiper({ propertyImages, id }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
+  const Id = id;
   return (
     <>
       <Swiper
@@ -29,7 +29,6 @@ function PropertySwiper({ propertyImages }) {
         spaceBetween={1}
         slidesPerView={1}
         freeMode={true}
-        watchSlidesVisibility={true}
         navigation={true}
         watchSlidesProgress={true}
         watchOverflow={true}
@@ -38,11 +37,12 @@ function PropertySwiper({ propertyImages }) {
         pagination={{ clickable: true }}
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log("slide change")}
-        className="mySwiper2"
+        className="mySwiper4"
         style={{ "--swiper-navigation-size": "25px", padding: "0px" }}
+        key={Id}
       >
         {propertyImages?.map((image, index) => (
-          <SwiperSlide>
+          <SwiperSlide key={index}>
             <img src={image.imageUrl} alt={`Property ${index}`} />
           </SwiperSlide>
         ))}
@@ -52,14 +52,14 @@ function PropertySwiper({ propertyImages }) {
         watchSlidesProgress={true}
         direction="vertical"
         allowTouchMove={false}
-        slidesPerView={3}
+        slidesPerView={2}
         onSwiper={setThumbsSwiper}
-        spaceBetween={3}
+        spaceBetween={5}
         freeMode={true}
-        className="mySwiper"
+        className="mySwiper5"
       >
         {propertyImages?.map((image, index) => (
-          <SwiperSlide>
+          <SwiperSlide key={index}>
             <img src={image.imageUrl} alt={`Property ${index}`} />
           </SwiperSlide>
         ))}
@@ -68,4 +68,4 @@ function PropertySwiper({ propertyImages }) {
   );
 }
 
-export default PropertySwiper;
+export default PropertyDetailsSwiper;

@@ -1,0 +1,18 @@
+.propertyFeature:before{
+  content: "•";
+  padding-right: 8px;
+  box-sizing: border-box;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 30.33%;
+  padding: 10px;
+  height: 225px;
+}

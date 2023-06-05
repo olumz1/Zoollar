@@ -1,6 +1,6 @@
 import { Box, SvgIcon, Button, Link, List, ListItem } from "@mui/material";
 import { PropertyRegularListing } from "../../styles/propertylisting";
-import PropertySwiper from "./PropertySwiper";
+import PropertyListSwiper from "./PropertyListSwiper";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { Colors } from "../../styles/theme";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
@@ -80,11 +80,11 @@ function SingleProperty({ property, matches }) {
                         position: "relative",
                         height: " 100%",
                       }}
-                      //href="/"
                     >
-                      <PropertySwiper
+                      <PropertyListSwiper
                         propertyImages={property?.propertyData?.propertyImage}
-                      ></PropertySwiper>
+                        id={property.id}
+                      ></PropertyListSwiper>
                     </div>
                   </Box>
                 </Box>
@@ -468,11 +468,6 @@ export default SingleProperty;
 function GetPropertyAddress(address) {
   let newAdderss = `${address.addressLine}, ${address.town}, ${address.city}, ${address.state}`;
   return newAdderss;
-}
-
-function GetSrcSet(property) {
-  let newSrcSet = `${property.propertyData.propertyImage[0].imageUrl}, ${property.propertyData.propertyImage[0].imageUrl}`;
-  return newSrcSet;
 }
 
 function truncate(str, n) {

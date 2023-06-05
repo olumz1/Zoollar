@@ -5,7 +5,7 @@ import Footer from "../../components/footer/Footer";
 import PropertyDetail from "../../components/Property/PropertyDetails";
 import { useParams } from "react-router-dom";
 
-function Property(props) {
+function Property() {
   const params = useParams();
   const id = params.id;
   console.log(id);
@@ -17,7 +17,7 @@ function Property(props) {
         disableGutters
       >
         <Navbar />
-        <PropertyDetail />
+        <PropertyDetail propertyId={id} />
         <Footer />
       </Container>
     </ThemeProvider>

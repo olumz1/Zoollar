@@ -198,7 +198,6 @@ function PropertyListing() {
                   <Box
                     sx={{
                       display: "grid",
-                      //overflowX: "scroll",
                       gridAutoFlow: "column",
                       scrollSnapType: "x mandatory",
                       gap: "10px",
@@ -237,7 +236,7 @@ function PropertyListing() {
                             sx={{ maxWidth: "100%", display: "block" }}
                           >
                             <source
-                              srcset="/images/propertyListingPromo/newhome.jpg 645w, /images/propertyListingPromo/newhome.jpg 354w"
+                              srcSet="/images/propertyListingPromo/newhome.jpg 645w, /images/propertyListingPromo/newhome.jpg 354w"
                               type="image/webp"
                               sizes="170px"
                             />
@@ -473,7 +472,7 @@ function PropertyListing() {
                             sx={{ maxWidth: "100%", display: "block" }}
                           >
                             <source
-                              srcset="/images/propertyListingPromo/newhome.jpg 645w, /images/propertyListingPromo/newhome.jpg 354w"
+                              srcSet="/images/propertyListingPromo/newhome.jpg 645w, /images/propertyListingPromo/newhome.jpg 354w"
                               type="image/webp"
                               sizes="170px"
                             />
@@ -709,7 +708,7 @@ function PropertyListing() {
                             sx={{ maxWidth: "100%", display: "block" }}
                           >
                             <source
-                              srcset="/images/propertyListingPromo/newhome.jpg 645w, /images/propertyListingPromo/newhome.jpg 354w"
+                              srcSet="/images/propertyListingPromo/newhome.jpg 645w, /images/propertyListingPromo/newhome.jpg 354w"
                               type="image/webp"
                               sizes="170px"
                             />
@@ -918,7 +917,11 @@ function PropertyListing() {
                 </PropertyFeaturedListing>
                 <Box></Box>
                 {properties.map((property) => (
-                  <SingleProperty property={property} matches={matches} />
+                  <SingleProperty
+                    property={property}
+                    matches={matches}
+                    key={property.id}
+                  />
                 ))}
                 <Box>
                   <UsePagination />
