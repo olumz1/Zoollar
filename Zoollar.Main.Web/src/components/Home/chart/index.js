@@ -119,7 +119,6 @@ export default function Charts(aspect) {
                 sx={{
                   gap: "1.1em",
                   paddingTop: "10px",
-                  padding: "1em 1.5em",
                   width: "auto",
                 }}
               >

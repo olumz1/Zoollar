@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  SvgIcon,
-} from "@mui/material";
+import { Box, Button, List, ListItem, SvgIcon } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -30,6 +22,8 @@ import SlideshowOutlinedIcon from "@mui/icons-material/SlideshowOutlined";
 import PointOfInterest from "./PointOfInterest";
 import { useState } from "react";
 import "./propertyDetails.css";
+import ReadMoreReact from "read-more-react";
+import Mortgage from "./mortgage";
 
 function PropertyDetail(props) {
   const theme = useTheme();
@@ -1206,7 +1200,7 @@ function PropertyDetail(props) {
                       <Box sx={{ overflowAnchor: "none" }}>
                         <Box
                           sx={{
-                            height: "72px",
+                            height: "100%",
                             WebkitBoxOrient: "vertical",
                             WebkitLineClamp: "5",
                             position: "relative",
@@ -1222,13 +1216,53 @@ function PropertyDetail(props) {
                               lineHeight: "24px",
                             }}
                           >
-                            <span>{property.propertyData.description}</span>
+                            <span>
+                              <ReadMoreReact
+                                text={property.propertyData.description}
+                                min={250}
+                                ideal={250}
+                                max={800}
+                              />
+                            </span>
                           </Box>
                         </Box>
                       </Box>
                     </Box>
                   </Box>
                 </Box>
+              </article>
+              <Box
+                sx={{
+                  marginTop: "16px",
+                  boxSizing: "border-box",
+                  paddingBottom: "24px",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    whiteSpace: "nowrap",
+                    margin: "0",
+                    ":before": {
+                      width: "100%",
+                      borderTopStyle: "solid",
+                      borderTopWidth: "1px",
+                      content: '""',
+                      position: "relative",
+                      borderColor: "#3227443d",
+                      boxSizing: "border-box",
+                    },
+                    ":after": {
+                      content: '""',
+                      position: "relative",
+                      borderColor: "#3227443d",
+                      boxSizing: "border-box",
+                    },
+                  }}
+                ></Box>
+              </Box>
+              <article>
+                <Mortgage />
               </article>
             </Box>
             <aside
