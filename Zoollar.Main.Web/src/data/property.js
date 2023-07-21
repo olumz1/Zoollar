@@ -102,7 +102,16 @@ export const properties = [
           imageUrl: "/images/banner/IMG_4331.JPG",
           isMainImage: true,
         },
+        {
+          imageUrl: "/images/banner/IMG_4331.JPG",
+          isMainImage: true,
+        },
+        {
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
+          isMainImage: true,
+        },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=QKXyLp3Kd6k",
       propertyAgent: {
         agentId: "00000000-0000-0000-0000-000000000000",
         imageUrl: null,
@@ -197,7 +206,12 @@ export const properties = [
           imageUrl: "/images/banner/IMG_4331.JPG",
           isMainImage: true,
         },
+        {
+          imageUrl: "/images/banner/IMG_4331.JPG",
+          isMainImage: true,
+        },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=t7zY1VXgpB6",
       propertyAgent: {
         agentId: "00000000-0000-0000-0000-000000000000",
         imageUrl: null,
@@ -293,6 +307,7 @@ export const properties = [
           isMainImage: true,
         },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=t7zY1VXgpB6",
       propertyAgent: {
         agentId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
         imageUrl: "string",
@@ -388,6 +403,7 @@ export const properties = [
           isMainImage: true,
         },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=1T9Hwy1Ctj8",
       propertyAgent: {
         agentId: "00000000-0000-0000-0000-000000000000",
         imageUrl: null,
@@ -483,6 +499,7 @@ export const properties = [
           isMainImage: true,
         },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=QKXyLp3Kd6k",
       propertyAgent: {
         agentId: "00000000-0000-0000-0000-000000000000",
         imageUrl: null,
@@ -578,6 +595,7 @@ export const properties = [
           isMainImage: true,
         },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=VQbm96hQbwf",
       propertyAgent: {
         agentId: "00000000-0000-0000-0000-000000000000",
         imageUrl: null,
@@ -673,6 +691,7 @@ export const properties = [
           isMainImage: true,
         },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=QKXyLp3Kd6k",
       propertyAgent: {
         agentId: "00000000-0000-0000-0000-000000000000",
         imageUrl: null,
@@ -768,6 +787,7 @@ export const properties = [
           isMainImage: true,
         },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=QKXyLp3Kd6k",
       propertyAgent: {
         agentId: "45ee4595-f57f-4296-bc6d-656f91e1dd4e",
         imageUrl: null,
@@ -862,7 +882,16 @@ export const properties = [
           imageUrl: "/images/banner/IMG_4331.JPG",
           isMainImage: true,
         },
+        {
+          imageUrl: "/images/banner/IMG_4331.JPG",
+          isMainImage: true,
+        },
+        {
+          imageUrl: "/images/propertyListingPromo/newhome.jpg",
+          isMainImage: true,
+        },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=VQbm96hQbwf",
       propertyAgent: {
         agentId: "00000000-0000-0000-0000-000000000000",
         imageUrl: null,
@@ -958,6 +987,7 @@ export const properties = [
           isMainImage: true,
         },
       ],
+      propertyVirtualLink: "https://my.matterport.com/show/?m=VQbm96hQbwf",
       propertyAgent: {
         agentId: "00000000-0000-0000-0000-000000000000",
         imageUrl: null,
@@ -967,5 +997,40 @@ export const properties = [
       loanCompanies: [],
       createdDate: "0001-01-01T00:00:00",
     },
+  },
+];
+
+export const pattern = [
+  {
+    rows: 2,
+    cols: 2,
+  },
+  {
+    rows: 1,
+    cols: 1,
+  },
+  {
+    rows: 1,
+    cols: 1,
+  },
+  {
+    rows: 1,
+    cols: 2,
+  },
+  {
+    rows: 1,
+    cols: 2,
+  },
+  {
+    rows: 2,
+    cols: 2,
+  },
+  {
+    rows: 1,
+    cols: 1,
+  },
+  {
+    rows: 1,
+    cols: 1,
   },
 ];

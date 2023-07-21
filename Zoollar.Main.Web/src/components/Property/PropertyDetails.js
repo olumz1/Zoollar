@@ -24,6 +24,7 @@ import { useState } from "react";
 import "./propertyDetails.css";
 import ReadMoreReact from "read-more-react";
 import Mortgage from "./mortgage";
+import FullScreenDialog from "./FullScreenDialog";
 
 function PropertyDetail(props) {
   const theme = useTheme();
@@ -31,6 +32,17 @@ function PropertyDetail(props) {
   const propertyId = props.propertyId;
   const property = properties.find((property) => property.id === propertyId);
   const [state, setstate] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [tabNo, setTabNo] = useState(1);
+
+  const handleClickOpen = (tabNo) => {
+    setTabNo(tabNo);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const isEnabled = state;
 
@@ -792,7 +804,9 @@ function PropertyDetail(props) {
                     boxSizing: "border-box",
                   }}
                 >
-                  <PropertyDetailsFeatureButton>
+                  <PropertyDetailsFeatureButton
+                    onClick={() => handleClickOpen(1)}
+                  >
                     <dl
                       style={{
                         flex: "0 0 25%",
@@ -839,7 +853,9 @@ function PropertyDetail(props) {
                   <Box>
                     <PropertyDetailsFeatureDivider />
                   </Box>
-                  <PropertyDetailsFeatureButton>
+                  <PropertyDetailsFeatureButton
+                    onClick={() => handleClickOpen(2)}
+                  >
                     <dl
                       style={{
                         flex: "0 0 25%",
@@ -883,11 +899,12 @@ function PropertyDetail(props) {
                       </Box>
                     </dl>
                   </PropertyDetailsFeatureButton>
-
                   <Box>
                     <PropertyDetailsFeatureDivider />
                   </Box>
-                  <PropertyDetailsFeatureButton>
+                  <PropertyDetailsFeatureButton
+                    onClick={() => handleClickOpen(3)}
+                  >
                     <dl
                       style={{
                         flex: "0 0 25%",
@@ -934,6 +951,14 @@ function PropertyDetail(props) {
                   <Box>
                     <PropertyDetailsFeatureDivider />
                   </Box>
+                  <FullScreenDialog
+                    handleClickOpen={handleClickOpen}
+                    open={open}
+                    handleClose={handleClose}
+                    propertyImages={property?.propertyData?.propertyImage}
+                    virtualLink={property?.propertyData?.propertyVirtualLink}
+                    setTabNo={tabNo}
+                  ></FullScreenDialog>
                 </Box>
               </article>
               <Box
