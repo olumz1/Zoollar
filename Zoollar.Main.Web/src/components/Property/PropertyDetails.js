@@ -805,7 +805,7 @@ function PropertyDetail(props) {
                   }}
                 >
                   <PropertyDetailsFeatureButton
-                    onClick={() => handleClickOpen(1)}
+                    onClick={() => handleClickOpen(2)}
                   >
                     <dl
                       style={{
@@ -854,7 +854,7 @@ function PropertyDetail(props) {
                     <PropertyDetailsFeatureDivider />
                   </Box>
                   <PropertyDetailsFeatureButton
-                    onClick={() => handleClickOpen(2)}
+                    onClick={() => handleClickOpen(3)}
                   >
                     <dl
                       style={{
@@ -903,7 +903,7 @@ function PropertyDetail(props) {
                     <PropertyDetailsFeatureDivider />
                   </Box>
                   <PropertyDetailsFeatureButton
-                    onClick={() => handleClickOpen(3)}
+                    onClick={() => handleClickOpen(4)}
                   >
                     <dl
                       style={{

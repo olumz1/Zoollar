@@ -41,6 +41,7 @@
   grid-template-rows: auto min-content;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .contact-card{
@@ -74,7 +75,7 @@
 .matterPortStyle{
   width: 100%;
   height: 100%;
-  margin:34px 0 0 57px;
+  overflow-y: hidden;
 }
 
 .imgContainer{
