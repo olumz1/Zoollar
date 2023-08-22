@@ -21,7 +21,14 @@ export default function PaymentPlanOptions(props) {
     return foo;
   }
 
-  const repaymentMonths = range(6, 18, 6);
+  var startMonthlyPlan = Math.min(
+    ...loanCompany[0].shortTermPlans.map((item) => item.term)
+  );
+  var stopMonthlyPlan = Math.max(
+    ...loanCompany[0].shortTermPlans.map((item) => item.term)
+  );
+
+  const repaymentMonths = range(startMonthlyPlan, stopMonthlyPlan, 6);
 
   const [age, setAge] = useState(6);
 
@@ -29,18 +36,30 @@ export default function PaymentPlanOptions(props) {
     loanCompany[0].shortTermPlans[0].initialDeposit
   );
 
+  const [termInterest, setTermInterest] = useState(
+    loanCompany[0].shortTermPlans[0].interest
+  );
+
+  const changeTermInterest = (value) => {
+    let interestRate;
+    for (let i = 0; i < loanCompany[0].shortTermPlans.length; i++) {
+      if (loanCompany[0].shortTermPlans[i].term === value) {
+        interestRate = loanCompany[0].shortTermPlans[i].interest;
+      }
+    }
+    setTermInterest(interestRate);
+  };
+
   const calculateDepositPercentage = (deposit, total) => {
     return Math.round((deposit / total) * 100);
   };
 
-  const loanAmount = propertyPaymentDetails?.price - depositInput;
-  const loanInterest =
-    (loanAmount * loanCompany[0].shortTermPlans[0].interest) / 100;
-  const totalPayment = loanAmount + loanInterest + depositInput;
-  const [totalAfterPlan, setTotalAfterPlan] = useState(totalPayment);
+  const loanAmount = propertyPriceInput - depositInput;
+  const loanInterest = (loanAmount * termInterest) / 100;
+  const totalLoanToPay = Number(loanAmount + loanInterest);
+  const totalPayment = Number(totalLoanToPay + depositInput);
 
-  const calculateMonthlyPayment =
-    totalAfterPlan / loanCompany[0].shortTermPlans[0].term;
+  const calculateMonthlyPayment = totalLoanToPay / age;
 
   return (
     <div>
@@ -143,7 +162,7 @@ export default function PaymentPlanOptions(props) {
                     borderColor: "#322744ad",
                     textOverflow: "ellipsis",
                   }}
-                  onInput={(e) => setDepositInput(e.target.value)}
+                  onInput={(e) => setDepositInput(Number(e.target.value))}
                 ></input>
               </Box>
             </Box>
@@ -169,7 +188,10 @@ export default function PaymentPlanOptions(props) {
             >
               <Select
                 value={age}
-                onChange={(e) => setAge(e.target.value)}
+                onChange={(e) => {
+                  setAge(e.target.value);
+                  changeTermInterest(e.target.value);
+                }}
                 displayEmpty
                 inputProps={{ "aria-label": "Without label" }}
                 sx={{
@@ -220,7 +242,8 @@ export default function PaymentPlanOptions(props) {
                   type="number"
                   name="rate"
                   id="rate"
-                  value={totalAfterPlan}
+                  value={totalPayment}
+                  readOnly={true}
                   style={{
                     color: "#322744",
                     backgroundColor: "#fff",
@@ -233,7 +256,6 @@ export default function PaymentPlanOptions(props) {
                     borderColor: "#322744ad",
                     textOverflow: "ellipsis",
                   }}
-                  onInput={(e) => setTotalAfterPlan(e.target.value)}
                 ></input>
               </Box>
             </Box>
