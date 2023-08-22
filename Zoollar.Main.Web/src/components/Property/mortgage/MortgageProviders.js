@@ -121,7 +121,7 @@ export default function MortgageProviders(props) {
                 />
               </Box>
               <Box sx={{ padding: "0", marginTop: "7px" }}>
-                <span>First Bank</span>
+                <span>FBN</span>
               </Box>
             </Box>
           </Tab>
@@ -155,7 +155,7 @@ export default function MortgageProviders(props) {
                 />
               </Box>
               <Box sx={{ padding: "0", marginTop: "7px" }}>
-                <span>Wema Bank</span>
+                <span>Wema</span>
               </Box>
             </Box>
           </Tab>

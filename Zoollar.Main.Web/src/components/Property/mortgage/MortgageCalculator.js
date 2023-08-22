@@ -4,6 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import formatter from "../../common/CurrencyFormatter";
+import removeCurrencySymbol from "../../common/RemoveCurrencySymbol";
 
 export default function MortgageCalculator(props) {
   let propertyPaymentDetails = props?.propertyPaymentDetails?.propertyPayment;
@@ -78,10 +79,9 @@ export default function MortgageCalculator(props) {
                   placeholder="Price"
                   min="0.0"
                   step="1000"
-                  type="number"
                   name="price"
                   id="price"
-                  value={propertyPriceInput}
+                  value={formatter(propertyPriceInput)}
                   style={{
                     color: "#322744",
                     backgroundColor: "#fff",
@@ -93,6 +93,7 @@ export default function MortgageCalculator(props) {
                     borderWidth: "1px",
                     borderColor: "#322744ad",
                     textOverflow: "ellipsis",
+                    fontSize: "16px",
                   }}
                   onInput={(e) => setpropertyPriceInput(e.target.value)}
                 ></input>
@@ -109,8 +110,8 @@ export default function MortgageCalculator(props) {
                 }}
               >
                 {`Deposit (${calculateDeposit(
-                  depositInput,
-                  propertyPriceInput
+                  removeCurrencySymbol(depositInput),
+                  removeCurrencySymbol(propertyPriceInput)
                 )}%)`}
               </label>
             </Box>
@@ -127,10 +128,9 @@ export default function MortgageCalculator(props) {
                   placeholder="Deposit amount"
                   min="0.0"
                   step="1000"
-                  type="number"
                   name="deposit"
                   id="deposit"
-                  value={depositInput}
+                  value={formatter(depositInput)}
                   style={{
                     color: "#322744",
                     backgroundColor: "#fff",
@@ -142,6 +142,7 @@ export default function MortgageCalculator(props) {
                     borderWidth: "1px",
                     borderColor: "#322744ad",
                     textOverflow: "ellipsis",
+                    fontSize: "16px",
                   }}
                   onInput={(e) => setDepositInput(e.target.value)}
                 ></input>
@@ -179,11 +180,11 @@ export default function MortgageCalculator(props) {
                   columnGap: "8px",
                   backgroundColor: "#fff",
                   height: "48px",
-                  padding: "12px",
                   borderWidth: "1px",
                   borderStyle: "solid",
                   borderColor: "#322744ad",
                   borderRadius: "4px",
+                  fontSize: "16px",
                 }}
               >
                 {repaymentYears.map((year) => (
@@ -234,6 +235,7 @@ export default function MortgageCalculator(props) {
                     borderWidth: "1px",
                     borderColor: "#322744ad",
                     textOverflow: "ellipsis",
+                    fontSize: "16px",
                   }}
                   onInput={(e) => setInterestInput(e.target.value)}
                 ></input>
@@ -302,8 +304,8 @@ export default function MortgageCalculator(props) {
             {formatter(
               calculateMortgage(
                 interestInput,
-                propertyPriceInput,
-                depositInput,
+                removeCurrencySymbol(propertyPriceInput),
+                removeCurrencySymbol(depositInput),
                 age
               )
             )}
@@ -420,7 +422,7 @@ export default function MortgageCalculator(props) {
               </Box>
             </Box>
             <Box>
-              <Typography sx={{ fontSize: "8.5px" }}>
+              <Typography sx={{ fontSize: "8.5px", wordBreak: "initial" }}>
                 These results are for a repayment mortgage and are only intended
                 as a guide. Make sure you obtain accurate figures from your
                 lender before committing to any mortgage. Your home may be
