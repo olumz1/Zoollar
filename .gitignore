@@ -118,6 +118,9 @@ ipch/
 *.vspx
 *.sap
 
+#Secret Key
+.env
+
 # Visual Studio Trace Files
 *.e2e
 

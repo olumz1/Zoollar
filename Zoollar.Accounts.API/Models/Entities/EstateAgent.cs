@@ -5,8 +5,5 @@
         public CompanyDetails CompanyDetails { get; set; }
 
         public string Icon { get; set; }
-
-        public string AccountType => AccountTypes.Agent;
-
     }
 }
