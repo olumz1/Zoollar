@@ -1,13 +1,9 @@
-import { Container, ThemeProvider } from "@mui/material";
 import { useEffect } from "react";
-import theme from "./styles/theme";
-import Navbar from "./components/navbar";
-import Banner from "./components/Banner";
-import Promotion from "./components/promotions";
-import Blog from "./components/Blog";
-import Charts from "./components/chart";
-import Footer from "./components/footer/Footer";
-import TownAndCities from "./components/townsandcities";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/home/Home";
+import ForSale from "./pages/property/forsale";
+import ToLet from "./pages/property/tolet";
+import Property from "./pages/property/property";
 
 function App() {
   useEffect(() => {
@@ -15,30 +11,15 @@ function App() {
       "Zoollar - Nigerian Real Estate, To Buy, To Let and Property Evaluation";
   });
   return (
-    <ThemeProvider theme={theme}>
-      <Container
-        sx={{ background: "#fff", maxWidth: "100%" }}
-        maxWidth={false}
-        disableGutters
-      >
-        <Navbar />
-        <Banner />
-        <Promotion />
-        <Blog />
-        <Charts
-          aspect={2.4}
-          title={"See the properties we have in your zone"}
-        />
-        <TownAndCities />
-        {/**
-         * 
-        Discover Towns and Cities
-        Popular Locations
-        Footer
-         */}
-        <Footer />
-      </Container>
-    </ThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" />
+        <Route index element={<Home />} />
+        <Route path="/property/forsale" element={<ForSale />} />
+        <Route path="/property/tolet" element={<ToLet />} />
+        <Route path="property/property/:id" element={<Property />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

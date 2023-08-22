@@ -21,7 +21,7 @@ export default function Footer() {
       sx={{
         background: "#f7f6f5",
         color: Colors.black,
-        marginTop: "320px",
+        marginTop: "230px",
         p: { sx: 4, ml: 10 },
         pt: 8,
         pb: 12,
@@ -206,9 +206,6 @@ export default function Footer() {
             <FooterTitle variant="body1">Privacy</FooterTitle>
           </ListItem>
           <ListItem sx={{ margin: "auto", whiteSpace: "nowrap" }}>
-            <FooterTitle variant="body1">Cookies</FooterTitle>
-          </ListItem>
-          <ListItem sx={{ margin: "auto", whiteSpace: "nowrap" }}>
             <FooterTitle variant="body1">Contact us</FooterTitle>
           </ListItem>
           <ListItem sx={{ margin: "auto", whiteSpace: "nowrap" }}>
@@ -222,6 +219,9 @@ export default function Footer() {
           </ListItem>
           <ListItem sx={{ margin: "auto", whiteSpace: "nowrap" }}>
             <FooterTitle variant="body1">Sitemap</FooterTitle>
+          </ListItem>
+          <ListItem sx={{ margin: "auto", whiteSpace: "nowrap" }}>
+            <FooterTitle variant="body1">Terms</FooterTitle>
           </ListItem>
         </List>
 
