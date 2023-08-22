@@ -3,7 +3,22 @@ import { Box } from "@mui/material";
 import "./mortgageproviders.css";
 import MortgagePaymentOptions from "./MortgagePaymentOptions";
 
-export default function MortgageProviders() {
+export default function MortgageProviders(props) {
+  let gtBankLoan = props?.loanCompanies.filter((obj) => {
+    return obj.alias === "GTBank";
+  });
+
+  let accessLoan = props?.loanCompanies.filter((obj) => {
+    return obj.alias === "Access";
+  });
+  let fbnLoan = props?.loanCompanies.filter((obj) => {
+    return obj.alias === "FBN";
+  });
+  let wemaLoan = props?.loanCompanies.filter((obj) => {
+    return obj.alias === "Wema";
+  });
+  let propertyPayment = props?.propertyPaymentDetails;
+
   return (
     <div className="App">
       <Tabs>
@@ -148,22 +163,34 @@ export default function MortgageProviders() {
 
         <TabPanel>
           <div className="panel-content">
-            <MortgagePaymentOptions />
+            <MortgagePaymentOptions
+              propertyPayment={propertyPayment}
+              loanCompany={gtBankLoan}
+            />
           </div>
         </TabPanel>
         <TabPanel>
           <div className="panel-content">
-            <MortgagePaymentOptions />
+            <MortgagePaymentOptions
+              propertyPayment={propertyPayment}
+              loanCompany={accessLoan}
+            />
           </div>
         </TabPanel>
         <TabPanel>
           <div className="panel-content">
-            <MortgagePaymentOptions />
+            <MortgagePaymentOptions
+              propertyPayment={propertyPayment}
+              loanCompany={fbnLoan}
+            />
           </div>
         </TabPanel>
         <TabPanel>
           <div className="panel-content">
-            <MortgagePaymentOptions />
+            <MortgagePaymentOptions
+              propertyPayment={propertyPayment}
+              loanCompany={wemaLoan}
+            />
           </div>
         </TabPanel>
       </Tabs>

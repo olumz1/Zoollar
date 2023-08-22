@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import MortgageProviders from "./MortgageProviders";
 
-const Mortgage = () => {
+const Mortgage = (props) => {
   return (
     <Box>
       <Box>
@@ -17,7 +17,10 @@ const Mortgage = () => {
           Payment Options
         </h2>
         <Box>
-          <MortgageProviders />
+          <MortgageProviders
+            propertyPaymentDetails={props.propertyPrice}
+            loanCompanies={props.loanCompanies}
+          />
         </Box>
       </Box>
     </Box>

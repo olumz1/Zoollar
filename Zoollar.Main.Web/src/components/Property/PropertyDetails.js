@@ -52,11 +52,10 @@ function PropertyDetail(props) {
         <Box sx={{ padding: "0 16px", display: "block", height: "100%" }}>
           <Box sx={{ boxSizing: "border-box" }}>
             <Link
-              sx={{
+              style={{
                 height: "48px",
                 transitionDuration: "0.16s",
                 transitionTimingFunction: "cubic-bezier(0.3,0,0.8,1)",
-                color: "#fff",
                 paddingLeft: "0",
                 paddingRight: "0",
                 textDecoration: "underline",
@@ -65,7 +64,6 @@ function PropertyDetail(props) {
                 textDecorationThickness: "1px",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
                 fontWeight: 600,
                 border: "none",
                 borderRadius: "4px",
@@ -73,6 +71,11 @@ function PropertyDetail(props) {
                 fontSize: "16px",
                 lineHeight: "24px",
                 cursor: "pointer",
+                "&:hover": {
+                  cursor: "pointer",
+                  textDecorationThickness: "2px",
+                  textDecorationColor: Colors.primary,
+                },
               }}
               to={-1}
             >
@@ -82,7 +85,7 @@ function PropertyDetail(props) {
                   height: "24px",
                   width: "24px",
                   fill: "currentColor",
-                  marginRight: "16px",
+                  marginRight: "8px",
                 }}
               >
                 <path d="M4.20706 11.5L10.3535 5.35353L9.6464 4.64642L2.29285 12L9.6464 19.3535L10.3535 18.6464L4.20706 12.5L21 12.5V11.5L4.20706 11.5Z"></path>
@@ -149,6 +152,7 @@ function PropertyDetail(props) {
                       >
                         <PropertyDetailsSwiper
                           propertyImages={property?.propertyData?.propertyImage}
+                          handleClickOpen={handleClickOpen}
                         ></PropertyDetailsSwiper>
                       </div>
                     </Box>
@@ -310,7 +314,7 @@ function PropertyDetail(props) {
                           lineHeight: "30px",
                         }}
                       >
-                        {formatter(property.propertyData.propertyPrice.price)}
+                        {formatter(property.propertyData.propertyPayment.price)}
                       </p>
                     </Box>
                     <Box
@@ -1287,7 +1291,10 @@ function PropertyDetail(props) {
                 ></Box>
               </Box>
               <article>
-                <Mortgage />
+                <Mortgage
+                  propertyPrice={property.propertyData.propertyPayment}
+                  loanCompanies={property.propertyData.loanCompanies}
+                />
               </article>
             </Box>
             <aside

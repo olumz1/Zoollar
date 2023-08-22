@@ -1,46 +1,46 @@
-import * as React from "react";
 import { Box, Typography } from "@mui/material";
+import { useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import formatter from "../../common/CurrencyFormatter";
 
-export default function MortgageCalculator(props) {
+export default function PaymentPlanOptions(props) {
   let propertyPaymentDetails = props?.propertyPaymentDetails?.propertyPayment;
   let loanCompany = props?.propertyPaymentDetails?.loanCompany;
-  const [age, setAge] = React.useState(25);
-  const [interestInput, setInterestInput] = React.useState(
-    loanCompany[0]?.rate
-  );
-  const repaymentYears = Array.from({ length: 40 }, (_, i) => i + 1);
-  const calculateDefaultDeposit = (price) => {
-    return Math.round((10 * price) / 100);
-  };
-  const [depositInput, setDepositInput] = React.useState(
-    calculateDefaultDeposit(propertyPaymentDetails?.price)
-  );
-  const [propertyPriceInput, setpropertyPriceInput] = React.useState(
+
+  const [propertyPriceInput, setpropertyPriceInput] = useState(
     propertyPaymentDetails?.price
   );
 
-  const calculateDeposit = (deposit, total) => {
+  function range(start, end, step) {
+    var foo = [];
+    for (var i = start; i <= end; i += step) {
+      foo.push(i);
+    }
+    return foo;
+  }
+
+  const repaymentMonths = range(6, 18, 6);
+
+  const [age, setAge] = useState(6);
+
+  const [depositInput, setDepositInput] = useState(
+    loanCompany[0].shortTermPlans[0].initialDeposit
+  );
+
+  const calculateDepositPercentage = (deposit, total) => {
     return Math.round((deposit / total) * 100);
   };
 
-  const calculateMortgage = (interest, principal, deposit, term) => {
-    let calculatedInterest = interest / 100;
-    let rate = calculatedInterest / 12;
-    let noOfTotalPayment = term * 12;
-    let percentagePlusOne = rate + 1;
-    let exponentialOperation = percentagePlusOne ** noOfTotalPayment;
-    let numerator = rate * exponentialOperation;
-    let denominator = exponentialOperation - 1;
-    let division = numerator / denominator;
-    let loanAmount = principal - deposit;
-    let mortgage = loanAmount;
-    let monthlyRepayments = Math.round(mortgage * division);
-    return monthlyRepayments;
-  };
+  const loanAmount = propertyPaymentDetails?.price - depositInput;
+  const loanInterest =
+    (loanAmount * loanCompany[0].shortTermPlans[0].interest) / 100;
+  const totalPayment = loanAmount + loanInterest + depositInput;
+  const [totalAfterPlan, setTotalAfterPlan] = useState(totalPayment);
+
+  const calculateMonthlyPayment =
+    totalAfterPlan / loanCompany[0].shortTermPlans[0].term;
 
   return (
     <div>
@@ -108,7 +108,7 @@ export default function MortgageCalculator(props) {
                   lineHeight: "24px",
                 }}
               >
-                {`Deposit (${calculateDeposit(
+                {`Minimum Deposit (${calculateDepositPercentage(
                   depositInput,
                   propertyPriceInput
                 )}%)`}
@@ -186,10 +186,8 @@ export default function MortgageCalculator(props) {
                   borderRadius: "4px",
                 }}
               >
-                {repaymentYears.map((year) => (
-                  <MenuItem value={year}>
-                    {year === 1 ? `${year} year` : `${year} years`}
-                  </MenuItem>
+                {repaymentMonths.map((month) => (
+                  <MenuItem value={month}>{`${month} months`}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -203,7 +201,7 @@ export default function MortgageCalculator(props) {
                   lineHeight: "24px",
                 }}
               >
-                Interest rate
+                Expected total
               </label>
             </Box>
             <Box sx={{ display: "flex", width: "100%", columnGap: "16px" }}>
@@ -216,13 +214,13 @@ export default function MortgageCalculator(props) {
                 }}
               >
                 <input
-                  placeholder="Interest rate"
+                  placeholder="Total paid"
                   min="0.01"
                   step="c.c1"
                   type="number"
                   name="rate"
                   id="rate"
-                  value={interestInput}
+                  value={totalAfterPlan}
                   style={{
                     color: "#322744",
                     backgroundColor: "#fff",
@@ -235,7 +233,7 @@ export default function MortgageCalculator(props) {
                     borderColor: "#322744ad",
                     textOverflow: "ellipsis",
                   }}
-                  onInput={(e) => setInterestInput(e.target.value)}
+                  onInput={(e) => setTotalAfterPlan(e.target.value)}
                 ></input>
               </Box>
             </Box>
@@ -299,14 +297,7 @@ export default function MortgageCalculator(props) {
               fontWeight: "bold",
             }}
           >
-            {formatter(
-              calculateMortgage(
-                interestInput,
-                propertyPriceInput,
-                depositInput,
-                age
-              )
-            )}
+            {formatter(calculateMonthlyPayment)}
           </span>
         </Box>
         <Box
@@ -421,10 +412,11 @@ export default function MortgageCalculator(props) {
             </Box>
             <Box>
               <Typography sx={{ fontSize: "8.5px" }}>
-                These results are for a repayment mortgage and are only intended
-                as a guide. Make sure you obtain accurate figures from your
-                lender before committing to any mortgage. Your home may be
-                repossessed if you do not keep up repayments on a mortgage.
+                These results are for a short term payment plan and are only
+                intended as a guide. Make sure you obtain accurate figures from
+                your lender before committing to a purchase. Your home may be
+                repossessed if you do not keep up repayments in accordance to
+                your agreed plan.
               </Typography>
             </Box>
           </Box>

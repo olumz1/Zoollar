@@ -270,7 +270,7 @@ function SingleProperty({ property, matches }) {
                               }}
                             >
                               {formatter(
-                                property.propertyData.propertyPrice.price
+                                property.propertyData.propertyPayment.price
                               )}
                             </p>
                           </Box>

@@ -51,7 +51,7 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
+      propertyPayment: {
         price: 2500000000,
         offersOver: true,
         offersInRange: true,
@@ -122,7 +122,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -159,8 +243,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 2000000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -226,7 +310,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -263,8 +431,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 3500000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -326,7 +494,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -363,8 +615,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 3500000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -426,7 +678,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -463,8 +799,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 3500000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -526,7 +862,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -563,8 +983,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 3500000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -626,7 +1046,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -663,8 +1167,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 3500000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -726,7 +1230,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -763,8 +1351,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 3500000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -826,7 +1414,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -863,8 +1535,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 3500000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -934,7 +1606,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
@@ -971,8 +1727,8 @@ export const properties = [
           "Friendly neighbors",
         ],
       },
-      propertyPrice: {
-        price: 200000000,
+      propertyPayment: {
+        price: 2500000000,
         offersOver: true,
         offersInRange: true,
         currency: "Dollars",
@@ -1034,7 +1790,91 @@ export const properties = [
         estateAgentCompany: null,
         agentName: null,
       },
-      loanCompanies: [],
+      loanCompanies: [
+        {
+          companyName: "Guarantee Trust Bank",
+          alias: "GTBank",
+          address: "Guarantee Trust Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.gtbank.com/personal-banking/loans/gtmortgage",
+          rate: 3.5,
+          logo: "/images/mortgage/GTBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Access Bank",
+          alias: "Access",
+          address: "Access Bank, Headoffice Address",
+          mortgageUrl:
+            "https://www.accessbankplc.com/personal/borrowing/home-loan",
+          rate: 6.5,
+          logo: "/images/mortgage/accessbank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "First Bank of Nigeria",
+          alias: "FBN",
+          address: "First Bank of Nigeria, Headoffice Address",
+          mortgageUrl:
+            "https://www.firstbanknigeria.com/personal/loans/personal-home-loans/",
+          rate: 4.5,
+          logo: "/images/mortgage/FirstBankLogo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+        {
+          companyName: "Wema Bank of Nigeria",
+          alias: "Wema",
+          address: "Wema Bank of Nigeria, Headoffice Address",
+          mortgageUrl: "https://wemabank.com/resource-center/calculators/",
+          rate: 5.5,
+          logo: "/images/mortgage/WemaBank_logo.png",
+          shortTermPlans: [
+            {
+              term: 6,
+              initialDeposit: 50000000,
+              interest: 2.5,
+            },
+            {
+              term: 12,
+              initialDeposit: 30000000,
+              interest: 5,
+            },
+          ],
+        },
+      ],
       createdDate: "0001-01-01T00:00:00",
     },
   },
