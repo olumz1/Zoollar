@@ -21,7 +21,6 @@ export default function Footer() {
       sx={{
         background: "#f7f6f5",
         color: Colors.black,
-        marginTop: "230px",
         p: { sx: 4, ml: 10 },
         pt: 8,
         pb: 12,

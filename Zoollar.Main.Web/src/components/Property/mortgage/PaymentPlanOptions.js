@@ -64,7 +64,7 @@ export default function PaymentPlanOptions(props) {
     totalLoanToPay + removeCurrencySymbol(depositInput)
   );
 
-  const calculateMonthlyPayment = totalLoanToPay / age;
+  const calculateMonthlyPayment = Math.round(totalLoanToPay / age);
 
   return (
     <div>

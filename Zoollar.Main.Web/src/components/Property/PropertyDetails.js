@@ -20,11 +20,18 @@ import {
 import SvgMortgageSvgrepoCom from "../../iconComponent/mortgagePaymentIcon";
 import SlideshowOutlinedIcon from "@mui/icons-material/SlideshowOutlined";
 import PointOfInterest from "./PointOfInterest";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./propertyDetails.css";
 import ReadMoreReact from "read-more-react";
 import Mortgage from "./mortgage";
 import FullScreenDialog from "./FullScreenDialog";
+import MailLockOutlinedIcon from "@mui/icons-material/MailLockOutlined";
+import EastIcon from "@mui/icons-material/East";
+import { WideButtonLined, WideButtonOutLined } from "../../styles/button";
+import SimilarProperties from "./SimilarProperties";
+import getPropertyAddress from "../common/GetPropertyAddress";
+import Disclaimer from "./Disclaimer";
+import RenderIcon from "../../iconComponent/renderIcon";
 
 function PropertyDetail(props) {
   const theme = useTheme();
@@ -34,10 +41,15 @@ function PropertyDetail(props) {
   const [state, setstate] = useState(false);
   const [open, setOpen] = useState(false);
   const [tabNo, setTabNo] = useState(1);
+  const ref = useRef(null);
 
   const handleClickOpen = (tabNo) => {
     setTabNo(tabNo);
     setOpen(true);
+  };
+
+  const handleClick = () => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleClose = () => {
@@ -48,7 +60,7 @@ function PropertyDetail(props) {
 
   return (
     <main style={{ display: "block", boxSizing: "border-box" }}>
-      <Box sx={{ maxWidth: "1200px", margin: "auto auto 24px auto" }}>
+      <Box sx={{ maxWidth: "1300px", margin: "auto auto 24px auto" }}>
         <Box sx={{ padding: "0 16px", display: "block", height: "100%" }}>
           <Box sx={{ boxSizing: "border-box" }}>
             <Link
@@ -166,10 +178,8 @@ function PropertyDetail(props) {
           >
             <Box
               sx={{
-                paddingBottom: "0px",
-                paddingRight: "24px",
                 width: "calc(100% - 383px)",
-                padding: "24px 0",
+                padding: "24px 24px 0px 0px",
                 flex: "1 1 auto",
               }}
             >
@@ -203,7 +213,7 @@ function PropertyDetail(props) {
                         lineHeight: "24px",
                       }}
                     >
-                      {GetPropertyAddress(
+                      {getPropertyAddress(
                         property.propertyData.propertyDetails.address
                       )}
                     </h1>
@@ -327,6 +337,7 @@ function PropertyDetail(props) {
                     >
                       <Button
                         variant="outlined"
+                        onClick={() => handleClick()}
                         sx={{
                           fontSize: "14px",
                           display: "flex",
@@ -335,9 +346,12 @@ function PropertyDetail(props) {
                           border: "none",
                           color: Colors.primary,
                           textAlign: "left",
-                          pointerEvents: "none",
                           textTransform: "capitalize",
                           padding: 0,
+                          "&:hover": {
+                            textDecoration: "underline",
+                            border: "none",
+                          },
                         }}
                       >
                         <SvgIcon
@@ -1163,6 +1177,18 @@ function PropertyDetail(props) {
                                 className="propertyFeature"
                                 key={index}
                               >
+                                <SvgIcon
+                                  sx={{
+                                    overflow: "hidden",
+                                    fill: "#4f5064",
+                                    width: "18px",
+                                    height: "18px",
+                                    marginRight: "8px",
+                                    position: "relative",
+                                  }}
+                                >
+                                  <RenderIcon icon={feature} />
+                                </SvgIcon>
                                 <span>{feature}</span>
                               </ListItem>
                             )
@@ -1229,32 +1255,49 @@ function PropertyDetail(props) {
                       <Box sx={{ overflowAnchor: "none" }}>
                         <Box
                           sx={{
-                            height: "100%",
-                            WebkitBoxOrient: "vertical",
-                            WebkitLineClamp: "5",
-                            position: "relative",
+                            maxHeight: "200px",
+                            lineHeight: "24px",
+                            transition: "max-height ease .25s",
                             overflow: "hidden",
-                            transition: "height .4s ease-in-out",
+                            ":-webkit-mask-image":
+                              "linear-gradient(to bottom, black 150px, transparent 100%)",
                           }}
                         >
-                          <Box
-                            sx={{
-                              fontFamily: "inherit",
-                              color: "#322744",
-                              fontSize: "16px",
-                              lineHeight: "24px",
-                            }}
-                          >
-                            <span>
-                              <ReadMoreReact
-                                text={property.propertyData.description}
-                                min={250}
-                                ideal={250}
-                                max={800}
-                              />
-                            </span>
-                          </Box>
+                          <Box>{property.propertyData.description}</Box>
                         </Box>
+                        <button
+                          style={{
+                            position: "absolute",
+                            bottom: "28px",
+                            cursor: "pointer",
+                            backgroundColor: "rgba(0,0,0,0)",
+                            border: "none",
+                            height: "60px",
+                            width: "100%",
+                            outline: "none",
+                          }}
+                          tabIndex={"-1"}
+                          aria-hidden="true"
+                          title="Read more"
+                        ></button>
+                        <button
+                          style={{
+                            lineHeight: "20px",
+                            color: Colors.primary,
+                            cursor: "pointer",
+                            backgroundColor: "rgba(0,0,0,0)",
+                            border: "none",
+                            margin: "12px 0 8px 0",
+                            width: "100%",
+                            textAlign: "left",
+                            fontSize: "16px",
+                            fontWeight: "normal",
+                            letterSpacing: "normal",
+                            ":-webkit-font-smoothing": "antialiased",
+                          }}
+                        >
+                          Read more
+                        </button>
                       </Box>
                     </Box>
                   </Box>
@@ -1290,11 +1333,150 @@ function PropertyDetail(props) {
                   }}
                 ></Box>
               </Box>
-              <article>
+              <article ref={ref}>
                 <Mortgage
                   propertyPrice={property.propertyData.propertyPayment}
                   loanCompanies={property.propertyData.loanCompanies}
                 />
+                <Box
+                  sx={{
+                    margin: "4px 0px 32px",
+                    border: `1px solid #d1d0cf`,
+                    borderRadius: "8px",
+                  }}
+                >
+                  <header style={{ padding: "24px 16px 0px" }}>
+                    <h2
+                      style={{
+                        color: "#322744",
+                        fontWeight: "600",
+                        fontSize: "22px",
+                        lineHeight: "32px",
+                      }}
+                    >
+                      Internet speed
+                    </h2>
+                  </header>
+                  <Box sx={{ padding: "14px" }}>
+                    <Box
+                      sx={{
+                        rowGap: 0,
+                        display: "grid",
+                        columnGap: "12px",
+                        gridTemplateColumns: "4rem auto",
+                        alignItems: "center",
+                      }}
+                    >
+                      <p
+                        style={{
+                          gridColumn: 2,
+                          gridRow: 1,
+                          color: "#32744",
+                          fontSize: "16px",
+                          lineHeight: "24px",
+                        }}
+                      >
+                        Maximum download speed available at this property:
+                      </p>
+                      <img
+                        style={{
+                          gridColumn: 1,
+                          gridRow: "1/span 2",
+                          maxWidth: "100%",
+                          display: "block",
+                        }}
+                        src="/images/mortgage/internetSpeedIcon.jpg"
+                        alt="glo Logo"
+                      ></img>
+                      <Box
+                        sx={{
+                          gridColumn: 2,
+                          gridRow: "2",
+                          fontWeight: "600",
+                          fontSize: "28px",
+                          lineHeight: "40px",
+                        }}
+                      >
+                        45Mbps
+                      </Box>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        whiteSpace: "nowrap",
+                        textAlign: "center",
+                        margin: 0,
+                        "&:before": {
+                          width: "100%",
+                          borderTopStyle: "solid",
+                          borderTopWidth: "1px",
+                          content: '""',
+                          position: "relative",
+                          borderColor: "#3227443d",
+                        },
+                        "&:after": {
+                          width: "100%",
+                          borderTopStyle: "solid",
+                          borderTopWidth: "1px",
+                          content: '""',
+                          position: "relative",
+                          borderColor: "#3227443d",
+                        },
+                      }}
+                    ></Box>
+                    <Box sx={{ color: "#595963", padding: "16px" }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          textAlign: "left",
+                          alignItems: "center",
+                        }}
+                      >
+                        <WideButtonLined
+                          variant="Outlined"
+                          sx={{ width: "inherit", marginBottom: "0px" }}
+                        >
+                          Choose your internet deal
+                        </WideButtonLined>
+                        <Box sx={{ marginTop: "0" }}>
+                          Working with
+                          <Box
+                            sx={{
+                              display: "inline-block",
+                              marginLeft: "8px",
+                              verticalAlign: "middle",
+                            }}
+                          >
+                            <a
+                              href="https://www.gloworld.com/ng"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <img
+                                srcSet="/images/mortgage/gloLogo.jpg"
+                                alt="Globacom"
+                                style={{ width: "60px", height: "60px" }}
+                              ></img>
+                            </a>
+                          </Box>
+                        </Box>
+                      </Box>
+                      <p style={{ marginTop: "4px", lineHeight: "16px" }}>
+                        <small
+                          style={{
+                            color: "#322744",
+                            fontSize: "12px",
+                            lineHeight: "16px",
+                          }}
+                        >
+                          Ts & Cs apply. To see full range of packages available
+                          at this property, please click the above link.
+                        </small>
+                      </p>
+                    </Box>
+                  </Box>
+                </Box>
               </article>
             </Box>
             <aside
@@ -1305,7 +1487,15 @@ function PropertyDetail(props) {
                 boxSizing: "border-box",
               }}
             >
-              <Box sx={{ width: "inherit", willChange: "min-height" }}>
+              <Box
+                sx={{
+                  width: "inherit",
+                  willChange: "min-height",
+                  position: "sticky",
+                  top: 0,
+                  height: "585px",
+                }}
+              >
                 <Box
                   style={{
                     position: "relative",
@@ -1317,7 +1507,7 @@ function PropertyDetail(props) {
                   <Box
                     sx={{
                       background: "#fff",
-                      position: "relative",
+                      position: "fixed",
                       zIndex: "1",
                       transform: "translate3d(0px, 0px, 0px)",
                       transition: "transform ease-out .2s",
@@ -1327,7 +1517,7 @@ function PropertyDetail(props) {
                     <Box
                       sx={{
                         zIndex: 1,
-                        width: "index",
+                        width: "inherit",
                         backgroundColor: "#fff",
                         borderRadius: "4px",
                         boxShadow: "0 2px 16px 0 rgba(0,0,0,0.2)",
@@ -1335,7 +1525,168 @@ function PropertyDetail(props) {
                         position: "relative",
                       }}
                     >
-                      <p style={{}}>Posted By</p>
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: "12px",
+                          fontWeight: "normal",
+                          color: "#6c6d7f",
+                          lineHeight: "12px",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        Posted By
+                      </p>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          marginTop: "8px",
+                        }}
+                      >
+                        <Box>
+                          <Box sx={{ color: "#000433" }}>
+                            <p>Name of Estate Agent</p>
+                          </Box>
+                          <Box
+                            sx={{
+                              color: "#6c6d7f",
+                              fontSize: "14px",
+                              lineHeight: "17px",
+                              display: "-webkit-box",
+                              maxHeight: "37px",
+                              textOverflow: "ellipsis",
+                              "-webkit-line-clamp": 2,
+                              overflow: "hidden",
+                              "-webkit-box-orient": "vertical",
+                              marginTop: "8px",
+                              marginBottom: "16px",
+                            }}
+                          >
+                            St Alphege Hall Kings Bench Street, London, SE1 0QX
+                          </Box>
+                          <a
+                            className="agent-other-properties"
+                            style={{
+                              lineHeight: "1.625rem",
+                              color: "#322744",
+                              fontWeight: 600,
+                              borderRadius: "4px",
+                              textDecoration: "underline",
+                              textDecorationColor: "#8046f1",
+                              textDecorationThickness: "1px",
+                              textUnderlinePosition: "under",
+                              display: "flex",
+                              alignItems: "center",
+                              marginBottom: "16px",
+                              cursor: "pointer",
+                              fontSize: "14px",
+                            }}
+                            href="/"
+                          >
+                            Agent's other properties
+                            <span
+                              style={{ display: "flex", marginLeft: "4px" }}
+                            >
+                              <SvgIcon
+                                sx={{
+                                  height: "16px",
+                                  width: "16px",
+                                  fillRule: "evenodd",
+                                }}
+                              >
+                                <EastIcon />
+                              </SvgIcon>
+                            </span>
+                          </a>
+                        </Box>
+                        <a className="agent-logo" href="/">
+                          <img
+                            alt="Agent Name"
+                            src="https://media.rightmove.co.uk/brand/brand_logo_87308_0000.png"
+                            loading="lazy"
+                          ></img>
+                        </a>
+                      </Box>
+                      <WideButtonLined variant="outlined">
+                        Email agent
+                      </WideButtonLined>
+                      <WideButtonOutLined variant="contained">
+                        Call agent
+                      </WideButtonOutLined>
+
+                      <Box>
+                        <Box sx={{ maxWidth: "100%" }}>
+                          <h2
+                            style={{
+                              marginTop: 0,
+                              marginBottom: "8px",
+                              color: "rgb(50, 39, 68)",
+                              fontSize: "22px",
+                              fontWeight: 600,
+                              lineHeight: "32px",
+                            }}
+                          >
+                            Notes
+                          </h2>
+                        </Box>
+                        <Box
+                          sx={{
+                            color: "rgb(50, 39, 68)",
+                            marginBottom: "16px",
+                          }}
+                        >
+                          <SvgIcon
+                            sx={{
+                              fill: "rgb(50, 39, 68)",
+                              width: "16px",
+                              height: "16px",
+                              marginRight: "8px",
+                              position: "relative",
+                              top: "1px",
+                            }}
+                          >
+                            <MailLockOutlinedIcon />
+                          </SvgIcon>
+                          <span style={{ fontSize: "15px" }}>
+                            These notes are only visible to you.
+                          </span>
+                        </Box>
+                        <textarea
+                          style={{
+                            border: "1px solid #dedee2",
+                            borderRadius: "4px",
+                            color: "#000433",
+                            backgroundColor: "#fff",
+                            resize: "none",
+                            padding: "12px 16px",
+                            minWidth: "233px",
+                            width: "100%",
+                            height: "96px",
+                            marginBottom: "16px",
+                          }}
+                        ></textarea>
+                      </Box>
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        {/*TODO: grey this button out when there's no text*/}
+                        <Button
+                          variant="contained"
+                          sx={{
+                            color: Colors.white,
+                            border: `2px solid #322744`,
+                            height: "50px",
+                            textTransform: "inherit",
+                            "&:hover": {
+                              backgroundColor: "#662dbe",
+                              boxShadow: `0px 0px 12px #32274414,0px 0px 1px #32274452,0px 8px 16px -8px #322744cc`,
+                              color: Colors.white,
+                              cursor: "pointer",
+                            },
+                          }}
+                        >
+                          Save note
+                        </Button>
+                      </Box>
                     </Box>
                   </Box>
                 </Box>
@@ -1344,16 +1695,16 @@ function PropertyDetail(props) {
           </Box>
         </Box>
       </Box>
+      <SimilarProperties relatedProperties={properties}></SimilarProperties>
+      <Disclaimer
+        agent={property.propertyData.propertyAgent}
+        propertyId={property.id}
+      ></Disclaimer>
     </main>
   );
 }
 
 export default PropertyDetail;
-
-function GetPropertyAddress(address) {
-  let newAdderss = `${address.addressLine}, ${address.town}, ${address.city}, ${address.state}`;
-  return newAdderss;
-}
 
 function DetermineSuffix(item) {
   let numberofItem = item;
