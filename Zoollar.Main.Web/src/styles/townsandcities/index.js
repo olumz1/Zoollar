@@ -3,41 +3,36 @@ import { Colors } from "../theme";
 
 export const TownsAndCityContainer = styled(Box)(() => ({
   display: "flex",
-  marginTop: "650px",
-  justifyContent: "space-evenly",
-  alignItems: "center",
+  justifyContent: "space-between",
   width: "100%",
-  height: "100px",
-  clear: "both",
 }));
 
 export const TownsAndCityContentArea = styled(Box)(() => ({
-  display: "flex",
-  width: "80%",
-  borderRadius: "10px",
+  paddingBottom: "12px",
+  paddingRight: "16px",
+  width: "100%",
+  fontSize: "32px",
+  lineHeight: "44px",
 }));
 
-export const TownsAndCityHeader = styled(Typography)(() => ({
-  lineHeight: 1.25,
-  letterSpacing: 1.25,
-  textAlign: "left",
-  position: "absolute",
-  fontSize: "28px",
-  color: Colors.black,
-  display: "flex",
-  left: "155px",
-  fontWeight: "420",
+export const TownsAndCityHeader = styled(Box)(() => ({
+  paddingBottom: "12px",
+  paddingRight: "16px",
+  width: "100%",
+  fontSize: "32px",
+  lineHeight: "44px",
 }));
 
 export const SuggestionTownAndCityPanel = styled(Box)(() => ({
-  display: "block",
-  minWidth: "100%",
-  boxSizing: "border-box",
-  marginTop: "30px",
+  display: "flex",
+  flexWrap: "wrap",
+  paddingTop: "12px",
+  position: "relative",
 }));
 export const TownAndCityGrouping = styled(Box)(() => ({
   display: "flex",
   width: "100%",
+  paddingRight: "0",
   marginTop: "24px",
 }));
 
@@ -45,7 +40,7 @@ export const TownAndCitySuggestionHeader = styled(Box)(() => ({
   display: "flex",
   paddingRight: "16px",
   width: "100%",
-  boxSizing: "border-box",
+  paddingBottom: 0,
 }));
 
 export const TownAndCitiesSuggestionMiddle = styled(Box)(() => ({

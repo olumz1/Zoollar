@@ -20,9 +20,8 @@ import {
 import SvgMortgageSvgrepoCom from "../../iconComponent/mortgagePaymentIcon";
 import SlideshowOutlinedIcon from "@mui/icons-material/SlideshowOutlined";
 import PointOfInterest from "./PointOfInterest";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./propertyDetails.css";
-import ReadMoreReact from "read-more-react";
 import Mortgage from "./mortgage";
 import FullScreenDialog from "./FullScreenDialog";
 import MailLockOutlinedIcon from "@mui/icons-material/MailLockOutlined";
@@ -41,7 +40,26 @@ function PropertyDetail(props) {
   const [state, setstate] = useState(false);
   const [open, setOpen] = useState(false);
   const [tabNo, setTabNo] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
+  const [showReadMoreButton, setShowReadMoreButton] = useState(false);
+  const readMoreRef = useRef(null);
   const ref = useRef(null);
+
+  useEffect(() => {
+    if (readMoreRef.current) {
+      setShowReadMoreButton(
+        readMoreRef.current.scrollHeight !== readMoreRef.current.clientHeight
+      );
+    }
+  }, []);
+
+  const paragraphStyles = {
+    whiteSpace: "break-spaces",
+    maxHeight: "45px",
+    webkitBoxOrient: "vertical",
+    overflow: "hidden",
+    display: "-webkit-box",
+  };
 
   const handleClickOpen = (tabNo) => {
     setTabNo(tabNo);
@@ -1263,41 +1281,34 @@ function PropertyDetail(props) {
                               "linear-gradient(to bottom, black 150px, transparent 100%)",
                           }}
                         >
-                          <Box>{property.propertyData.description}</Box>
+                          <div
+                            style={isOpen ? null : paragraphStyles}
+                            ref={readMoreRef}
+                          >
+                            {property.propertyData.description}
+                          </div>
                         </Box>
-                        <button
-                          style={{
-                            position: "absolute",
-                            bottom: "28px",
-                            cursor: "pointer",
-                            backgroundColor: "rgba(0,0,0,0)",
-                            border: "none",
-                            height: "60px",
-                            width: "100%",
-                            outline: "none",
-                          }}
-                          tabIndex={"-1"}
-                          aria-hidden="true"
-                          title="Read more"
-                        ></button>
-                        <button
-                          style={{
-                            lineHeight: "20px",
-                            color: Colors.primary,
-                            cursor: "pointer",
-                            backgroundColor: "rgba(0,0,0,0)",
-                            border: "none",
-                            margin: "12px 0 8px 0",
-                            width: "100%",
-                            textAlign: "left",
-                            fontSize: "16px",
-                            fontWeight: "normal",
-                            letterSpacing: "normal",
-                            ":-webkit-font-smoothing": "antialiased",
-                          }}
-                        >
-                          Read more
-                        </button>
+                        {showReadMoreButton && (
+                          <button
+                            style={{
+                              lineHeight: "20px",
+                              color: Colors.primary,
+                              cursor: "pointer",
+                              backgroundColor: "rgba(0,0,0,0)",
+                              border: "none",
+                              margin: "12px 0 8px 0",
+                              width: "100%",
+                              textAlign: "left",
+                              fontSize: "16px",
+                              fontWeight: "normal",
+                              letterSpacing: "normal",
+                              ":-webkit-font-smoothing": "antialiased",
+                            }}
+                            onClick={() => setIsOpen(!isOpen)}
+                          >
+                            {isOpen ? "Read less..." : "Read more..."}
+                          </button>
+                        )}
                       </Box>
                     </Box>
                   </Box>

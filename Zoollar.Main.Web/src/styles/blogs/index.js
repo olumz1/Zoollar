@@ -3,7 +3,7 @@ import { Colors } from "../theme";
 
 export const BlogsContainer = styled(Box)(() => ({
   display: "flex",
-  marginTop: "270px",
+  marginTop: "105px",
   justifyContent: "space-evenly",
   alignItems: "center",
   width: "100%",
@@ -12,41 +12,33 @@ export const BlogsContainer = styled(Box)(() => ({
 
 export const BlogsContentArea = styled(Box)(() => ({
   display: "flex",
-  width: "80%",
+  width: "100%",
   borderRadius: "10px",
-  marginTop: "150px",
 }));
 
 export const BlogsHeader = styled(Typography)(() => ({
-  lineHeight: 1.25,
-  letterSpacing: 1.25,
-  textAlign: "left",
-  position: "absolute",
   fontSize: "28px",
   color: Colors.black,
-  marginTop: "80px",
-  display: "flex",
-  left: "155px",
+  margin: 0,
   fontWeight: "420",
+  padding: 0,
 }));
 
 export const BlogsSubHeaer = styled(Typography)(() => ({
-  lineHeight: 1.25,
-  letterSpacing: 1.25,
-  textAlign: "left",
-  position: "absolute",
-  fontSize: "16px",
+  lineHeight: "28px",
+  maxWidth: "720px",
+  paddingTop: "8px",
+  fontSize: "18px",
   color: Colors.black,
-  marginTop: "130px",
-  display: "flex",
-  left: "155px",
+  margin: 0,
+  padding: 0,
 }));
 
 export const Blog = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   position: "relative",
-  width: "97%",
+  width: "98%",
   borderRadius: "10px",
   [theme.breakpoints.up("md")]: {
     position: "relative",
@@ -57,7 +49,6 @@ export const BlogImage = styled("img")(({ src, theme }) => ({
   src: `url(${src})`,
   minWidth: "100%",
   height: "250px",
-  marginTop: "130px",
   borderRadius: "10px",
   [theme.breakpoints.up("md")]: {},
 }));
@@ -82,7 +73,6 @@ export const BlogDate = styled(Typography)(() => ({
   color: "grey",
   marginTop: "8px",
   display: "flex",
-  marginLeft: "-5px",
 }));
 
 export const BlogDescription = styled(Typography)(() => ({
@@ -93,7 +83,6 @@ export const BlogDescription = styled(Typography)(() => ({
   fontSize: "16px",
   color: Colors.black,
   marginTop: "10px",
-  marginLeft: "-5px",
   overflow: "hidden",
   textOverflow: "ellipsis",
   width: "22rem",

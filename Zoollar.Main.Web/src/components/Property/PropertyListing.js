@@ -1,12 +1,4 @@
-import {
-  Grid,
-  Box,
-  Button,
-  SvgIcon,
-  CardMedia,
-  List,
-  ListItem,
-} from "@mui/material";
+import { Box, Button, SvgIcon, CardMedia } from "@mui/material";
 import { properties } from "../../data/property";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -26,6 +18,7 @@ import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
+import PropertyFilter from "./PropertyFilter";
 
 function PropertyListing() {
   const theme = useTheme();
@@ -41,14 +34,7 @@ function PropertyListing() {
       }}
     >
       <Box sx={{ gridColumn: "span 12" }}>
-        <Box
-          sx={{
-            height: "6.7em",
-            position: "sticky",
-            top: "-0.5rem",
-            zIndex: "99",
-          }}
-        ></Box>
+        <PropertyFilter />
         <Box sx={{ width: "100%", margin: "0 auto", backgroundColor: "#fff" }}>
           <Box
             sx={{
@@ -56,7 +42,6 @@ function PropertyListing() {
               gridTemplateAreas: `"main-content sidebar"`,
               gridTemplateColumns: "3fr 1fr",
               gridTemplateRows: "1fr",
-              padding: "24px",
               margin: "0 auto",
               maxWidth: "calc(1200px + (2 * 32px))",
               boxSizing: "border-box",
