@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Button, SvgIcon } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import DetachedHome from "../../iconComponent/detachedHome";
 import SemiDetachedHome from "../../iconComponent/semiDetachedHome";
 import TerracedHome from "../../iconComponent/terracedHome";
@@ -7,14 +7,134 @@ import FlatHome from "../../iconComponent/flatHome";
 import Bungalow from "../../iconComponent/bungalow";
 import WareHouse from "../../iconComponent/wareHouse";
 import Land from "../../iconComponent/land";
+import { useState } from "react";
+import "../../styles/propertylisting/dropDownListVertical.css";
 
 export default function DropDownListVertical(props) {
+  const [isDuplexSelected, setIsDuplexSelected] = useState(false);
+  const [isTwinDuplexSelected, setIsTwinDuplexSelected] = useState(false);
+  const [isTerracedSelected, setIsTerracedSelected] = useState(false);
+  const [isBungalowSelected, setIsBungalowSelected] = useState(false);
+  const [isFlatSelected, setIsFlatSelected] = useState(false);
+  const [isCommercialSelected, setIsCommercialSelected] = useState(false);
+  const [isLandSelected, setIsLandSelected] = useState(false);
+  const [addToFilter, setAddToFilter] = useState([]);
+
+  const handleDuplexClick = (propertyType) => {
+    setIsDuplexSelected(!isDuplexSelected);
+
+    if (isDuplexSelected) {
+      if (!addToFilter.includes(propertyType)) {
+        setAddToFilter((addToFilter) => [...addToFilter, propertyType]);
+      }
+    } else {
+      if (addToFilter.includes("Duplex")) {
+        setAddToFilter(addToFilter.filter((item) => item.Duplex !== "Duplex"));
+      }
+    }
+  };
+
+  const handleTwinClick = (propertyType) => {
+    setIsTwinDuplexSelected(!isTwinDuplexSelected);
+
+    if (isTwinDuplexSelected) {
+      if (!addToFilter.includes(propertyType)) {
+        setAddToFilter((addToFilter) => [...addToFilter, propertyType]);
+      }
+    } else {
+      if (addToFilter.includes("TwinDuplex")) {
+        setAddToFilter(
+          addToFilter.filter((item) => item.Duplex !== "TwinDuplex")
+        );
+      }
+    }
+  };
+
+  const handleTerracedClick = (propertyType) => {
+    setIsTerracedSelected(!isTerracedSelected);
+
+    if (isTerracedSelected) {
+      if (!addToFilter.includes(propertyType)) {
+        setAddToFilter((addToFilter) => [...addToFilter, propertyType]);
+      }
+    } else {
+      if (addToFilter.includes("Terraced")) {
+        setAddToFilter(
+          addToFilter.filter((item) => item.Duplex !== "Terraced")
+        );
+      }
+    }
+  };
+
+  const handleBungalowClick = (propertyType) => {
+    setIsBungalowSelected(!isBungalowSelected);
+
+    if (isBungalowSelected) {
+      if (!addToFilter.includes(propertyType)) {
+        setAddToFilter((addToFilter) => [...addToFilter, propertyType]);
+      }
+    } else {
+      if (addToFilter.includes("Bungalow")) {
+        setAddToFilter(
+          addToFilter.filter((item) => item.Bungalow !== "Bungalow")
+        );
+      }
+    }
+  };
+
+  const handleFlatClick = (propertyType) => {
+    setIsFlatSelected(!isFlatSelected);
+
+    if (isFlatSelected) {
+      if (!addToFilter.includes(propertyType)) {
+        setAddToFilter((addToFilter) => [...addToFilter, propertyType]);
+      }
+    } else {
+      if (addToFilter.includes("Flat")) {
+        setAddToFilter(addToFilter.filter((item) => item.Land !== "Flat"));
+      }
+    }
+  };
+
+  const handleCommercialClick = (propertyType) => {
+    setIsCommercialSelected(!isCommercialSelected);
+
+    if (isCommercialSelected) {
+      if (!addToFilter.includes(propertyType)) {
+        setAddToFilter((addToFilter) => [...addToFilter, propertyType]);
+      }
+    } else {
+      if (addToFilter.includes("Commercial")) {
+        setAddToFilter(
+          addToFilter.filter((item) => item.Land !== "Commercial")
+        );
+      }
+    }
+  };
+
+  const handleLandClick = (propertyType) => {
+    setIsLandSelected(!isLandSelected);
+
+    if (isLandSelected) {
+      if (!addToFilter.includes(propertyType)) {
+        setAddToFilter((addToFilter) => [...addToFilter, propertyType]);
+      }
+    } else {
+      if (addToFilter.includes("Land")) {
+        setAddToFilter(addToFilter.filter((item) => item.Land !== "Land"));
+      }
+    }
+  };
+
   return (
     <Box
       sx={{
         backgroundColor: "#fff",
         border: "1px solid #3227443d",
         borderRadius: "4px",
+        display: props.showDropDown,
+        position: "absolute",
+        minWidth: "100%",
       }}
     >
       <Box
@@ -22,7 +142,6 @@ export default function DropDownListVertical(props) {
           display: "flex",
           padding: "0px 8px",
           zIndex: 2000,
-          minWidth: "100%",
           position: "relative",
           flexWrap: "wrap",
           height: "auto",
@@ -30,6 +149,7 @@ export default function DropDownListVertical(props) {
         }}
       >
         <Button
+          onClick={() => handleDuplexClick("Duplex")}
           sx={{
             borderLeft: "none",
             borderTop: "none",
@@ -61,9 +181,10 @@ export default function DropDownListVertical(props) {
             <DetachedHome />
 
             <Box
+              className={isDuplexSelected ? "activePropertyType" : ""}
               sx={{
                 margin: "4px",
-                padding: "5px 15px",
+                padding: "4px 15px",
                 borderRadius: "5px",
                 textAlign: "center",
                 userSelect: "none",
@@ -75,6 +196,7 @@ export default function DropDownListVertical(props) {
           </Box>
         </Button>
         <Button
+          onClick={() => handleTwinClick("TwinDuplex")}
           sx={{
             borderLeft: "1px dashed #3227443d",
             borderTop: "none",
@@ -105,9 +227,10 @@ export default function DropDownListVertical(props) {
             <SemiDetachedHome />
 
             <Box
+              className={isTwinDuplexSelected ? "activePropertyType" : ""}
               sx={{
                 margin: "4px",
-                padding: "5px 15px",
+                padding: "4px 15px",
                 borderRadius: "5px",
                 textAlign: "center",
                 userSelect: "none",
@@ -120,6 +243,7 @@ export default function DropDownListVertical(props) {
         </Button>
 
         <Button
+          onClick={() => handleTerracedClick("Terraced")}
           sx={{
             borderLeft: "1px dashed #3227443d",
             borderTop: "none",
@@ -150,9 +274,10 @@ export default function DropDownListVertical(props) {
             <TerracedHome />
 
             <Box
+              className={isTerracedSelected ? "activePropertyType" : ""}
               sx={{
                 margin: "4px",
-                padding: "5px 15px",
+                padding: "4px 15px",
                 borderRadius: "5px",
                 textAlign: "center",
                 userSelect: "none",
@@ -164,6 +289,7 @@ export default function DropDownListVertical(props) {
           </Box>
         </Button>
         <Button
+          onClick={() => handleBungalowClick("Bungalow")}
           sx={{
             borderLeft: "1px dashed #3227443d",
             borderTop: "none",
@@ -194,9 +320,10 @@ export default function DropDownListVertical(props) {
             <Bungalow />
 
             <Box
+              className={isBungalowSelected ? "activePropertyType" : ""}
               sx={{
                 margin: "4px",
-                padding: "5px 15px",
+                padding: "4px 15px",
                 borderRadius: "5px",
                 textAlign: "center",
                 userSelect: "none",
@@ -208,6 +335,7 @@ export default function DropDownListVertical(props) {
           </Box>
         </Button>
         <Button
+          onClick={() => handleFlatClick("Flat")}
           sx={{
             borderLeft: "1px dashed #3227443d",
             borderTop: "none",
@@ -238,9 +366,10 @@ export default function DropDownListVertical(props) {
             <FlatHome />
 
             <Box
+              className={isFlatSelected ? "activePropertyType" : ""}
               sx={{
                 margin: "4px",
-                padding: "5px 15px",
+                padding: "4px 15px",
                 borderRadius: "5px",
                 textAlign: "center",
                 userSelect: "none",
@@ -252,6 +381,7 @@ export default function DropDownListVertical(props) {
           </Box>
         </Button>
         <Button
+          onClick={() => handleCommercialClick("Commercial")}
           sx={{
             borderLeft: "1px dashed #3227443d",
             borderTop: "none",
@@ -282,9 +412,10 @@ export default function DropDownListVertical(props) {
             <WareHouse />
 
             <Box
+              className={isCommercialSelected ? "activePropertyType" : ""}
               sx={{
                 margin: "4px",
-                padding: "5px 15px",
+                padding: "4px 15px",
                 borderRadius: "5px",
                 textAlign: "center",
                 userSelect: "none",
@@ -296,6 +427,7 @@ export default function DropDownListVertical(props) {
           </Box>
         </Button>
         <Button
+          onClick={() => handleLandClick("Land")}
           sx={{
             borderTop: "none",
             display: "block",
@@ -325,9 +457,10 @@ export default function DropDownListVertical(props) {
           >
             <Land />
             <Box
+              className={isLandSelected ? "activePropertyType" : ""}
               sx={{
                 margin: "4px",
-                padding: "5px 15px",
+                padding: "4px 15px",
                 borderRadius: "5px",
                 textAlign: "center",
                 userSelect: "none",
@@ -346,8 +479,6 @@ export default function DropDownListVertical(props) {
           height: "80px",
           backgroundColor: "#fff",
           padding: "19px 30px",
-          borderBottom: "1px solid #dfdfe1",
-          width: "100%",
         }}
       >
         <Box
@@ -383,6 +514,7 @@ export default function DropDownListVertical(props) {
             <Button
               variant="contained"
               sx={{ borderWidth: "1px", borderRadius: "2px", width: "100%" }}
+              onClick={props.closePropertyTypeFilter}
             >
               Done
             </Button>

@@ -2,13 +2,28 @@ import { Box, Button, FormControl, MenuItem, Select } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import DropDownList from "../common/DropDownList";
 import DropDownListVertical from "../common/DropDownListVertical";
-import { ArrowDropDownOutlined } from "@mui/icons-material";
 import ArrowDropDownIcon from "../../iconComponent/arrowDropDownIcon";
+import { useState } from "react";
+import PropertyResultFilterDialog from "./PropertyResultFilterDialog";
 
 function PropertyFilter() {
-  let clickEvent = false;
+  const [isActive, setIsActive] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
+
   const handleClick = () => {
-    clickEvent = true;
+    setIsActive(!isActive);
+  };
+
+  const handleFilterClickOpen = () => {
+    setFilterOpen(!filterOpen);
+  };
+
+  const handleFilterClickClose = () => {
+    setFilterOpen(false);
+  };
+
+  const closePropertyTypeFilter = () => {
+    setIsActive(false);
   };
 
   return (
@@ -200,34 +215,51 @@ function PropertyFilter() {
               }}
             >
               <ArrowDropDownIcon
-                arrowTransform={clickEvent ? "rotate(180deg)" : ""}
+                arrowTransform={isActive ? "rotate(180deg)" : ""}
               />
             </Button>
           </Box>
         </Box>
-        <Box sx={{ gridArea: "filter" }}>
-          <Box sx={{ display: "flex", rowGap: "4px", flexDirection: "column" }}>
-            <label
-              style={{
-                fontWeight: "600",
-                fontSize: "16px",
-                lineHeight: "24px",
-              }}
-            >
-              Filters
-            </label>
+        <Box sx={{ gridArea: "filter", paddingTop: "28px" }}>
+          <Button
+            variant="outlined"
+            onClick={() => handleFilterClickOpen()}
+            sx={{
+              height: "48px",
+              backgroundColor: "initial",
+              color: "#322744",
+              borderWidth: "2px",
+              borderStyle: "solid",
+              borderColor: "#322744",
+              transitionDuration: "0.16s",
+              transitionTimingFunction: "cubic-bezeir(0.3,0,0.8,1)",
+              paddingLeft: "16px",
+              paddingRight: "16px",
+              textDecoration: "none",
+              transitionProperty: `transform,box-shadow,background-color,color`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 600,
+              borderRadius: "4px",
+              textAlign: "center",
+              width: "120px",
+            }}
+          >
             <Box
               sx={{
+                flexDirection: "row",
+                columnGap: "8px",
                 display: "flex",
-                position: "relative",
-                rowGap: "4px",
-                flexDirection: "column",
-                flex: "1 1",
+                justifyContent: "center",
               }}
             >
-              <DropDownList value="Empty" />
+              <Box>Filters</Box>
+              <ArrowDropDownIcon
+                arrowTransform={filterOpen ? "rotate(180deg)" : ""}
+              />
             </Box>
-          </Box>
+          </Button>
         </Box>
         <Box sx={{ gridArea: "search", paddingTop: "28px" }}>
           <Button
@@ -239,7 +271,15 @@ function PropertyFilter() {
           </Button>
         </Box>
       </Box>
-      <DropDownListVertical value="Empty" />
+      <DropDownListVertical
+        closePropertyTypeFilter={closePropertyTypeFilter}
+        showDropDown={isActive ? "block" : "none"}
+      />
+      <PropertyResultFilterDialog
+        handleFilterClickOpen={handleFilterClickOpen}
+        open={filterOpen}
+        handleFilterClickClose={handleFilterClickClose}
+      ></PropertyResultFilterDialog>
     </Box>
   );
 }
