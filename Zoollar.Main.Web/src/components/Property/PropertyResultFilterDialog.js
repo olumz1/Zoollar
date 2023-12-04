@@ -10,6 +10,8 @@ import { useState } from "react";
 export default function PropertyResultFilterDialog(props) {
   const theme = useTheme();
   const [selectedDistance, setSelectedDistance] = useState([]);
+  const [selectedMinRooms, setselectedMinRooms] = useState([]);
+  const [selectedMaxRooms, setselectedMaxRooms] = useState([]);
 
   const handleChange = (event) => {
     const {
@@ -31,7 +33,7 @@ export default function PropertyResultFilterDialog(props) {
         pointerEvents: "auto",
         right: 0,
         left: "inherit",
-        minWidth: "320px",
+        minWidth: "720px",
         maxWidth: "min((768px), calc(100% - 56px))",
         height: "100%",
         top: "0",
@@ -138,7 +140,6 @@ export default function PropertyResultFilterDialog(props) {
                   backgroundColor: "#fff",
                   height: "48px",
                   padding: "12px",
-                  border: "1px solid #322744ad",
                   borderRadius: "4px",
                   width: "100%",
                   color: "#322744",
@@ -192,6 +193,175 @@ export default function PropertyResultFilterDialog(props) {
                 }}
               ></Box>
             </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                rowGap: "4px",
+                position: "relative",
+                flexGrow: 1,
+                flexShrink: "1",
+                flexBasis: "0%",
+              }}
+            >
+              <InputLabel
+                sx={{
+                  color: "#322722",
+                  fontWeight: "600",
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                }}
+              >
+                Bedrooms
+              </InputLabel>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "left",
+                  columnGap: "16px",
+                  flexWrap: "wrap",
+                  rowGap: "16px",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    rowGap: "4px",
+                    position: "relative",
+                    flexGrow: "1",
+                    flexShrink: 1,
+                    flexBasis: "0%",
+                  }}
+                >
+                  <InputLabel
+                    sx={{
+                      color: "#322744",
+                      fontWeight: "600",
+                      fontSize: "16px",
+                      lineHeight: "24px",
+                    }}
+                  >
+                    Min beds
+                  </InputLabel>
+                  <Select
+                    sx={{
+                      appearance: "none",
+                      textAlign: "left",
+                      display: "flex",
+                      columnGap: "8px",
+                      backgroundColor: "#fff",
+                      height: "48px",
+                      padding: "12px",
+                      borderRadius: "4px",
+                      width: "100%",
+                      color: "#322744",
+                    }}
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={selectedDistance}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Distance" />}
+                    MenuProps={MenuProps}
+                  >
+                    {distances.map((distance) => (
+                      <MenuItem
+                        key={distance}
+                        value={distance}
+                        style={getStyles(distance, selectedDistance, theme)}
+                      >
+                        {distance}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    rowGap: "4px",
+                    position: "relative",
+                    flexGrow: "1",
+                    flexShrink: 1,
+                    flexBasis: "0%",
+                  }}
+                >
+                  <InputLabel
+                    sx={{
+                      color: "#322744",
+                      fontWeight: "600",
+                      fontSize: "16px",
+                      lineHeight: "24px",
+                    }}
+                  >
+                    Max beds
+                  </InputLabel>
+                  <Select
+                    sx={{
+                      appearance: "none",
+                      textAlign: "left",
+                      display: "flex",
+                      columnGap: "8px",
+                      backgroundColor: "#fff",
+                      height: "48px",
+                      padding: "12px",
+                      borderRadius: "4px",
+                      width: "100%",
+                      color: "#322744",
+                    }}
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={selectedDistance}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Distance" />}
+                    MenuProps={MenuProps}
+                  >
+                    {distances.map((distance) => (
+                      <MenuItem
+                        key={distance}
+                        value={distance}
+                        style={getStyles(distance, selectedDistance, theme)}
+                      >
+                        {distance}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </Box>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                marginTop: "16px",
+                boxSizing: "border-box",
+                paddingBottom: "24px",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  whiteSpace: "nowrap",
+                  margin: "0",
+                  ":before": {
+                    width: "100%",
+                    borderTopStyle: "solid",
+                    borderTopWidth: "1px",
+                    content: '""',
+                    position: "relative",
+                    borderColor: "#3227443d",
+                    boxSizing: "border-box",
+                  },
+                  ":after": {
+                    content: '""',
+                    position: "relative",
+                    borderColor: "#3227443d",
+                    boxSizing: "border-box",
+                  },
+                }}
+              ></Box>
+            </Box>
           </Box>
         </Box>
       </main>
@@ -213,6 +383,20 @@ const distances = [
   "30 Kilometers",
   "40 Kilometers",
   "50 Kilometers",
+];
+
+const bedrooms = [
+  "Self contain",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10 or more",
 ];
 
 const ITEM_HEIGHT = 48;
