@@ -1,17 +1,23 @@
 import { Box, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import DropDownList from "../common/DropDownList";
-import DropDownListVertical from "../common/DropDownListVertical";
-import ArrowDropDownIcon from "../../iconComponent/arrowDropDownIcon";
+import DropDownList from "../../common/DropDownList";
+import ArrowDropDownIcon from "../../../iconComponent/arrowDropDownIcon";
 import { useState } from "react";
 import PropertyResultFilterDialog from "./PropertyResultFilterDialog";
+import PropertyTypeFilter from "./PropertyTypeFilter";
+import PropertyPriceFilter from "./PropertyPriceFilter";
 
 function PropertyFilter() {
-  const [isActive, setIsActive] = useState(false);
+  const [isPropertyTypeActive, setIsPropertyTypeActive] = useState(false);
+  const [isPriceActive, setIsPriceActive] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
 
   const handleClick = () => {
-    setIsActive(!isActive);
+    setIsPropertyTypeActive(!isPropertyTypeActive);
+  };
+
+  const handlePriceClick = () => {
+    setIsPriceActive(!isPriceActive);
   };
 
   const handleFilterClickOpen = () => {
@@ -23,7 +29,11 @@ function PropertyFilter() {
   };
 
   const closePropertyTypeFilter = () => {
-    setIsActive(false);
+    setIsPropertyTypeActive(false);
+  };
+
+  const closePriceFilter = () => {
+    setIsPriceActive(false);
   };
 
   return (
@@ -35,7 +45,6 @@ function PropertyFilter() {
         backgroundColor: "#fff",
       }}
     >
-      <Box></Box>
       <Box
         sx={{
           gridTemplateColumns: `auto 190px repeat(3,150px) 120px 120px`,
@@ -47,20 +56,9 @@ function PropertyFilter() {
           display: "grid",
           gridGap: "12px",
           alignItems: "start",
-          margin: "4px auto 4px",
+          margin: "4px auto 12px",
           padding: "8px 0 0 0",
           zIndex: 501,
-          "::before": {
-            right: "100%",
-            content: '""',
-            display: "block",
-            position: "absolute",
-            width: ` calc((100vw - 100%) / 2)`,
-            top: 0,
-            bottom: `calc(0px - 12px)`,
-            background: "#fff",
-            zIndex: 499,
-          },
         }}
       >
         <Box sx={{ gridArea: "input", zIndex: "1500" }}>
@@ -161,7 +159,14 @@ function PropertyFilter() {
           </Box>
         </Box>
         <Box sx={{ gridArea: "price" }}>
-          <Box sx={{ display: "flex", rowGap: "4px", flexDirection: "column" }}>
+          <Box
+            sx={{
+              display: "flex",
+              rowGap: "4px",
+              flexDirection: "column",
+              position: "relative",
+            }}
+          >
             <label
               style={{
                 fontWeight: "600",
@@ -171,17 +176,33 @@ function PropertyFilter() {
             >
               Price
             </label>
-            <Box
+            <Button
+              onClick={() => handlePriceClick()}
               sx={{
-                display: "flex",
-                position: "relative",
-                rowGap: "4px",
-                flexDirection: "column",
-                flex: "1 1",
+                color: "#322744",
+                textAalign: "left",
+                display: "grid",
+                gridTemplateColumns: "auto 24px",
+                gridTemplateRows: "1fr",
+                gridColumnGap: "0",
+                gridRowGap: "0",
+                backgroundColor: "#fff",
+                height: "48px",
+                padding: "12px",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: "#322744ad",
+                borderRadius: "4px",
               }}
             >
-              <DropDownList value="Empty" />
-            </Box>
+              <ArrowDropDownIcon
+                arrowTransform={isPriceActive ? "rotate(180deg)" : ""}
+              />
+            </Button>
+            <PropertyPriceFilter
+              closePriceFilter={closePriceFilter}
+              showPriceOptions={isPriceActive ? "flex" : "none"}
+            ></PropertyPriceFilter>
           </Box>
         </Box>
         <Box sx={{ gridArea: "type" }}>
@@ -215,7 +236,7 @@ function PropertyFilter() {
               }}
             >
               <ArrowDropDownIcon
-                arrowTransform={isActive ? "rotate(180deg)" : ""}
+                arrowTransform={isPropertyTypeActive ? "rotate(180deg)" : ""}
               />
             </Button>
           </Box>
@@ -271,15 +292,39 @@ function PropertyFilter() {
           </Button>
         </Box>
       </Box>
-      <DropDownListVertical
+      <PropertyTypeFilter
         closePropertyTypeFilter={closePropertyTypeFilter}
-        showDropDown={isActive ? "block" : "none"}
+        showDropDown={isPropertyTypeActive ? "block" : "none"}
       />
       <PropertyResultFilterDialog
         handleFilterClickOpen={handleFilterClickOpen}
         open={filterOpen}
         handleFilterClickClose={handleFilterClickClose}
       ></PropertyResultFilterDialog>
+      <Box
+        sx={{
+          justifyContent: "flex-start",
+          borderBottom: "1px solid #3227441f",
+          ":before": {
+            right: "100%",
+            width: "calc((100vw - 100%)/2)",
+            content: '""',
+            background: "#fff",
+            display: "block",
+            position: "absolute",
+            borderBottom: "1px solid #3227441f",
+          },
+          ":after": {
+            left: "100%",
+            width: "calc((100vw - 100%)/2)",
+            content: '""',
+            background: "#fff",
+            display: "block",
+            position: "absolute",
+            borderBottom: "1px solid #3227441f",
+          },
+        }}
+      ></Box>
     </Box>
   );
 }

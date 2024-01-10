@@ -18,7 +18,7 @@ import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
-import PropertyFilter from "./PropertyFilter";
+import PropertyFilter from "./filters/PropertyFilter";
 
 function PropertyListing() {
   const theme = useTheme();
@@ -45,6 +45,7 @@ function PropertyListing() {
               margin: "0 auto",
               maxWidth: "calc(1200px + (2 * 32px))",
               boxSizing: "border-box",
+              padding: "16px 0",
             }}
           >
             <PropertySearchSection>

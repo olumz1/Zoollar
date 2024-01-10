@@ -5,13 +5,20 @@ import IconButton from "@mui/material/IconButton";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
-import DetachedHome from "../../iconComponent/detachedHome";
-import SemiDetachedHome from "../../iconComponent/semiDetachedHome";
-import TerracedHome from "../../iconComponent/terracedHome";
-import FlatHome from "../../iconComponent/flatHome";
-import Bungalow from "../../iconComponent/bungalow";
-import WareHouse from "../../iconComponent/wareHouse";
-import Land from "../../iconComponent/land";
+import DetachedHome from "../../../iconComponent/detachedHome";
+import SemiDetachedHome from "../../../iconComponent/semiDetachedHome";
+import TerracedHome from "../../../iconComponent/terracedHome";
+import FlatHome from "../../../iconComponent/flatHome";
+import Bungalow from "../../../iconComponent/bungalow";
+import WareHouse from "../../../iconComponent/wareHouse";
+import Land from "../../../iconComponent/land";
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 export default function PropertyResultFilterDialog(props) {
   const theme = useTheme();
@@ -30,6 +37,24 @@ export default function PropertyResultFilterDialog(props) {
   const [sliceStartValue, setsliceStartValue] = useState(0);
   const [sliceEndValue, setsliceEndValue] = useState(bedrooms.length);
   const [addToFilter, setAddToFilter] = useState([]);
+  const [checkedpropertyFeatures, setcheckedpropertyFeatures] = useState(
+    propertyFeatures.slice().fill(false)
+  );
+  const [checkedSellerTypes, setCheckedSellerTypes] = useState(
+    sellerTypes.slice().fill(false)
+  );
+
+  const handleSellerTypeChange = (index) => {
+    setCheckedSellerTypes(
+      checkedSellerTypes.map((v, i) => (i === index ? !v : v))
+    );
+  };
+
+  const handlePropertyFeaturesChange = (index) => {
+    setcheckedpropertyFeatures(
+      checkedpropertyFeatures.map((v, i) => (i === index ? !v : v))
+    );
+  };
 
   const handleDuplexClick = (propertyType) => {
     setIsDuplexSelected(!isDuplexSelected);
@@ -353,22 +378,13 @@ export default function PropertyResultFilterDialog(props) {
                     flexBasis: "0%",
                   }}
                 >
-                  <InputLabel
-                    id="min-beds"
-                    sx={{
-                      color: "#322744",
-                      fontWeight: "600",
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                    }}
-                  >
-                    Min beds
-                  </InputLabel>
-                  <Select
+                  <TextField
                     labelId="min-beds"
                     id="min-beds-select"
+                    select
                     value={selectedMinRooms}
                     label="Min beds"
+                    defaultValue="Self contain"
                     onChange={handleMinRoomChange}
                   >
                     {bedrooms.slice(0, sliceEndValue).map((minRooms) => (
@@ -376,7 +392,7 @@ export default function PropertyResultFilterDialog(props) {
                         {minRooms}
                       </MenuItem>
                     ))}
-                  </Select>
+                  </TextField>
                 </Box>
                 <Box
                   sx={{
@@ -389,22 +405,13 @@ export default function PropertyResultFilterDialog(props) {
                     flexBasis: "0%",
                   }}
                 >
-                  <InputLabel
-                    id="max-beds"
-                    sx={{
-                      color: "#322744",
-                      fontWeight: "600",
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                    }}
-                  >
-                    Max beds
-                  </InputLabel>
-                  <Select
+                  <TextField
                     labelId="max-beds"
                     id="max-beds-select"
+                    select
                     value={selectedMaxRooms}
                     label="Max beds"
+                    defaultValue="Self contain"
                     onChange={handleMaxRoomChange}
                   >
                     {bedrooms
@@ -414,7 +421,7 @@ export default function PropertyResultFilterDialog(props) {
                           {maxRooms}
                         </MenuItem>
                       ))}
-                  </Select>
+                  </TextField>
                 </Box>
               </Box>
             </Box>
@@ -490,22 +497,12 @@ export default function PropertyResultFilterDialog(props) {
                     flexBasis: "0%",
                   }}
                 >
-                  <InputLabel
-                    id="min-beds"
-                    sx={{
-                      color: "#322744",
-                      fontWeight: "600",
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                    }}
-                  >
-                    Min price
-                  </InputLabel>
-                  <Select
-                    labelId="min-price"
-                    id="min-price-select"
-                    value={selectedMinPrice}
+                  <TextField
+                    id="outlined-select-minprice"
+                    select
                     label="Min price"
+                    defaultValue="₦100,000"
+                    value={selectedMinPrice}
                     onChange={handleMinPriceChange}
                   >
                     {priceList.map((minPrice) => (
@@ -513,7 +510,7 @@ export default function PropertyResultFilterDialog(props) {
                         {minPrice}
                       </MenuItem>
                     ))}
-                  </Select>
+                  </TextField>
                 </Box>
                 <Box
                   sx={{
@@ -526,22 +523,12 @@ export default function PropertyResultFilterDialog(props) {
                     flexBasis: "0%",
                   }}
                 >
-                  <InputLabel
-                    id="max-price"
-                    sx={{
-                      color: "#322744",
-                      fontWeight: "600",
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                    }}
-                  >
-                    Max price
-                  </InputLabel>
-                  <Select
-                    labelId="max-price"
-                    id="max-price-select"
-                    value={selectedMaxPrice}
+                  <TextField
+                    id="outlined-select-maxprice"
+                    select
                     label="Max price"
+                    defaultValue="₦100,000"
+                    value={selectedMaxPrice}
                     onChange={handleMaxPriceChange}
                   >
                     {priceList.map((maxPrice) => (
@@ -549,7 +536,7 @@ export default function PropertyResultFilterDialog(props) {
                         {maxPrice}
                       </MenuItem>
                     ))}
-                  </Select>
+                  </TextField>
                 </Box>
               </Box>
             </Box>
@@ -1012,6 +999,335 @@ export default function PropertyResultFilterDialog(props) {
               >
                 Must have
               </InputLabel>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "left",
+                  columnGap: "0",
+                  flexWrap: "wrap",
+                  rowGap: "16px",
+                }}
+              >
+                {propertyFeatures.map((propertyFeature, index) => (
+                  <Box sx={{ width: "50%" }}>
+                    <Box sx={{ minWidth: 0, display: "flex" }}>
+                      <Checkbox
+                        key={index}
+                        checked={checkedpropertyFeatures[index]}
+                        onChange={() => handlePropertyFeaturesChange(index)}
+                        sx={{
+                          order: 0,
+                          backgroundColor: "#fff",
+                          borderRadius: "4px",
+                          borderWidth: "1px",
+                          borderColor: "#322744ad",
+                          outline: "none",
+                          height: "24px",
+                          width: "24px",
+                          display: "flex",
+                          flexShrink: "0",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          cursor: "pointer",
+                          minWidth: 0,
+                        }}
+                      ></Checkbox>
+                      <Box
+                        sx={{
+                          paddingLeft: "16px",
+                          alignItems: "flex-start",
+                          color: "#322744",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "4px",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <label
+                          style={{
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                            width: "-webkit-fill-available",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {propertyFeature}
+                        </label>
+                      </Box>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                marginTop: "16px",
+                boxSizing: "border-box",
+                paddingBottom: "24px",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  whiteSpace: "nowrap",
+                  margin: "0",
+                  ":before": {
+                    width: "100%",
+                    borderTopStyle: "solid",
+                    borderTopWidth: "1px",
+                    content: '""',
+                    position: "relative",
+                    borderColor: "#3227443d",
+                    boxSizing: "border-box",
+                  },
+                  ":after": {
+                    content: '""',
+                    position: "relative",
+                    borderColor: "#3227443d",
+                    boxSizing: "border-box",
+                  },
+                }}
+              ></Box>
+            </Box>
+            <InputLabel
+              sx={{
+                color: "#322722",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "24px",
+              }}
+            >
+              Include & Exclude
+            </InputLabel>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "left",
+                columnGap: "16px",
+              }}
+            >
+              <FormControl>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    columnGap: "16px",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    rowGap: "16px",
+                  }}
+                >
+                  <FormLabel id="radio-buttons-newly-built-group-label">
+                    Newly built
+                  </FormLabel>
+                  <RadioGroup
+                    row
+                    aria-labelledby="radio-buttons-newly-built-group-label"
+                    defaultValue="Newly built"
+                    name="radio-buttons-group"
+                  >
+                    <FormControlLabel
+                      value="Newly built"
+                      control={<Radio />}
+                      label="Include"
+                    />
+                    <FormControlLabel
+                      value="Exclude Newly built"
+                      control={<Radio />}
+                      label="Exculde"
+                    />
+                  </RadioGroup>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    columnGap: "16px",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    rowGap: "16px",
+                  }}
+                >
+                  <FormLabel id="radio-buttons-shared-ownership-group-label">
+                    Joint ownership
+                  </FormLabel>
+                  <RadioGroup
+                    row
+                    aria-labelledby="radio-buttons-shared-ownership-group-label"
+                    defaultValue="Shared ownership"
+                    name="radio-buttons-group"
+                  >
+                    <FormControlLabel
+                      value="Shared ownership"
+                      control={<Radio />}
+                      label="Include"
+                    />
+                    <FormControlLabel
+                      value="Exclude Shared ownership"
+                      control={<Radio />}
+                      label="Exculde"
+                    />
+                  </RadioGroup>
+                </Box>
+              </FormControl>
+            </Box>
+            <Box
+              sx={{
+                marginTop: "16px",
+                boxSizing: "border-box",
+                paddingBottom: "24px",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  whiteSpace: "nowrap",
+                  margin: "0",
+                  ":before": {
+                    width: "100%",
+                    borderTopStyle: "solid",
+                    borderTopWidth: "1px",
+                    content: '""',
+                    position: "relative",
+                    borderColor: "#3227443d",
+                    boxSizing: "border-box",
+                  },
+                  ":after": {
+                    content: '""',
+                    position: "relative",
+                    borderColor: "#3227443d",
+                    boxSizing: "border-box",
+                  },
+                }}
+              ></Box>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                rowGap: "4px",
+                position: "relative",
+                flexGrow: 1,
+                flexShrink: "1",
+                flexBasis: "0%",
+              }}
+            >
+              <InputLabel
+                sx={{
+                  color: "#322722",
+                  fontWeight: "600",
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                }}
+              >
+                Advertised by:
+              </InputLabel>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "left",
+                  columnGap: "0",
+                  flexWrap: "wrap",
+                  rowGap: "16px",
+                }}
+              >
+                {sellerTypes.map((sellerType, index) => (
+                  <Box sx={{ width: "50%" }}>
+                    <Box sx={{ minWidth: 0, display: "flex" }}>
+                      <Checkbox
+                        key={index}
+                        checked={checkedSellerTypes[index]}
+                        onChange={() => handleSellerTypeChange(index)}
+                        sx={{
+                          order: 0,
+                          backgroundColor: "#fff",
+                          borderRadius: "4px",
+                          borderWidth: "1px",
+                          borderColor: "#322744ad",
+                          outline: "none",
+                          height: "24px",
+                          width: "24px",
+                          display: "flex",
+                          flexShrink: "0",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          cursor: "pointer",
+                          minWidth: 0,
+                        }}
+                      ></Checkbox>
+                      <Box
+                        sx={{
+                          paddingLeft: "16px",
+                          alignItems: "flex-start",
+                          color: "#322744",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "4px",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <label
+                          style={{
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                            width: "-webkit-fill-available",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {sellerType}
+                        </label>
+                      </Box>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "16px",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "center",
+                  columnGap: "40px",
+                }}
+              >
+                <Button
+                  sx={{
+                    height: "48px",
+                    textTransform: "capitalize",
+                    fontSize: "16px",
+                    columnGap: "8px",
+                    minWidth: "100px",
+                    ":hover": { textDecoration: "underline" },
+                  }}
+                >
+                  Reset all
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{
+                    textTransform: "capitalize",
+                    fontSize: "16px",
+                    columnGap: "8px",
+                    minWidth: "100px",
+                  }}
+                >
+                  Filter
+                </Button>
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -1092,4 +1408,44 @@ const priceList = [
   "₦80,000,000,000",
   "₦90,000,000,000",
   "₦100,000,000,000",
+];
+
+const sellerTypes = [
+  "Builder",
+  "Agent",
+  "Owner",
+  "Government",
+  "Other third parties",
+];
+
+const propertyFeatures = [
+  "Show all",
+  "Bulletproof Doors",
+  "Garden",
+  "Strong Internet Coverage",
+  "Strong Phone Signal",
+  "Close To Town Center",
+  "Spacious Compound",
+  "Friendly Neighbours",
+  "Ample Parking Space",
+  "Swimming Pool",
+  "GateHouse",
+  "Water Heater",
+  "Gated Estate",
+  "Cctv Monitored",
+  "Smart Home",
+  "Borehole Water Supply",
+  "Well Water Supply",
+  "Tarred Road",
+  "Fully Furnished",
+  "Unfurnished",
+  "Partly Furnished",
+  "Fire Alarm System",
+  "Cinema",
+  "Gym",
+  "Estate Security",
+  "Boys Quarters",
+  "Fully Air Conditioned",
+  "Partly Air Conditioned",
+  "24hr Security",
 ];
