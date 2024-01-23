@@ -2,35 +2,35 @@ import { Box, Button, MenuItem, TextField } from "@mui/material";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import { useEffect, useState } from "react";
 
-export default function PropertyPriceFilter(props) {
-  const [open, setOpen] = useState(props.showPriceOptions);
-  const [selectedMinPrice, setselectedMinPrice] = useState("");
-  const [selectedMaxPrice, setselectedMaxPrice] = useState("");
+export default function PropertyBedroomsFilter(props) {
+  const [open, setOpen] = useState(props.showBedroomOptions);
+  const [selectedMinBed, setselectedMinBed] = useState("");
+  const [selectedMaxBed, setselectedMaxBed] = useState("");
 
   const handleClickAway = () => {
     if (open === "flex") {
       setOpen("none");
-      props.closePriceFilter();
+      props.closeBedFilter();
     }
   };
 
-  const handleMaxPriceChange = (event) => {
-    setselectedMaxPrice(event.target.value);
+  const handleMaxBedChange = (event) => {
+    setselectedMaxBed(event.target.value);
   };
-  const handleMinPriceChange = (event) => {
-    setselectedMinPrice(event.target.value);
+  const handleMinBedChange = (event) => {
+    setselectedMinBed(event.target.value);
   };
 
   useEffect(() => {
-    setOpen(props.showPriceOptions);
-  }, [props.showPriceOptions]);
+    setOpen(props.showBedOptions);
+  }, [props.showBedOptions]);
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <Box
         sx={{
           left: 0,
-          display: props.showPriceOptions,
+          display: props.showBedOptions,
           flexGrow: "1",
           marginTop: "8px",
           position: "absolute",
@@ -64,20 +64,20 @@ export default function PropertyPriceFilter(props) {
             }}
           >
             <TextField
-              labelId="min-price"
+              labelId="min-beds"
               id="min-beds-select"
               select
-              value={selectedMinPrice}
+              value={selectedMinBed}
               label="Min price"
               defaultValue="Self contain"
-              onChange={handleMinPriceChange}
+              onChange={handleMinBedChange}
               SelectProps={{
                 MenuProps: { disablePortal: true, sx: { height: "400px" } },
               }}
             >
-              {priceList.map((minPrice) => (
-                <MenuItem sx={{}} key={minPrice} value={minPrice}>
-                  {minPrice}
+              {bedrooms.map((minBed) => (
+                <MenuItem sx={{}} key={minBed} value={minBed}>
+                  {minBed}
                 </MenuItem>
               ))}
             </TextField>
@@ -102,20 +102,20 @@ export default function PropertyPriceFilter(props) {
             }}
           >
             <TextField
-              labelId="max-price"
-              id="max-price-select"
+              labelId="max-beds"
+              id="max-beds-select"
               select
-              value={selectedMaxPrice}
-              label="Max price"
-              defaultValue="Max price"
-              onChange={handleMaxPriceChange}
+              value={selectedMaxBed}
+              label="Max bed"
+              defaultValue="Max bed"
+              onChange={handleMaxBedChange}
               SelectProps={{
                 MenuProps: { disablePortal: true, sx: { height: "400px" } },
               }}
             >
-              {priceList.map((maxPrice) => (
-                <MenuItem key={maxPrice} value={maxPrice}>
-                  {maxPrice}
+              {bedrooms.map((maxBed) => (
+                <MenuItem key={maxBed} value={maxBed}>
+                  {maxBed}
                 </MenuItem>
               ))}
             </TextField>
@@ -126,46 +126,16 @@ export default function PropertyPriceFilter(props) {
   );
 }
 
-const priceList = [
-  "₦100,000",
-  "₦500,000",
-  "₦1,000,000",
-  "₦5,000,000",
-  "₦10,000,000",
-  "₦20,000,000",
-  "₦30,000,000",
-  "₦40,000,000",
-  "₦50,000,000",
-  "₦60,000,000",
-  "₦70,000,000",
-  "₦80,000,000",
-  "₦90,000,000",
-  "₦100,000,000",
-  "₦200,000,000",
-  "₦300,000,000",
-  "₦400,000,000",
-  "₦500,000,000",
-  "₦600,000,000",
-  "₦700,000,000",
-  "₦800,000,000",
-  "₦900,000,000",
-  "₦1,000,000,000",
-  "₦2,000,000,000",
-  "₦3,000,000,000",
-  "₦4,000,000,000",
-  "₦5,000,000,000",
-  "₦6,000,000,000",
-  "₦7,000,000,000",
-  "₦8,000,000,000",
-  "₦9,000,000,000",
-  "₦10,000,000,000",
-  "₦20,000,000,000",
-  "₦30,000,000,000",
-  "₦40,000,000,000",
-  "₦50,000,000,000",
-  "₦60,000,000,000",
-  "₦70,000,000,000",
-  "₦80,000,000,000",
-  "₦90,000,000,000",
-  "₦100,000,000,000",
+const bedrooms = [
+  "Self contain",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10 or more",
 ];

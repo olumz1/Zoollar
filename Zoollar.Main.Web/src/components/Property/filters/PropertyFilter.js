@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, List, MenuItem, Select, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import DropDownList from "../../common/DropDownList";
 import ArrowDropDownIcon from "../../../iconComponent/arrowDropDownIcon";
@@ -6,11 +6,16 @@ import { useState } from "react";
 import PropertyResultFilterDialog from "./PropertyResultFilterDialog";
 import PropertyTypeFilter from "./PropertyTypeFilter";
 import PropertyPriceFilter from "./PropertyPriceFilter";
+import PropertyDistanceFilter from "./PropertyDistanceFilter";
+import PropertyBedroomsFilter from "./PropertyBedroomsFilter";
 
 function PropertyFilter() {
   const [isPropertyTypeActive, setIsPropertyTypeActive] = useState(false);
   const [isPriceActive, setIsPriceActive] = useState(false);
+  const [isBedActive, setIsBedActive] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [isDistanceActive, setIsDistanceActive] = useState(false);
+  const [selectedDistance, setselectedDistance] = useState("");
 
   const handleClick = () => {
     setIsPropertyTypeActive(!isPropertyTypeActive);
@@ -18,6 +23,14 @@ function PropertyFilter() {
 
   const handlePriceClick = () => {
     setIsPriceActive(!isPriceActive);
+  };
+
+  const handleDistanceClick = () => {
+    setIsDistanceActive(!isDistanceActive);
+  };
+
+  const handleBedClick = () => {
+    setIsBedActive(!isBedActive);
   };
 
   const handleFilterClickOpen = () => {
@@ -34,6 +47,18 @@ function PropertyFilter() {
 
   const closePriceFilter = () => {
     setIsPriceActive(false);
+  };
+
+  const closeBedFilter = () => {
+    setIsBedActive(false);
+  };
+
+  const closeDistanceFilter = () => {
+    setIsDistanceActive(false);
+  };
+
+  const handleDistanceChange = (event) => {
+    setselectedDistance(event.target.value);
   };
 
   return (
@@ -117,6 +142,7 @@ function PropertyFilter() {
                 fontWeight: "600",
                 fontSize: "16px",
                 lineHeight: "24px",
+                position: "relative",
               }}
             >
               Distance
@@ -130,12 +156,36 @@ function PropertyFilter() {
                 flex: "1 1",
               }}
             >
-              <DropDownList />
+              <Select
+                value={selectedDistance}
+                onChange={handleDistanceChange}
+                variant="outlined"
+                style={{
+                  height: 48,
+
+                  "& .MuiSelect-select": {
+                    padding: "0px 14px",
+                  },
+                }}
+              >
+                {distances.map((distance, index) => (
+                  <MenuItem key={distance + index} value={distance}>
+                    {distance}
+                  </MenuItem>
+                ))}
+              </Select>
             </Box>
           </Box>
         </Box>
         <Box sx={{ gridArea: "bedrooms" }}>
-          <Box sx={{ display: "flex", rowGap: "4px", flexDirection: "column" }}>
+          <Box
+            sx={{
+              display: "flex",
+              rowGap: "4px",
+              flexDirection: "column",
+              position: "relative",
+            }}
+          >
             <label
               style={{
                 fontWeight: "600",
@@ -145,17 +195,33 @@ function PropertyFilter() {
             >
               Bedrooms
             </label>
-            <Box
+            <Button
+              onClick={() => handleBedClick()}
               sx={{
-                display: "flex",
-                position: "relative",
-                rowGap: "4px",
-                flexDirection: "column",
-                flex: "1 1",
+                color: "#322744",
+                textAalign: "left",
+                display: "grid",
+                gridTemplateColumns: "auto 24px",
+                gridTemplateRows: "1fr",
+                gridColumnGap: "0",
+                gridRowGap: "0",
+                backgroundColor: "#fff",
+                height: "48px",
+                padding: "12px",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: "#322744ad",
+                borderRadius: "4px",
               }}
             >
-              <DropDownList />
-            </Box>
+              <ArrowDropDownIcon
+                arrowTransform={isBedActive ? "rotate(180deg)" : ""}
+              />
+            </Button>
+            <PropertyBedroomsFilter
+              closeBedFilter={closeBedFilter}
+              showBedOptions={isBedActive ? "flex" : "none"}
+            ></PropertyBedroomsFilter>
           </Box>
         </Box>
         <Box sx={{ gridArea: "price" }}>
@@ -330,3 +396,19 @@ function PropertyFilter() {
 }
 
 export default PropertyFilter;
+
+const distances = [
+  "This area only",
+  "0.25 Kilometers",
+  "0.5 Kilometers",
+  "1 Kilometer",
+  "3 Kilometers",
+  "5 Kilometers",
+  "10 Kilometers",
+  "15 Kilometers",
+  "20 Kilometers",
+  "25 Kilometers",
+  "30 Kilometers",
+  "40 Kilometers",
+  "50 Kilometers",
+];

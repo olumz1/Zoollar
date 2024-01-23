@@ -6,6 +6,7 @@ import ToLet from "./pages/property/tolet";
 import Property from "./pages/property/property";
 import { ThemeProvider } from "@mui/material";
 import theme from "./styles/theme";
+import PropertyUpload from "./pages/forms/property/PropertyUploadForm";
 
 function App() {
   useEffect(() => {
@@ -22,6 +23,10 @@ function App() {
             <Route path="/property/forsale" element={<ForSale />} />
             <Route path="/property/tolet" element={<ToLet />} />
             <Route path="property/property/:id" element={<Property />} />
+            <Route
+              path="/property/advert/upload"
+              element={<PropertyUpload />}
+            />
           </Routes>
         </BrowserRouter>
       </div>

@@ -296,11 +296,11 @@ export default function PropertyResultFilterDialog(props) {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={selectedDistance}
-                label="Age"
                 onChange={handleDistanceChange}
+                style={{ height: 30 }}
               >
-                {distances.map((distance) => (
-                  <MenuItem key={distance} value={distance}>
+                {distances.map((distance, index) => (
+                  <MenuItem key={distance + index} value={distance}>
                     {distance}
                   </MenuItem>
                 ))}
@@ -387,8 +387,8 @@ export default function PropertyResultFilterDialog(props) {
                     defaultValue="Self contain"
                     onChange={handleMinRoomChange}
                   >
-                    {bedrooms.slice(0, sliceEndValue).map((minRooms) => (
-                      <MenuItem key={minRooms} value={minRooms}>
+                    {bedrooms.slice(0, sliceEndValue).map((minRooms, index) => (
+                      <MenuItem key={minRooms + index} value={minRooms}>
                         {minRooms}
                       </MenuItem>
                     ))}
@@ -416,8 +416,8 @@ export default function PropertyResultFilterDialog(props) {
                   >
                     {bedrooms
                       .slice(sliceStartValue, bedrooms.length)
-                      .map((maxRooms) => (
-                        <MenuItem key={maxRooms} value={maxRooms}>
+                      .map((maxRooms, index) => (
+                        <MenuItem key={maxRooms + index} value={maxRooms}>
                           {maxRooms}
                         </MenuItem>
                       ))}
