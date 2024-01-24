@@ -37,7 +37,9 @@ export function PropertyFormHeader(props) {
             {props.totalSteps}
           </h1> */}
 
-          <MultiStepProgressBar></MultiStepProgressBar>
+          <MultiStepProgressBar
+            step={props.currentStepIndex}
+          ></MultiStepProgressBar>
 
           <section
             style={{

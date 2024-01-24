@@ -57,7 +57,7 @@ export default function PropertyDetails({
   };
 
   const selectCurrency =
-    currencyUsed && currencies.find((x) => x.value === currency);
+    currencyUsed && currencies.find((x) => x.value === currencyUsed);
 
   return (
     <>

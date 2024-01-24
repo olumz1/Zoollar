@@ -83,7 +83,6 @@ function PropertyUploadForm() {
             currentStepIndex={currentStepIndex + 1}
             totalSteps={steps.length}
           ></PropertyFormHeader>
-          {/* <MultiStepProgressBar></MultiStepProgressBar> */}
           <section style={{ position: "relative", marginBottom: "16px" }}>
             <section
               style={{
