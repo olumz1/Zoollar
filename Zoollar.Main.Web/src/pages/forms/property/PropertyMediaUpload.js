@@ -1,8 +1,9 @@
 import { useState } from "react";
 //import { FileUploader } from "react-drag-drop-files";
-import FileUpload from "react-mui-fileuploader";
+//import FileUpload from "react-mui-fileuploader";
 import "./propertyimageupload.css";
 import { Box, Button, TextField } from "@mui/material";
+import YoutubeClip from "../../../components/common/YoutubeClip";
 
 function PropertyMediaUpload({
   propertyImage,
@@ -51,7 +52,7 @@ function PropertyMediaUpload({
       <legend style={{ color: "#A9A9A9", fontSize: "16px" }}>
         Media section
       </legend>
-      <FileUpload
+      {/* <FileUpload
         getBase64={false}
         multiFile={true}
         disabled={false}
@@ -89,9 +90,8 @@ function PropertyMediaUpload({
           md: { width: 164, height: 164 },
           lg: { width: 256, height: 256 },
         }}
-      />
-
-      <FileUpload
+      /> */}
+      {/* <FileUpload
         getBase64={false}
         multiFile={true}
         disabled={false}
@@ -130,8 +130,7 @@ function PropertyMediaUpload({
           md: { width: 164, height: 164 },
           lg: { width: 256, height: 256 },
         }}
-      />
-
+      /> */}
       {videoFile.length <= 0 && (
         <TextField
           label="Video URL"
@@ -142,7 +141,7 @@ function PropertyMediaUpload({
         />
       )}
 
-      {video && (
+      {video ? (
         <video
           id="propertyVideoUrl"
           value={propertyVideoUrl}
@@ -154,7 +153,12 @@ function PropertyMediaUpload({
           <source src={video} />
           Your browser does not support HTML5 video.
         </video>
+      ) : (
+        //todo: integrate youtube video later
+        // <YoutubeClip embedId="rokGy0huYEA"></YoutubeClip>
+        <></>
       )}
+
       <TextField
         id="virtualTourUrl"
         label="Virtual tour URL"
@@ -164,8 +168,7 @@ function PropertyMediaUpload({
         fullWidth
         sx={{ marginRight: "16px", m: 1, width: "45rem" }}
       />
-
-      <FileUpload
+      {/* <FileUpload
         getBase64={false}
         multiFile={true}
         disabled={false}
@@ -204,7 +207,7 @@ function PropertyMediaUpload({
           md: { width: 164, height: 164 },
           lg: { width: 256, height: 256 },
         }}
-      />
+      /> */}
     </Box>
   );
 }

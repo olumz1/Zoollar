@@ -10,7 +10,7 @@ import useMultistepForm from "./useMultistepForm";
 import { useState } from "react";
 import PropertyDetails from "./PropertyDetails";
 import OtherPropertyDetails from "./OtherPropertyDetails";
-import { MultiStepProgressBar } from "../../../components/common/MultiStepProgressBar";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_DATA = {
   propertyImage: [],
@@ -38,6 +38,7 @@ const INITIAL_DATA = {
 
 function PropertyUploadForm() {
   const [data, setData] = useState(INITIAL_DATA);
+  const navigate = useNavigate();
   function updateFields(newValues) {
     setData((prev) => {
       return { ...prev, ...newValues };
@@ -71,7 +72,10 @@ function PropertyUploadForm() {
 
   function onSubmit(e) {
     e.preventDefault();
-    next();
+    if (!isLastStep) return next();
+    alert("Property Updated");
+
+    navigate("./Confirmation");
   }
 
   return (

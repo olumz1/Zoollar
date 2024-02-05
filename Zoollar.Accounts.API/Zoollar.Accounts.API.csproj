@@ -9,6 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\EstateAgent\**" />
+    <Compile Remove="Services\Landlord\**" />
+    <Content Remove="Services\EstateAgent\**" />
+    <Content Remove="Services\Landlord\**" />
+    <EmbeddedResource Remove="Services\EstateAgent\**" />
+    <EmbeddedResource Remove="Services\Landlord\**" />
+    <None Remove="Services\EstateAgent\**" />
+    <None Remove="Services\Landlord\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
@@ -22,15 +33,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\EstateAgent\" />
-    <Folder Include="Services\Landlord\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
   </ItemGroup>
 
 </Project>

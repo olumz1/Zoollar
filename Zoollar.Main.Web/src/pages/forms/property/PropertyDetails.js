@@ -18,6 +18,7 @@ import { CheckBox } from "@mui/icons-material";
 
 export default function PropertyDetails({
   currency,
+  //see how to set this up with updateFields
   Amount,
   offers,
   propertyType,
@@ -32,7 +33,6 @@ export default function PropertyDetails({
   town,
   city,
   state,
-  propertyFeatures,
   updateFields,
 }) {
   const [currencyUsed, setCurrencyUsed] = useState("Naira");
@@ -274,7 +274,11 @@ export default function PropertyDetails({
             required
             rows={8}
             variant="outlined"
+            value={propertyDescription}
             sx={{ m: 1, width: "100%" }}
+            onChange={(e) =>
+              updateFields({ propertyDescription: e.target.value })
+            }
           />
         </Box>
         <Box sx={{ m: 1 }}>
@@ -282,6 +286,10 @@ export default function PropertyDetails({
             id="house-no"
             label="House name or number"
             variant="outlined"
+            value={houseNameOrNumber}
+            onChange={(e) =>
+              updateFields({ houseNameOrNumber: e.target.value })
+            }
             sx={{ marginBottom: "16px" }}
           />
           <br />
@@ -290,6 +298,8 @@ export default function PropertyDetails({
             id="address-line-1"
             label="Address line 1"
             variant="outlined"
+            value={addressLine1}
+            onChange={(e) => updateFields({ addressLine1: e.target.value })}
             sx={{ marginBottom: "16px" }}
           />
           <br />
@@ -298,6 +308,8 @@ export default function PropertyDetails({
             id="address-line-2"
             label="Address line 2"
             variant="outlined"
+            value={addressLine2}
+            onChange={(e) => updateFields({ addressLine2: e.target.value })}
             sx={{ marginBottom: "16px" }}
           />
           <br />
@@ -305,6 +317,8 @@ export default function PropertyDetails({
             id="town"
             label="Town"
             variant="outlined"
+            value={town}
+            onChange={(e) => updateFields({ town: e.target.value })}
             sx={{ marginRight: "16px" }}
           />
           <TextField
@@ -312,6 +326,8 @@ export default function PropertyDetails({
             label="City"
             required
             variant="outlined"
+            value={city}
+            onChange={(e) => updateFields({ city: e.target.value })}
             sx={{ marginRight: "16px" }}
           />
           <TextField

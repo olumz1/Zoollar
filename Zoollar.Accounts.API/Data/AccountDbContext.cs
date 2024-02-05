@@ -10,15 +10,13 @@ namespace Zoollar.Accounts.API.Data
         {
         }
 
-        public DbSet<AccountInfo> Accounts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         public DbSet<EstateAgent> EstateAgents { get; set; }
 
         public DbSet<Landlord> Landlords { get; set; }
         
         public DbSet<Lender> Lenders { get; set; }
-
-        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,11 +40,11 @@ namespace Zoollar.Accounts.API.Data
 
             modelBuilder.Entity<Lender>().ToTable("Lenders");
 
-            modelBuilder.Entity<User>().ToTable("Users").HasOne(a=>a.Address).WithOne()
-                .HasPrincipalKey<User>(x=>x.Id)
+            modelBuilder.Entity<Account>().ToTable("Accounts").HasOne(a=>a.Address).WithOne()
+                .HasPrincipalKey<Account>(x=>x.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<User>().ToTable("Users")
+            modelBuilder.Entity<Account>().ToTable("Accounts")
                 .HasMany(a => a.AlertAndSearches).WithOne()
                 .OnDelete(DeleteBehavior.Cascade);
         }

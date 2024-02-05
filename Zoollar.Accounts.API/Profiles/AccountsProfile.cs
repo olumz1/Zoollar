@@ -9,15 +9,15 @@ namespace Zoollar.Accounts.API.Profiles
     {
         public AccountsProfile()
         {
-            CreateMap<CreateUserAccountDto, User>()
+            CreateMap<CreateUserAccountDto, Account>()
                 .ForMember(pt => pt.Id, act => act.Ignore());
             CreateMap<AddressDto, Address>();
             CreateMap<AlertAndSearchesDto, AlertAndSearches>();
             CreateMap<AccountInfoDto, AccountInfo>()
                 .ForMember(pt => pt.DateCreated, act => act.Ignore());
-            CreateMap<User, GetUserAccountDto>()
+            CreateMap<Account, GetUserAccountDto>()
                 .ForMember(pt => pt.Id, act => act.MapFrom(d => d.Id));
-            CreateMap<GetUserAccountDto, User>();
+            CreateMap<GetUserAccountDto, Account>();
             CreateMap<AccountInfo, AccountInfoDto>();
             CreateMap<Address, AddressDto>();
             CreateMap<AlertAndSearches, AlertAndSearchesDto>();

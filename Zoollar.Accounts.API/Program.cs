@@ -1,4 +1,4 @@
-using JwtAuthenticationManager;
+//using JwtAuthenticationManager;
 using Microsoft.EntityFrameworkCore;
 using Zoollar.Accounts.API.Common;
 using Zoollar.Accounts.API.Data;
@@ -19,8 +19,8 @@ builder.Services.AddDbContext<AccountDbContext>(
     options.UseSqlServer
     (builder.Configuration.GetConnectionString("AccountsDbConnectionString")));
 builder.Services.AddScoped<IDateTimeProvider, DateTimeProvider>();
-builder.Services.AddScoped<IUserServices, UserServices>();
-builder.Services.AddSingleton<JwtTokenHandler>();
+builder.Services.AddScoped<IAccountServices, AccountServices>();
+//builder.Services.AddSingleton<JwtTokenHandler>();
 builder.Services.AddTransient(typeof(UserRepo));
 
 var app = builder.Build();

@@ -7,6 +7,7 @@ import Property from "./pages/property/property";
 import { ThemeProvider } from "@mui/material";
 import theme from "./styles/theme";
 import PropertyUpload from "./pages/forms/property/PropertyUploadForm";
+import Confirmation from "./pages/forms/property/Confirmation";
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,10 @@ function App() {
             <Route
               path="/property/advert/upload"
               element={<PropertyUpload />}
+            />
+            <Route
+              path="property/advert/upload/Confirmation"
+              element={<Confirmation />}
             />
           </Routes>
         </BrowserRouter>

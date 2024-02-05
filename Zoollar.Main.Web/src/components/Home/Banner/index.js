@@ -85,7 +85,7 @@ export default function Banner() {
                   paddingBottom: 0,
                   color: "#fff",
                   textShadow:
-                    "0px 0px 8px #3227440a,0px 0px 1px #32274452,0px 8px 8px -8px #32274429;",
+                    "0px 0px 8px #3227440a,0px 0px 1px #32274452,0px 8px 8px -8px #32274429",
                   padding: `0 16px 8px 16px`,
                   fontSize: "18px",
                   lineHeight: "28px",
