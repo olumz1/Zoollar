@@ -5,29 +5,34 @@ import { Input, TextField, Typography } from "@mui/material";
 
 export const BannerContainer = styled(Box)(({ src, theme }) => ({
   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${src})`,
-  backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   position: "relative",
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column",
-    alignItems: "center",
-  },
+  height: "75vh",
+  // [theme.breakpoints.down("sm")]: {
+  //   flexDirection: "column",
+  //   alignItems: "center",
+  // },
 }));
 
 export const BannerContent = styled(Box)(() => ({
-  maxWidth: 420,
-  padding: "280px",
+  display: "grid",
+  gridTemplateColumns: "repeat(12,minmax(0,1fr))",
+  gridAutoRows: "max-content",
+  width: "100%",
+  maxWidth: "1224px",
+  gridColumnGap: "16px",
 }));
 
 export const BannerTitle = styled(Typography)(({ theme }) => ({
+  color: "#fff",
+  textShadow: `0px 0px 8px #3227440a,0px 0px 1px #32274452,0px 8px 8px -8px #32274429`,
+  marginBottom: "24px",
+  padding: 0,
   textAlign: "center",
-  position: "absolute",
-  top: "40%",
-  left: "50%",
-  padding: "20px, 10px",
-  color: Colors.white,
-  transform: "translate(-50%, -90%)",
+  fontWeight: 600,
+  fontSize: "40px",
+  lineHeight: "48px",
   [theme.breakpoints.down("sm")]: {
     fontSize: "42px",
   },
@@ -63,8 +68,6 @@ export const BannerSearchBox = styled(TextField)(({ place, theme }) => ({
   boxSizing: "border-box",
   position: "relative",
   display: "block",
-  top: "30%",
-  left: "25%",
   [theme.breakpoints.down("md")]: {
     lineHeight: 1.15,
     letterSpacing: 1.15,
@@ -78,9 +81,7 @@ export const BannerSearchBox = styled(TextField)(({ place, theme }) => ({
     marginBottom: "1.5em",
     left: "15%",
   },
-  transform: "translate(5%, 80%)",
   textDecoration: "none",
-  padding: "1px",
   inputRoot: {
     borderRadius: "0px",
   },

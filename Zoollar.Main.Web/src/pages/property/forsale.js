@@ -3,20 +3,15 @@ import theme from "../../styles/theme";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer/Footer";
 import PropertyListing from "../../components/Property/PropertyListing";
+import { BodyContentContainer } from "../../styles/root";
 
 function ForSale() {
   return (
-    <ThemeProvider theme={theme}>
-      <Container
-        sx={{ background: "#fff", maxWidth: "100%" }}
-        maxWidth={false}
-        disableGutters
-      >
-        <Navbar />
-        <PropertyListing />
-        <Footer />
-      </Container>
-    </ThemeProvider>
+    <BodyContentContainer>
+      <Navbar />
+      <PropertyListing />
+      <Footer />
+    </BodyContentContainer>
   );
 }
 

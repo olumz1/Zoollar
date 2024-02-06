@@ -4,7 +4,7 @@ using Zoollar.Accounts.API.Models.Entities;
 
 namespace Zoollar.Accounts.API.Services.UserAccount
 {
-    public interface IUserServices
+    public interface IAccountServices
     {
         Task<GetUserAccountDto> CreateUserAccount(CreateUserAccountDto user);
         Task<GetUserAccountDto> GetUserAccountById(Guid id);

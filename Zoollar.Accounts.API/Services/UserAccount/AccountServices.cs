@@ -8,13 +8,13 @@ using Zoollar.Accounts.API.Models.Entities;
 
 namespace Zoollar.Accounts.API.Services.UserAccount
 {
-    public class UserServices : IUserServices
+    public class AccountServices : IAccountServices
     {
         private readonly UserRepo _userRepo;
         private readonly IMapper _mapper;
         private readonly IDateTimeProvider _dateTimeProvider;
 
-        public UserServices(IMapper mapper, IDateTimeProvider dateTimeProvider, UserRepo userRepo)
+        public AccountServices(IMapper mapper, IDateTimeProvider dateTimeProvider, UserRepo userRepo)
         {
             _userRepo = userRepo;
             _mapper = mapper;
@@ -24,12 +24,12 @@ namespace Zoollar.Accounts.API.Services.UserAccount
 
         public async Task<GetUserAccountDto> CreateUserAccount(CreateUserAccountDto createUserDto)
         {
-            var user = _mapper.Map<Account>(createUserDto);
-            user.Id = Guid.NewGuid();
-            user.DateCreated = _dateTimeProvider.GetDateTimeNow();
-            await _userRepo.CreateAccount(user);
+            var account = _mapper.Map<Account>(createUserDto);
+            account.Id = Guid.NewGuid();
+            account.DateCreated = _dateTimeProvider.GetDateTimeNow();
+            await _userRepo.CreateAccount(account);
 
-            var getUserDto = _mapper.Map<GetUserAccountDto>(user);
+            var getUserDto = _mapper.Map<GetUserAccountDto>(account);
             return await Task.FromResult(getUserDto);
         }
 

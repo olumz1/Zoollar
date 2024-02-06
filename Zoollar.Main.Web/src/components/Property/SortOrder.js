@@ -16,7 +16,7 @@ export default function SortOrder() {
     >
       <div>
         <TextField
-          id="outlined-select-currency"
+          id="outlined-select-sortorder"
           select
           label="Sort order"
           defaultValue="Newest Listed"

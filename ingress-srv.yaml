@@ -7,27 +7,27 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
-  - host: "zoollar.com"
+  - host: zoollar.com
     http:
       paths:
+      # - pathType: Prefix
+      #   path: "/api/blogs"
+      #   backend:
+      #     service:
+      #       name: blogs-clusterip-srv
+      #       port:
+      #         number: 80
       - pathType: Prefix
-        path: "/api/blogs"
-        backend:
-          service:
-            name: blogs-clusterip-srv
-            port:
-              number: 80
-      - pathType: Prefix
-        path: "/api/account"
+        path: /api/account
         backend:
           service:
             name: accounts-clusterip-srv
             port:
               number: 80
-      - pathType: Prefix
-        path: "/api/properties"
-        backend:
-          service:
-            name: properties-clusterip-srv
-            port:
-              number: 80
+      # - pathType: Prefix
+      #   path: "/api/properties"
+      #   backend:
+      #     service:
+      #       name: properties-clusterip-srv
+      #       port:
+      #         number: 80

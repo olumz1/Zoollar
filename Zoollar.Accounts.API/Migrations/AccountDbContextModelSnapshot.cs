@@ -76,9 +76,6 @@ namespace Zoollar.Accounts.API.Migrations
 
                     b.HasKey("AddressId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
                     b.ToTable("Address");
                 });
 
@@ -86,6 +83,9 @@ namespace Zoollar.Accounts.API.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
@@ -100,16 +100,13 @@ namespace Zoollar.Accounts.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("locationTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AccountId");
 
                     b.ToTable("AlertAndSearches");
                 });
@@ -188,6 +185,20 @@ namespace Zoollar.Accounts.API.Migrations
                     b.UseTpcMappingStrategy();
                 });
 
+            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.Account", b =>
+                {
+                    b.HasBaseType("Zoollar.Accounts.API.Models.Entities.AccountInfo");
+
+                    b.Property<string>("AccountType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RegistrationComplete")
+                        .HasColumnType("bit");
+
+                    b.ToTable("Accounts", (string)null);
+                });
+
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.EstateAgent", b =>
                 {
                     b.HasBaseType("Zoollar.Accounts.API.Models.Entities.AccountInfo");
@@ -213,31 +224,20 @@ namespace Zoollar.Accounts.API.Migrations
                     b.ToTable("Lenders", (string)null);
                 });
 
-            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.User", b =>
-                {
-                    b.HasBaseType("Zoollar.Accounts.API.Models.Entities.AccountInfo");
-
-                    b.Property<string>("AccountType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("Users", (string)null);
-                });
-
             modelBuilder.Entity("Zoollar.Accounts.API.Models.Address", b =>
                 {
-                    b.HasOne("Zoollar.Accounts.API.Models.Entities.User", null)
+                    b.HasOne("Zoollar.Accounts.API.Models.Entities.Account", null)
                         .WithOne("Address")
-                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "UserId")
+                        .HasForeignKey("Zoollar.Accounts.API.Models.Address", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Zoollar.Accounts.API.Models.AlertAndSearches", b =>
                 {
-                    b.HasOne("Zoollar.Accounts.API.Models.Entities.User", null)
+                    b.HasOne("Zoollar.Accounts.API.Models.Entities.Account", null)
                         .WithMany("AlertAndSearches")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -250,18 +250,18 @@ namespace Zoollar.Accounts.API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.EstateAgent", b =>
-                {
-                    b.Navigation("CompanyDetails")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.User", b =>
+            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.Account", b =>
                 {
                     b.Navigation("Address")
                         .IsRequired();
 
                     b.Navigation("AlertAndSearches");
+                });
+
+            modelBuilder.Entity("Zoollar.Accounts.API.Models.Entities.EstateAgent", b =>
+                {
+                    b.Navigation("CompanyDetails")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
