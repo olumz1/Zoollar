@@ -14,14 +14,14 @@ namespace Zoollar.Accounts.API.Data
             _dbContext = dbContext;
         }
 
-        public async Task CreateAccount(User user)
+        public async Task CreateAccount(Account account)
         {
-            if (user == null)
+            if (account == null)
             {
-                throw new ArgumentNullException(nameof(User));
+                throw new ArgumentNullException(nameof(Account));
             }
 
-            await _dbContext.AddAsync(user);
+            await _dbContext.AddAsync(account);
             await SaveChanges();
         }
 
@@ -36,15 +36,15 @@ namespace Zoollar.Accounts.API.Data
             await SaveChanges();
         }
 
-        public async Task<User?> GetAccountById(Guid id)
+        public async Task<Account?> GetAccountById(Guid id)
         {
-            var account = await _dbContext.Users.Include(ad => ad.Address).FirstOrDefaultAsync(x => x.Id == id);
+            var account = await _dbContext.Accounts.Include(ad => ad.Address).FirstOrDefaultAsync(x => x.Id == id);
             return account ?? null;
         }
 
-        public async Task<IEnumerable<User>> GetAllAccounts()
+        public async Task<IEnumerable<Account>> GetAllAccounts()
         {
-            return await _dbContext.Users.Include(ad => ad.Address).ToListAsync();
+            return await _dbContext.Accounts.Include(ad => ad.Address).ToListAsync();
         }
 
         public async Task SaveChanges()
@@ -52,13 +52,13 @@ namespace Zoollar.Accounts.API.Data
            await _dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateAccount(User updateAccount)
+        public async Task UpdateAccount(Account updateAccount)
         {
             if (updateAccount == null)
             {
-                throw new ArgumentNullException(nameof(User));
+                throw new ArgumentNullException(nameof(Account));
             }
-            _dbContext.Users.Update(updateAccount);
+            _dbContext.Accounts.Update(updateAccount);
             await SaveChanges();
         }
     }

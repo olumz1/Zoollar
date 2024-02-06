@@ -2,16 +2,6 @@ import { Box, List, Typography, styled } from "@mui/material";
 import { Colors } from "../theme";
 import "@fontsource/montez";
 
-// container
-export const NavbarContainer = styled(Box)(() => ({
-  display: "flex",
-  marginTop: 4,
-  justifyContent: "center",
-  alignItems: "center",
-  padding: "2px 8px",
-  width: "89%",
-}));
-
 // header
 export const NavbarHeader = styled(Typography)(() => ({
   fontSize: "1.2500em",

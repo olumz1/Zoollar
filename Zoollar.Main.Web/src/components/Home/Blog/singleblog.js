@@ -12,7 +12,6 @@ export default function SingleBlog({ blog, matches }) {
       <BlogImage src={blog.image} />
       <BlogsHeader
         sx={{
-          margin: "20px -160px",
           fontSize: "21px",
           width: "100%",
           position: "relative",

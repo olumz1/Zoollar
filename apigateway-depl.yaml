@@ -15,17 +15,17 @@ spec:
    containers:
     - name: apigatewayservice
       image: olumz1/zoollarapigateway:latest
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: apigateway-clusterip-srv
-spec:
-  type: ClusterIP
-  selector:
-    app.kubernetes.io/name: apigatewayservice
-  ports:
-    - protocol: TCP
-      name: apigatewayservice
-      port: 80
-      targetPort: 80
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: apigateway-clusterip-srv
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app.kubernetes.io/name: apigatewayservice
+#   ports:
+#     - protocol: TCP
+#       name: apigatewayservice
+#       port: 80
+#       targetPort: 80

@@ -1,4 +1,4 @@
-import { Button, useMediaQuery } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import {
   PromotionContentArea,
@@ -18,27 +18,47 @@ export default function Promotion() {
     <PromotionsContainer>
       <PromotionContentArea>
         <PromotionColumnA>
-          <PromotionTitle>Value your property</PromotionTitle>
-          <PromotionDescription>
-            Get an instant online valuation to see what it's worth.
-          </PromotionDescription>
-          <Button
-            variant="outlined"
+          <Box
             sx={{
-              color: Colors.black,
-              border: `1px solid black`,
-              height: "50px",
-              "&:hover": {
-                backgroundColor: Colors.primary,
-                boxShadow: "none",
-                color: Colors.white,
-              },
+              padding: "24px",
+              display: "flex",
+              rowGap: "16px",
+              flexDirection: "column",
             }}
           >
-            Get an instant valuation
-          </Button>
+            <PromotionTitle>Value your property</PromotionTitle>
+            <PromotionDescription>
+              Get an instant online valuation to see what it's worth.
+            </PromotionDescription>
+            <Box
+              sx={{
+                display: "flex",
+                rowGap: "24px",
+                flexWrap: "wrap",
+                columnGap: "24px",
+              }}
+            >
+              <Button
+                variant="outlined"
+                sx={{
+                  color: Colors.black,
+                  border: `1px solid black`,
+                  height: "50px",
+                  "&:hover": {
+                    backgroundColor: Colors.primary,
+                    boxShadow: "none",
+                    color: Colors.white,
+                  },
+                }}
+              >
+                Get an instant valuation
+              </Button>
+            </Box>
+          </Box>
         </PromotionColumnA>
-        <PromotionImage src="/images/banner/IMG_4331.JPG"></PromotionImage>
+        <Box sx={{ display: "flex", flex: "1 1", alignItems: "flex-end" }}>
+          <PromotionImage src="/images/banner/IMG_4331.JPG"></PromotionImage>
+        </Box>
       </PromotionContentArea>
     </PromotionsContainer>
   );

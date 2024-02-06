@@ -104,12 +104,12 @@ function PropertyDetailsSwiper({ propertyImages, handleClickOpen }) {
   };
 
   return (
-    <div class="grid-container">
+    <div className="grid-container">
       <div className="left" onClick={() => imgAction("prev-img")}>
         <ArrowBackIosIcon style={{ fontSize: 30 }} />
       </div>
       <div
-        class="grid-item1"
+        className="grid-item1"
         style={{
           backgroundImage: `url(${currImg.img})`,
           backgroundSize: `100% 100%`,
@@ -117,7 +117,7 @@ function PropertyDetailsSwiper({ propertyImages, handleClickOpen }) {
         onClick={() => handleClickOpen(1)}
       ></div>
       <div
-        class="grid-item2"
+        className="grid-item2"
         style={{
           backgroundImage: `url(${currImg.img1})`,
           backgroundSize: `100% 100%`,
@@ -125,7 +125,7 @@ function PropertyDetailsSwiper({ propertyImages, handleClickOpen }) {
         onClick={() => handleClickOpen(1)}
       ></div>
       <div
-        class="grid-item3"
+        className="grid-item3"
         style={{
           backgroundImage: `url(${currImg.img2})`,
           backgroundSize: `100% 100%`,
@@ -133,7 +133,7 @@ function PropertyDetailsSwiper({ propertyImages, handleClickOpen }) {
         onClick={() => handleClickOpen(1)}
       ></div>
       <div
-        class="grid-item4"
+        className="grid-item4"
         style={{
           backgroundImage: `url(${currImg.img3})`,
           backgroundSize: `100% 100%`,

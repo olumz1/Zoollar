@@ -1,0 +1,37 @@
+.css-oh2uoq-MuiPaper-root {
+  background: #fff !important;
+}
+
+.css-ag7rrr-MuiTypography-root {
+  color: #322744;
+}
+
+.css-1sn4lm3-MuiTypography-root {
+  color: #322744;
+}
+
+.css-hdklz2-MuiButtonBase-root-MuiButton-root {
+  color: #322744 !important;
+  border: 2px solid #322744ad !important;
+}
+
+.css-hdklz2-MuiButtonBase-root-MuiButton-root:hover {
+  color: #fff !important;
+  background-color: #6439ff !important;
+  border: 2px solid #6439ff !important;
+}
+
+.css-oh2uoq-MuiPaper-root {
+  border: 2px solid #322744ad !important;
+  background: #6439ff0d !important;
+  border-radius: 0.5rem !important;
+}
+
+.css-10d2qir {
+  height: 110px;
+}
+
+.css-xc9rrs-MuiAvatar-root {
+  width: 100px !important;
+  height: 100px !important;
+}

@@ -87,12 +87,8 @@ export default function Charts(aspect) {
         <ChartHeader>{aspect.title}</ChartHeader>
         <Box
           sx={{
-            maxWidth: "950px",
             width: "100%",
-            padding: "8px 50px 15px 69px",
-            background: "#f6f9fa",
             margin: "0 20px",
-            borderRadius: "12px",
             display: "grid",
             gridTemplateColumns: "2fr 9fr",
           }}
